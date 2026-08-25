@@ -1,0 +1,93 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: sigconf-authordraft.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in achiam2023gpt
+Warning--page numbers missing in both pages and numpages fields in achiam2023gpt
+Warning--page numbers missing in both pages and numpages fields in cheng2025surrogates
+Warning--page numbers missing in both pages and numpages fields in christiano2017deep
+Warning--page numbers missing in both pages and numpages fields in chu2025llm
+Warning--empty address in deyoung2020eraser
+Warning--empty publisher in garg2021iqlearn
+Warning--empty address in garg2021iqlearn
+Warning--page numbers missing in both pages and numpages fields in garg2021iqlearn
+Warning--empty address in hase2020leakage
+Warning--empty address in jacovi2020faithfully
+Warning--empty publisher in jaques2020way
+Warning--empty address in jaques2020way
+Warning--empty publisher in li2016diversity
+Warning--empty address in li2016diversity
+Warning--empty publisher in li2016deep
+Warning--empty address in li2016deep
+Warning--empty publisher in li2018dialogue
+Warning--empty address in li2018dialogue
+Warning--page numbers missing in both pages and numpages fields in liu2025proactive
+Warning--empty publisher in park2023generative
+Warning--empty address in park2023generative
+Warning--no number and no volume in schulman2017proximal
+Warning--page numbers missing in both pages and numpages fields in schulman2017proximal
+Warning--empty publisher in serban2017hierarchical
+Warning--empty address in serban2017hierarchical
+Warning--page numbers missing in both pages and numpages fields in serban2017hierarchical
+Warning--page numbers missing in both pages and numpages fields in sutskever2014sequence
+Warning--empty publisher in tu2023littlemu
+Warning--empty address in tu2023littlemu
+Warning--no number and no volume in vinyals2015neural
+Warning--page numbers missing in both pages and numpages fields in vinyals2015neural
+Warning--empty publisher in wulfmeier2024imitating
+Warning--empty address in wulfmeier2024imitating
+Warning--page numbers missing in both pages and numpages fields in wulfmeier2024imitating
+Warning--empty publisher in zhao2017learning
+Warning--empty address in zhao2017learning
+You've used 28 entries,
+            6273 wiz_defined-function locations,
+            1678 strings with 26249 characters,
+and the built_in function-call counts, 36869 in all, are:
+= -- 4382
+> -- 1661
+< -- 0
++ -- 590
+- -- 563
+* -- 2957
+:= -- 3735
+add.period$ -- 137
+call.type$ -- 28
+change.case$ -- 288
+chr.to.int$ -- 27
+cite$ -- 65
+duplicate$ -- 3063
+empty$ -- 2139
+format.name$ -- 670
+if$ -- 8882
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 129
+newline$ -- 256
+num.names$ -- 195
+pop$ -- 1407
+preamble$ -- 1
+purify$ -- 510
+quote$ -- 0
+skip$ -- 1103
+stack$ -- 0
+substring$ -- 2356
+swap$ -- 298
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 680
+warning$ -- 37
+while$ -- 141
+width$ -- 0
+write$ -- 565
+(There were 37 warnings)
