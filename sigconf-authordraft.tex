@@ -1,6 +1,6 @@
-% Standalone Overleaf entry point for the anonymous ACM two-column format.
+% Standalone Overleaf entry point for the anonymous CHI review format.
 % Upload this file with references.bib and the figure/ directory, then set
-% sigconf.tex as the project's Main document.
+% sigconf-authordraft.tex as the project's Main document.
 \documentclass[manuscript,review,anonymous]{acmart}
 
 \citestyle{acmauthoryear}
@@ -41,9 +41,9 @@ choice over human-readable interaction acts, and a separate language
 realization. LA-IQL learns offline from human demonstrations without online
 exploration or a hand-designed scalar reward. We instantiate it on cognitively
 annotated K--12 classroom discourse with 31 teacher--student acts and evaluate
-90 formal trajectories of up to 100 turns across a matched training ablation
+90 formal trajectories of up to 100 turns across a matched checkpoint ablation
 and two inference configurations. Removing temporal-difference regularization
-from Direct decoding increases two-step cycles from 0.1708 to 0.2607 and
+from the evaluated Direct checkpoints increases two-step cycles from 0.1708 to 0.2607 and
 repeated motifs from 0.3957 to 0.5379, without a reliable change in paired
 bigram JSD (0.0827 vs. 0.0835). Direct action selection more closely matches
 held-out human action patterns than proposal-constrained candidate re-ranking
@@ -51,7 +51,10 @@ held-out human action patterns than proposal-constrained candidate re-ranking
 two-step cycles and repeated motifs.
 A first-order Markov control is strongest on several local alignment measures,
 showing that aggregate human-pattern similarity alone does not establish a
-context-sensitive interaction policy. Candidate re-ranking improves a weak
+context-sensitive interaction policy. In a frozen 50-state intervention,
+semantic context replacement changes the main policy distribution (60\% action
+flip rate; mean JSD 0.2957), providing exploratory evidence that the policy
+uses dialogue text without establishing contextual appropriateness. Candidate re-ranking improves a weak
 automatic action--utterance consistency screen. These results show how action
 mediation exposes an alignment--repetition--realization trade-off that fluent
 utterances or aggregate similarity measures can conceal.
@@ -75,9 +78,8 @@ utterances or aggregate similarity measures can conceal.
 \ccsdesc[500]{Human-centered computing~Human computer interaction (HCI)}
 \ccsdesc[300]{Computing methodologies~Reinforcement learning}
 
-\keywords{human-grounded interaction, language-mediated interaction,
-conversational agents, action-mediated policy, offline imitation learning,
-dialogue strategy}
+\keywords{human-grounded interaction, language-mediated agents,
+action-mediated policy, offline imitation learning, dialogue strategy}
 
 \begin{teaserfigure}
 \centering
@@ -412,19 +414,25 @@ Agreement, querying, guide & Ag, Qu, Gu & student/teacher $\times$ symbol \\
 \label{tab:action-space}
 \end{table}
 
-We evaluate interaction-pattern diversity (G1), expert-pattern alignment (G2), rationale--action consistency (G3), and contextual appropriateness after language realization (G4).
+We evaluate interaction-pattern diversity (G1), expert-pattern alignment (G2),
+rationale--action consistency (G3), and automatic language-realization
+screening (G4).
 
 \subsection{Data Construction and Rationale Annotation}
 
 Each expert classroom trajectory is converted into fixed-window transitions.
 For step $t$, $s_t$ contains the two most recent utterances and the two most recent action labels, $a_t$ is the annotated next interaction act, and $s_{t+1}$ is obtained after appending the next utterance together with $a_t$.
-An annotation model constructs a rationale target $z_t^*$ from the local state and expert next action, but the trained model does not receive the expert action as an inference-time input. It instead learns the factorization
+We use the \texttt{deepseek-chat} API (temperature 0.7) to rewrite rationale
+targets for 9,168 transitions from the local state and expert next action. The
+artifact records the model alias and call date but not an immutable provider
+snapshot. The trained model does not receive the expert action as an
+inference-time input. It instead learns the factorization
 \begin{equation}
 p_\theta(z_t,a_t\mid s_t)
 =p_\theta(z_t\mid s_t)\,\pi_\theta(a_t\mid s_t,z_t).
 \label{eq:rationale-action-factorization}
 \end{equation}
-Rationale targets that copy an action symbol or canonical label are filtered before training to reduce trivial label leakage.
+Rationale targets that copy an action symbol or canonical label are filtered before training to reduce trivial label leakage. Automated generation checks cover length, uniqueness, and retry status; they do not constitute a semantic-quality audit.
 We use a fixed supervision schema:
 \begin{quote}
 \small
@@ -440,7 +448,10 @@ LA-IQL augments supervised fine-tuning of a rationale-conditioned dual-head mode
 \subsection{TD-Regularized Offline IQLearn Objective}
 
 We do not introduce a new inverse reinforcement learning objective.
-Instead, we adopt the offline inverse soft Q-learning formulation used for language imitation by Wulfmeier et al.~\citep{wulfmeier2024imitating}. Grounded in IQ-Learn~\citep{garg2021iqlearn}, this formulation recasts inverse RL as maximum-likelihood training with a temporal-difference regularizer.
+Instead, we adopt offline inverse soft Q-learning for language
+imitation~\citep{wulfmeier2024imitating}. Grounded in
+IQ-Learn~\citep{garg2021iqlearn}, it recasts inverse RL as maximum-likelihood
+training with a temporal-difference regularizer.
 Our contribution is its adaptation from token-level generation to a 31-class cognitive-act policy whose Q-values are produced by a rationale-conditioned policy head.
 We define the augmented policy state as $x_t=(s_t,z_t)$. For teacher-forced examples, $x_t^*=(s_t,z_t^*)$ and $x_{t+1}^*=(s_{t+1},z_{t+1}^*)$ use the corresponding annotated rationale targets; model-generated-rationale examples replace these targets with samples from $p_\theta(z\mid s)$. At inference, the language head generates $z_t$ from $s_t$ before action scoring.
 The objective contains four terms.
@@ -493,6 +504,11 @@ These terms are combined as
 The coefficient $\lambda_4$ is annealed from zero after a pure-MLE warm-up, recovering action-level MLE when the TD term is disabled.
 
 Training proceeds in two stages: we first freeze the backbone and train the policy head, pooler, and language head; we then apply LoRA fine-tuning and merge the weights. A fraction of policy-head examples uses model-generated rationales to mitigate exposure bias.
+Both evaluated full and no-TD checkpoints record \texttt{Qwen/Qwen3.5-0.8B}
+as the backbone and a 31-dimensional policy output. Their historical artifacts
+do not retain a complete training manifest, so optimizer settings, loss
+weights, training seed, and checkpoint-selection details are not reconstructed
+from current script defaults (Appendix~\ref{sec:reproducibility}).
 
 \subsection{Rationale-Conditioned Policy Parameterization}
 
@@ -537,7 +553,11 @@ The role model then produces one realization $u_t\sim q_\phi(u\mid h_t,\hat a_t)
   \label{fig:method-overview}
 \end{figure*}
  
-The role model uses a long window of 30 dialogue turns and five action steps; where sampling applies, it uses a temperature of $0.8$ and top-$p$ of 1. In the reported evaluation, generation stops at \texttt{END} or the 100-action horizon.
+The role model is recorded as \texttt{deepseek-chat} for both teacher and
+student roles. It uses a long window of 30 dialogue turns and five action steps;
+where sampling applies, it uses a temperature of $0.8$ and top-$p$ of 1. The
+artifact retains the mutable API alias rather than an immutable model snapshot.
+In the reported evaluation, generation stops at \texttt{END} or the 100-action horizon.
 
 We additionally explored candidate re-ranking as an inference-time adjustment. The role model samples six action--utterance candidates in a fixed schema---three for the teacher and three for the student---and thereby induces $q_\phi(\mathcal C_t\mid h_t)$ over $\mathcal{C}_t=\{(a_{t,j},u_{t,j})\}_{j=1}^{6}$. The selected index is
 \begin{equation}
@@ -580,6 +600,29 @@ evaluation.  The same test lessons were inspected in an earlier
 horizon-20 run; we disclose this prior access and do not alter test membership
 for the horizon-100 baseline evaluation reported below.
 
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}p{0.27\columnwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Component & Recorded configuration \\
+\midrule
+Policy model & \texttt{Qwen/Qwen3.5-0.8B}; 31-action rationale-conditioned dual head \\
+Rationale annotation & \texttt{deepseek-chat}; temperature 0.7; 9,168 rewritten records \\
+Role realization & \texttt{deepseek-chat}; temperature 0.8; top-$p$ 1; 30-turn/5-action context \\
+Policy observation & Two dialogue turns and two action labels; max input length 512; rationale budget 256 tokens \\
+Formal split & 35/5/10 lessons; subject--stage stratification; split seed 20260731 \\
+Rollout & 10 test lessons; horizon 100; \texttt{END} disabled before step 50; margin 3.0 \\
+Randomness & One Full checkpoint and one no-TD checkpoint; generation seeds 42, 43, and 44 \\
+\bottomrule
+\end{tabularx}
+\caption{Implementation summary. Values are transcribed from checkpoint,
+split, annotation, and formal-trajectory artifacts. Historical training fields
+not retained by those artifacts are listed as unresolved in
+Appendix~\ref{sec:reproducibility}.}
+\label{tab:implementation-summary}
+\end{table}
+
 \subsection{Baselines and Ablations}
 
 We compare LA-IQL with five completed controls: direct role-conditioned generation, a constrained teacher prompt, expert-frequency sampling, a first-order Markov policy, and uniform action sampling.
@@ -616,12 +659,31 @@ F_{1}^{\mathrm{macro}}(s_t\!\rightarrow\!a_t),
 \end{equation}
 where the target is the evaluated system's selected action.
 We also report masked rationale-only Macro-F1, majority, leakage, and shuffled-rationale controls. Predictability alone does not establish causal faithfulness~\citep{hase2020leakage,jacovi2020faithfully}; we therefore describe G3 as a simulatability diagnostic rather than an explanation-quality measure.
-For contextual appropriateness (G4), we measure action--utterance consistency, redundancy, and classroom appropriateness; open-ended text overlap is secondary because multiple responses can be valid.
+For language realization (G4), we use a frozen automatic classifier to screen
+action--utterance consistency and report redundancy and rule-defined severe
+violations. Because this classifier has weak held-out expert performance and
+human judgments are incomplete, G4 does not measure contextual or classroom
+appropriateness; open-ended text overlap is secondary because multiple
+responses can be valid.
 Appendix~\ref{sec:evaluation-details} gives the complete metric and intervention protocol.
 
 \subsection{Evaluation Protocol}
 
-Action-pattern Jensen--Shannon divergence is the primary G2 automatic endpoint. Current trajectory results cover seeds 42--44 and 10 frozen test lessons per seed at horizon 100. We report mean $\pm$ population standard deviation across seed aggregates. For learned-system comparisons, we additionally pair the 30 matching seed--lesson trajectories, cluster resampling by the 10 lessons, run 10,000 bootstrap resamples, and report percentile 95\% intervals. The TD ablation holds Direct decoding and rationale temperature fixed. By contrast, Direct and Candidate differ in rationale temperature and were examined after observing held-out results, so that comparison remains a descriptive system-level contrast rather than a confirmatory causal decoding effect.
+Action-pattern Jensen--Shannon divergence is the primary G2 automatic endpoint.
+Current trajectory results cover generation seeds 42--44 and 10 frozen test
+lessons per seed at horizon 100. These are three stochastic rollouts from each
+fixed checkpoint, not independently trained models. We report mean $\pm$
+population standard deviation across generation-seed aggregates. For
+learned-system comparisons, we additionally pair the 30 matching
+generation-seed--lesson trajectories, cluster resampling by the 10 lessons, run
+10,000 bootstrap resamples, and report percentile 95\% intervals. The reported
+TD $p$-values are unadjusted within an exploratory matched-checkpoint family;
+the Direct--Candidate table applies Benjamini--Hochberg correction over its 11
+reported comparisons. The TD ablation holds Direct decoding and rationale
+temperature fixed. By contrast, Direct and Candidate differ in rationale
+temperature and were examined after observing held-out results, so that
+comparison remains a descriptive system-level contrast rather than a
+confirmatory causal decoding effect.
 
 Table~\ref{tab:g1-core-results} reports the core G1 metrics.
 
@@ -645,7 +707,8 @@ LA-IQL + candidate re-ranking & $\mathbf{0.4478 \pm 0.0205}$ & $\mathbf{0.0488 \
 \bottomrule
 \end{tabular}
 }
-\caption{Core G1 results (mean $\pm$ population SD over three seeds). Bold
+\caption{Core G1 results (mean $\pm$ population SD over three generation seeds
+from each fixed checkpoint). Bold
 values mark the best learned-system result in each column; diagnostic
 baselines may be diverse without expert alignment.}
 \label{tab:g1-core-results}
@@ -674,7 +737,7 @@ LA-IQL + candidate re-ranking & $0.1059 \pm 0.0025$ & $0.3116 \pm 0.0132$ & $0.1
 \end{tabular}
 }
 \caption{G2 expert-pattern alignment (mean $\pm$ population SD over three
-seeds). Bold values mark learned-system results that are numerically best or
+generation seeds from each fixed checkpoint). Bold values mark learned-system results that are numerically best or
 effectively tied at the shown precision. The first-order Markov control
 directly models the local transitions measured by several columns but does not
 condition on dialogue content.}
@@ -687,8 +750,8 @@ condition on dialogue content.}
 The corpus contains 50 lessons, 9,419 turns, 47 topics, and 9,369
 transitions. We use the frozen lesson-level split described in
 Section~\ref{sec:experiments}: 35 training, five validation, and 10 test
-lessons. Each system has three runs (seeds 42--44), with up to 100 generated
-actions for each test lesson. All formal trajectories suppress \texttt{END}
+lessons. Each system has three generation runs (seeds 42--44) from the same
+checkpoint, with up to 100 generated actions for each test lesson. All formal trajectories suppress \texttt{END}
 before action 50. The frequency and Markov controls use only the frozen
 training split. Main Direct and candidate re-ranking use the
 \texttt{sft\_stage3/final} checkpoint; the matched training ablation uses
@@ -701,7 +764,7 @@ ablation. Five of 30 w/o-TD trajectories terminate after 57--95 actions; all
 30 main Direct trajectories reach 100 actions. This stopping behavior is an
 observed policy outcome under the shared rule, not a post-hoc truncation.
 
-\paragraph{TD regularization suppresses repetitive long-horizon organization.}
+\paragraph{The evaluated TD checkpoint shows less repetitive long-horizon organization.}
 Table~\ref{tab:td-ablation-paired} reports the matched Direct-decoding training
 ablation. Removing TD increases two-step cycles from $0.1708$ to $0.2607$
 (TD--w/o-TD difference $-0.0900$, 95\% CI $[-0.1400,-0.0438]$,
@@ -716,9 +779,10 @@ Local expert-distribution alignment changes little. Paired bigram JSD is
 $0.0827$ with TD and $0.0835$ without TD (difference $-0.0007$, 95\% CI
 $[-0.0063,0.0043]$, $p=.8281$); transition JSD is likewise
 indistinguishable. Bigram support shows a borderline descriptive advantage for
-TD ($0.9906$ vs. $0.9833$, $p=.0510$). The measured contribution of TD is
-therefore concentrated in suppressing recurrent sequence structure rather
-than improving local imitation fidelity.
+TD ($0.9906$ vs. $0.9833$, $p=.0510$). For these fixed checkpoints, the
+observed TD-associated difference is concentrated in recurrent sequence
+structure rather than local imitation fidelity. Independent training
+repetitions are needed to generalize this difference to the training objective.
 
 \begin{table*}[t]
 \centering
@@ -740,7 +804,7 @@ G4 & Local trigram redundancy $\downarrow$ & $-0.00001$ & $[-0.0042,\ 0.0041]$ &
 \bottomrule
 \end{tabular}
 \caption{Matched temporal-difference ablation under Direct decoding. Values
-compare LA-IQL with and without the TD term over the same 30 seed--lesson
+compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson
 trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap
 resamples. Both systems use rationale temperature 0.0 and otherwise identical
 generation settings. Positive differences mean the TD model is numerically
@@ -770,11 +834,26 @@ more capable interactive agent. This distinction motivates reporting G2
 alongside state-conditioned decision traces, repetition diagnostics, and
 action--utterance realization checks.
 
+\paragraph{A frozen intervention provides exploratory evidence of text sensitivity.}
+We evaluated the main Full checkpoint on five pre-existing, evenly spaced
+states from each of the 10 held-out lessons ($N=50$). Within each lesson, a
+cyclic donor replaced utterance semantics while preserving the speaker
+sequence, number of utterances, and action history. Relative to the original
+states, the probability assigned to the expert action decreased by $0.0767$
+(lesson-cluster bootstrap 95\% CI $[0.0153,0.1288]$), 60\% of argmax actions
+flipped (CI $[0.48,0.72]$), and mean policy JSD was $0.2957$ (CI
+$[0.2476,0.3431]$). The 31-class Macro-F1 decrease was $0.0201$, with an
+interval crossing zero ($[-0.0185,0.0649]$). This intervention indicates that
+the fixed policy distribution responds to dialogue text beyond the preserved
+action history. Its small sample, deterministic donor construction, and lack of
+human judgments mean it does not establish that the response is contextually
+appropriate. Appendix~\ref{sec:context-intervention} records the protocol.
+
 \paragraph{Within the learned architecture, alignment comes with repetitive local structure.}
 Direct LA-IQL is closer to the held-out expert
 distribution than Candidate: paired bigram JSD is $0.0827$ versus $0.1059$,
 and training-expert bigram support is $0.9906$ versus $0.9522$. Across 30
-matched seed--lesson units, the Direct--Candidate difference in bigram JSD is
+matched generation-seed--lesson units, the Direct--Candidate difference in bigram JSD is
 $-0.0232$, 95\% CI $[-0.0305,-0.0152]$, BH-adjusted $q<.0001$.
 
 This alignment does not imply uniformly better interaction dynamics. Direct
@@ -803,7 +882,7 @@ G2 & Trigram support $\uparrow$ & $+0.3898$ & $[0.3551,\ 0.4238]$ & $<.0001$ \\
 G4 & Consistency accuracy $\uparrow$ & $-0.0133$ & $[-0.0233,\ -0.0030]$ & $0.0140$ \\
 \bottomrule
 \end{tabular}
-\caption{Paired Direct--Candidate comparison over 30 matched seed--lesson
+\caption{Paired Direct--Candidate comparison over 30 matched generation-seed--lesson
 units (10,000 bootstrap resamples; percentile intervals; BH correction over
 11 comparisons). Positive values mean Direct is numerically larger; metric
 arrows indicate the desirable direction. The configurations also differ in
@@ -816,14 +895,15 @@ single-factor decoding ablation.}
 \paragraph{Rationales carry action-predictive information.}
 Under the same G3-v2 dual TF--IDF evaluator, masked rationale-only Macro-F1 is
 $0.3986$ for Direct and $0.1013$ for Candidate, compared with state-only
-scores of $0.0159$ and $0.0123$. Seed-level incremental simulatability
+scores of $0.0159$ and $0.0123$. Generation-seed-level incremental simulatability
 $\Delta_{\mathrm{sim}}$ is $0.3885$ for Direct and $0.0863$ for Candidate.
 The matched w/o-TD Direct ablation obtains rationale-only Macro-F1 $0.3682$,
 combined Macro-F1 $0.3629$, $\Delta_{\mathrm{sim}}=0.3372$, and accuracy
 $0.6867$, descriptively below the corresponding TD Direct values of $0.3986$,
 $0.4044$, $0.3885$, and $0.7097$.
-For the original Direct and Candidate configurations, the observed seed-level delta exceeds all 20
-within-lesson/role shuffle controls, and all 30 seed--lesson deltas are
+For the original Direct and Candidate configurations, the observed
+generation-seed-level delta exceeds all 20 within-lesson/role shuffle controls,
+and all 30 generation-seed--lesson deltas are
 positive. These results show that masked rationales contain information about
 the selected action. They do not show that rationales causally determine the
 policy decision or constitute faithful explanations; we also do not attach an
@@ -875,10 +955,10 @@ transitions, and evaluation reference---and which remain unverified, including
 experienced naturalness, pedagogical value, and responsiveness to longer-term
 goals.
 
-\subsection{Temporal-Difference Regularization Primarily Stabilizes Sequence Organization}
+\subsection{Fixed-Checkpoint TD Differences Concentrate in Sequence Organization}
 
-The matched Direct-decoding ablation localizes the clearest contribution of
-temporal-difference regularization. Removing the TD term leaves local
+The matched Direct-decoding checkpoint contrast localizes the clearest observed
+TD-associated difference. Removing the TD term leaves local
 expert-pattern alignment statistically indistinguishable, but increases
 two-step cycles by 53\% and repeated motifs by 36\%. This pattern suggests that
 the TD objective does not merely expand the action vocabulary or improve
@@ -886,7 +966,9 @@ one-step imitation. Its observable contribution is to discourage locally
 plausible choices from accumulating into repetitive longer-horizon behavior.
 The w/o-TD policy also terminates five of 30 trajectories before the
 100-action horizon, whereas the TD policy terminates none, providing further
-descriptive evidence of rollout stabilization.
+descriptive evidence of different rollout behavior. Because each condition
+contains one trained checkpoint, the bootstrap captures held-out lesson and
+generation variation but not training-seed uncertainty.
 
 This distinction is relevant to interaction design because local
 appropriateness and temporal organization can fail independently. A policy
@@ -943,9 +1025,11 @@ Markov control matches held-out local action transitions as well as or better
 than the learned systems on several measures, demonstrating that aggregate
 human-pattern similarity alone is insufficient evidence of context-sensitive
 interaction. In the matched Direct-decoding ablation, temporal-difference
-regularization significantly reduces short cycles and repeated motifs without
-a reliable change in local expert-distribution alignment, locating its main
-measured benefit in longer-horizon behavioral organization. Within LA-IQL,
+the evaluated checkpoint trained with temporal-difference regularization shows
+fewer short cycles and repeated motifs without a reliable change in local
+expert-distribution alignment. This fixed-checkpoint result locates the main
+measured difference in longer-horizon behavioral organization but does not
+establish a training-seed-general TD effect. Within LA-IQL,
 direct selection is closer to the held-out human
 action distribution than proposal-constrained candidate re-ranking, but also
 repeats short cycles and motifs more often and scores lower on an automatic
@@ -981,9 +1065,11 @@ Claims about learning outcomes or teacher-training utility require evaluation wi
 Moreover, the current G2 endpoints emphasize local action $n$-grams and
 transition distributions. A policy such as the first-order Markov control can
 score highly by conservatively reusing training-supported transitions without
-responding to the semantic content of the current classroom state. Direct
-state-matched judgments or interventions are needed to establish contextual
-decision quality.
+responding to the semantic content of the current classroom state. Our
+50-state intervention provides exploratory evidence that the Full policy
+distribution changes with utterance semantics, but its deterministic donor and
+small sample do not establish contextual decision quality; broader
+interventions and direct state-matched judgments remain necessary.
 
 \section*{Ethical Considerations}
 
@@ -1061,15 +1147,15 @@ automatic action--utterance screen.}
 Figures~\ref{fig:appendix-paired-effects} and
 \ref{fig:appendix-learned-system-profile} provide complementary visual
 summaries of these comparisons. The first emphasizes paired uncertainty,
-whereas the second preserves the reported metric scales and seed-level
+whereas the second preserves the reported metric scales and generation-seed-level
 variation.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figure/paired_effects_forest.pdf}
 \Description{Two-panel forest plot of desirability-aligned paired effects.
-The TD model significantly improves Cycle-2 and motif rate relative to the
-model without TD. Direct decoding improves bigram and trigram support relative
+The evaluated TD checkpoint has lower Cycle-2 and motif rate than the checkpoint
+without TD. Direct decoding improves bigram and trigram support relative
 to candidate re-ranking, while candidate re-ranking improves Cycle-2 and motif
 rate. Several other intervals cross zero.}
 \caption{Desirability-aligned paired effects for temporal-difference training
@@ -1094,7 +1180,8 @@ and motif rates but weaker bigram and trigram support. LA-IQL and its no-TD
 ablation have similar paired bigram divergence and support values.}
 \caption{Core G1 and G2 results for the three learned-system configurations.
 Points show means and error bars show population standard deviations across
-seeds 42--44, with 10 held-out lessons per seed. Connecting lines are visual
+generation seeds 42--44 from each fixed checkpoint, with 10 held-out lessons
+per seed. Connecting lines are visual
 guides rather than temporal trajectories; arrows indicate the desirable
 metric direction.}
 \label{fig:appendix-learned-system-profile}
@@ -1120,7 +1207,7 @@ Candidate re-ranking & 0.0123 & 0.1013 & 0.0986 & 0.0863 & 0.2393 \\
 \bottomrule
 \end{tabular}
 \caption{G3-v2 rationale--action simulatability. Values are means of the three
-seed-level scores. The target is each system's selected action; the result is
+generation-seed-level scores. The target is each system's selected action; the result is
 an association diagnostic, not a causal-faithfulness measure.}
 \label{tab:appendix-g3-results}
 \end{table*}
@@ -1131,6 +1218,122 @@ but no completed human judgment scores are present. We therefore report only
 the automatic G4-v1 screen and make no claim about factuality, safety,
 pedagogical appropriateness, experienced naturalness, or learning outcomes
 from the zero severe-rule violation rate.
+
+\section{Implementation and Reproducibility}
+\label{sec:reproducibility}
+
+\paragraph{Evidence hierarchy and unresolved training fields.}
+We transcribed inference settings from the terminal \texttt{config} object in
+the formal trajectory JSON files, data provenance from the frozen split
+manifest, and model identity from checkpoint metadata. These artifacts are
+authoritative for the reported runs. The current training scripts have changed
+since the main Full and no-TD checkpoints were produced, while their checkpoint
+metadata retains only the backbone and policy dimension. Consequently, the
+historical optimizer, learning rate, batch size, epoch count, loss weights,
+teacher/self-generated rationale ratio, training seed, initialization, code
+revision, and checkpoint-selection rule are not recoverable from the active
+artifacts. We neither substitute current defaults nor describe the no-TD result
+as replicated across training seeds.
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}Xlllll@{}}
+\toprule
+System & Checkpoint / objective & TD & Selection & Rat. temp. & Role proposals & Randomness \\
+\midrule
+Full Direct & \texttt{sft\_stage3/final}; four-term objective & on & full-space argmax & 0.0 & one realization & gen. 42--44 \\
+Full Candidate & same Full checkpoint & on & six-proposal re-rank & 0.6 & 3/role & gen. 42--44 \\
+No-TD Direct & \texttt{sft\_stage3\_woTD/final}; TD removed & off & full-space argmax & 0.0 & one realization & gen. 42--44 \\
+Frozen BC & \texttt{sft\_bc\_seed*}; next-action CE & off & full-space argmax & n/a & n/a & train 42--44 \\
+LoRA BC & \texttt{lora\_policy\_seed*}; next-action CE & off & full-space argmax & n/a & n/a & train 42--44 \\
+\bottomrule
+\end{tabularx}
+\caption{System provenance matrix. ``gen.'' denotes generation seeds applied to
+a fixed checkpoint; ``train'' denotes independently trained BC checkpoints.
+The BC models are completed diagnostics but are not included in the formal
+horizon-100 trajectory tables.}
+\label{tab:system-provenance}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\columnwidth}{@{}>{\raggedright\arraybackslash}p{0.28\columnwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Artifact & Recorded provenance \\
+\midrule
+Split & \texttt{g1-formal-v1-deepseek-rationale-rewrite-v1}; seed 20260731; lesson unit; subject--stage strata \\
+Source data & source SHA-256 prefix \texttt{5c76ac1d4c2f}; original \texttt{e92eef3da25a}; rewritten \texttt{b18904625ef0}; expert \texttt{7bda9edd0e07} \\
+Rewrite & \texttt{rationale-rewrite-v1}; run prefix \texttt{bd7188c66f9a}; 9,168 records in 50 files; 8,786/380/2 records accepted on attempts 1/2/3 \\
+Full checkpoint & \texttt{Qwen/Qwen3.5-0.8B}; 31 outputs; checkpoint SHA-256 prefix \texttt{a68c26bddc63} \\
+No-TD checkpoint & same backbone/output size; checkpoint SHA-256 prefix \texttt{ed0b35180b48} \\
+External models & rationale rewrite: \texttt{deepseek-chat}, 0.7, 2026-08-09; role realization: \texttt{deepseek-chat}, 0.8 \\
+\bottomrule
+\end{tabularx}
+\caption{Data, annotation, and checkpoint provenance. Hash prefixes are shown
+for readability; the machine-readable manifests retain the full SHA-256 values.
+The external API records contain aliases, not immutable provider revisions.}
+\label{tab:artifact-provenance}
+\end{table}
+
+\paragraph{Completed BC training metadata.}
+The frozen-backbone BC checkpoints use \texttt{Qwen/Qwen3.5-0.8B}, 6,181
+training samples, next-action cross-entropy, three epochs, batch size 4,
+learning rate $2\times10^{-5}$, and maximum length 512. The LoRA BC checkpoints
+use the same backbone, objective, and training set plus 999 validation samples;
+they use three epochs, batch size 32, learning rate $10^{-4}$, maximum length
+256, rank 8, bfloat16, and one gradient-accumulation step. Each family retains
+independent training seeds 42--44 and per-epoch metadata.
+
+\paragraph{Inference configuration and quality gates.}
+All reported Full, Candidate, and no-TD formal trajectories use a two-turn,
+two-action policy window; a 30-turn, five-action role window; policy maximum
+length 512; rationale budget 256 new tokens; horizon 100; role temperature 0.8;
+three candidates per role where candidate re-ranking applies; and \texttt{END}
+suppression through step 49 with logit margin 3.0. The Full and no-TD
+generation gates each contain 50 samples and report 100\% structural validity,
+closed rationale/action tags, no degeneration, and no length-limit hits. These
+checks establish schema validity, not policy or rationale quality.
+
+\paragraph{Software environment.}
+The locked environment requires Python 3.10 or newer and resolves PyTorch
+2.11.0+cu128, Transformers 5.14.1, PEFT 0.20.0, scikit-learn 1.7.2, SciPy
+1.15.3, OpenAI 2.52.0, and Google GenAI 2.16.0. The dependency lockfile and
+CUDA 12.8 wheel index are part of the code artifact.
+
+\section{Context-Sensitivity Intervention}
+\label{sec:context-intervention}
+
+The frozen \texttt{context-sensitivity-v1} protocol selects five pre-existing,
+evenly spaced held-out states per lesson from the frozen G4 candidate pools.
+For each state, it constructs a within-lesson cyclic semantic donor while
+preserving the number and sequence of speakers and the complete action history.
+Rationales are greedily decoded with temperature 0 and a 160-token budget;
+\texttt{END} suppression is not applied because this is a state-level test.
+Intervals use 10,000 percentile bootstrap resamples clustered by lesson with
+seed 20260822.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Endpoint & Original & Counterfactual & Difference / shift \\
+\midrule
+Accuracy & 0.4000 & 0.3000 & $-0.1000$ \\
+Macro-F1 (31) & 0.1486 & 0.1285 & $-0.0201$ \\
+Expert-action probability & 0.2732 & 0.1965 & $-0.0767$ \\
+Prediction flip rate & --- & --- & 0.6000 \\
+Policy JSD & --- & --- & 0.2957 \\
+\bottomrule
+\end{tabular}
+\caption{Exploratory context intervention for the main Full checkpoint
+($N=50$ states, 10 lessons). Lesson-cluster intervals appear in the main text.
+The intervention tests distributional sensitivity, not contextual correctness.}
+\label{tab:context-intervention}
+\end{table}
  
 \section{Evaluation Details}
 \label{sec:evaluation-details}
@@ -1171,7 +1374,10 @@ LA-IQL + candidate re-ranking & $10\!\times\!3$ & $0.1493 \pm 0.0070$ & $0.4478 
 \bottomrule
 \end{tabular}
 }
-\caption{Full G1 statistics for all completed systems. Values are mean $\pm$ population standard deviation across seeds 42, 43, and 44; each seed contains 10 held-out lessons.}
+\caption{Full G1 statistics for all completed systems. Values are mean $\pm$
+population standard deviation across generation seeds 42, 43, and 44; each
+seed contains 10 held-out lessons. Learned systems reuse one checkpoint per
+condition across those seeds.}
 \label{tab:appendix-full-g1-results}
 \end{table*}
 

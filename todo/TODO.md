@@ -2,7 +2,7 @@
 
 更新日期：2026-08-26
 
-适用主稿：`sigconf.tex`
+适用主稿：`sigconf-authordraft.tex`
 
 实验工作目录：`../../LA-IQL-Test/`
 
