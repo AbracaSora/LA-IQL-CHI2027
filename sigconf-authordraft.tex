@@ -54,10 +54,9 @@ showing that aggregate human-pattern similarity alone does not establish a
 context-sensitive interaction policy. In a frozen 50-state intervention,
 semantic context replacement changes the main policy distribution (60\% action
 flip rate; mean JSD 0.2957), providing exploratory evidence that the policy
-uses dialogue text without establishing contextual appropriateness. Candidate re-ranking improves a weak
-automatic action--utterance consistency screen. These results show how action
-mediation exposes an alignment--repetition--realization trade-off that fluent
-utterances or aggregate similarity measures can conceal.
+uses dialogue text without establishing contextual appropriateness. These
+results show how action mediation exposes an alignment--repetition trade-off
+that fluent utterances or aggregate similarity measures can conceal.
 \end{abstract}
 
 \begin{CCSXML}
@@ -168,7 +167,7 @@ action-mediated policy, offline imitation learning, dialogue strategy}
   {\textbf{Candidate re-ranking}\\less repetition\\weaker local match};
 \node[card, violet, text width=4.35cm, font=\scriptsize] (tradeoff)
   at (11.30,-1.58)
-  {\textbf{Visible trade-off}\\human-pattern alignment $\leftrightarrow$ repetition $\leftrightarrow$ realization};
+  {\textbf{Visible trade-off}\\human-pattern alignment $\leftrightarrow$ repetition};
 \node[subtitle, text width=4.35cm] at (11.30,-2.48)
   {Fluent text alone cannot reveal\\where interaction behavior diverges};
 \draw[flow, draw=blue!52!black] (p1.east) -- (p2.west);
@@ -189,8 +188,8 @@ the selected strategy Probe, enclosed as an inspectable decision boundary. The
 third panel shows the selected strategy realized as a teacher utterance and
 contrasts direct selection, which more closely matches human action patterns but
 repeats more, with candidate re-ranking, which repeats less but has weaker local
-human-pattern alignment. A final box names the alignment, repetition, and
-realization trade-off.}
+human-pattern alignment. A final box names the alignment--repetition
+trade-off.}
 \label{fig:teaser}
 \end{teaserfigure}
  
@@ -255,8 +254,9 @@ offline inverse soft Q-learning over fixed transitions
 from the learned policy, and delegates its language realization to a role
 model. We evaluate whether generated trajectories reproduce held-out human
 action patterns, whether that alignment coexists with repetitive behavior,
-whether rationales carry action-relevant information, and whether the selected
-action survives language realization.
+whether rationales carry action-relevant information, and how the allocation
+of action control shapes observable knowledge introduction, connection, and
+development across the resulting long-horizon dialogues.
 
 \begin{figure*}[t]
 \centering
@@ -315,8 +315,9 @@ Our contributions are threefold:
     \item We show that matching local human action patterns is not sufficient
     evidence of context-sensitive interaction: a first-order Markov control is
     competitive on local alignment metrics, while the learned configurations
-    expose an alignment--repetition--realization trade-off that aggregate
-    similarity alone conceals.
+    expose an alignment--repetition trade-off that aggregate similarity alone
+    conceals and provide an explicit boundary for examining downstream
+    knowledge-development patterns.
 \end{itemize}
 
 \section{Related Work}
@@ -415,8 +416,8 @@ Agreement, querying, guide & Ag, Qu, Gu & student/teacher $\times$ symbol \\
 \end{table}
 
 We evaluate interaction-pattern diversity (G1), expert-pattern alignment (G2),
-rationale--action consistency (G3), and automatic language-realization
-screening (G4).
+rationale--action consistency (G3), and observable knowledge-construction
+patterns in generated dialogue (G4).
 
 \subsection{Data Construction and Rationale Annotation}
 
@@ -501,14 +502,20 @@ These terms are combined as
 \lambda_4\delta_t^2.
 \label{eq:total-loss}
 \end{equation}
-The coefficient $\lambda_4$ is annealed from zero after a pure-MLE warm-up, recovering action-level MLE when the TD term is disabled.
+The coefficient $\lambda_4$ is zero in Stages~1--2. In Stage~3 it is set to 1
+for Full and remains 0 for no-TD, recovering the non-TD objective when the term
+is disabled.
 
-Training proceeds in two stages: we first freeze the backbone and train the policy head, pooler, and language head; we then apply LoRA fine-tuning and merge the weights. A fraction of policy-head examples uses model-generated rationales to mitigate exposure bias.
-Both evaluated full and no-TD checkpoints record \texttt{Qwen/Qwen3.5-0.8B}
-as the backbone and a 31-dimensional policy output. Their historical artifacts
-do not retain a complete training manifest, so optimizer settings, loss
-weights, training seed, and checkpoint-selection details are not reconstructed
-from current script defaults (Appendix~\ref{sec:reproducibility}).
+Training uses three successive two-epoch LoRA stages. Stage~1 emphasizes
+structural validity; Stage~2 jointly optimizes language and policy objectives;
+and Stage~3 continues joint optimization while increasing the proportion of
+self-generated rationales. The base model is \texttt{Qwen/Qwen3.5-0.8B}, the
+maximum sequence length is 512, and the physical batch size is 4 with one
+gradient-accumulation step (effective batch size 4). All three stages use
+training seed 42 and gradient clipping at 1.0. The evaluated Full and no-TD
+configurations are matched except for the Stage~3 TD-loss weight, which is 1
+for Full and 0 for no-TD. Appendix~\ref{sec:reproducibility} records the
+stage-specific values and the remaining unresolved training fields.
 
 \subsection{Rationale-Conditioned Policy Parameterization}
 
@@ -582,8 +589,9 @@ interaction?
 action control between direct full-action-space selection and
 proposal-constrained candidate re-ranking affect long-horizon behavior?
 \textbf{RQ3}: Do generated rationales contain action-relevant information beyond the dialogue state and explicit label leakage?
-\textbf{RQ4}: How reliably are selected interaction actions preserved through
-surface realization as classroom utterances?
+\textbf{RQ4}: How does the allocation of action control between the learned
+policy and the role model shape observable patterns of knowledge introduction,
+connection, and development across long-horizon simulated classroom dialogues?
 
 \subsection{Data and Splits}
 
@@ -659,12 +667,15 @@ F_{1}^{\mathrm{macro}}(s_t\!\rightarrow\!a_t),
 \end{equation}
 where the target is the evaluated system's selected action.
 We also report masked rationale-only Macro-F1, majority, leakage, and shuffled-rationale controls. Predictability alone does not establish causal faithfulness~\citep{hase2020leakage,jacovi2020faithfully}; we therefore describe G3 as a simulatability diagnostic rather than an explanation-quality measure.
-For language realization (G4), we use a frozen automatic classifier to screen
-action--utterance consistency and report redundancy and rule-defined severe
-violations. Because this classifier has weak held-out expert performance and
-human judgments are incomplete, G4 does not measure contextual or classroom
-appropriateness; open-ended text overlap is secondary because multiple
-responses can be valid.
+For secondary language-realization diagnostics, we report redundancy and
+rule-defined severe violations. A planned automatic action--utterance
+classifier did not complete its training protocol, so we exclude all results
+derived from that classifier. These remaining checks do not measure contextual
+or classroom appropriateness; open-ended text overlap is secondary because
+multiple responses can be valid.
+The knowledge-construction operationalization for the revised G4 is being
+evaluated separately and no G4 system-level inference is reported in this
+working draft.
 Appendix~\ref{sec:evaluation-details} gives the complete metric and intervention protocol.
 
 \subsection{Evaluation Protocol}
@@ -799,8 +810,7 @@ G1 & Normalized entropy $\uparrow$ & $+0.0258$ & $[-0.0156,\ 0.0659]$ & $0.2204$
 G2 & Paired bigram JSD $\downarrow$ & $-0.0007$ & $[-0.0063,\ 0.0043]$ & $0.8281$ \\
 G2 & Transition JSD $\downarrow$ & $-0.0009$ & $[-0.0091,\ 0.0055]$ & $0.8581$ \\
 G2 & Bigram support $\uparrow$ & $+0.0073$ & $[-0.00001,\ 0.0140]$ & $0.0510$ \\
-G4 & Consistency Macro-F1 $\uparrow$ & $-0.0004$ & $[-0.0025,\ 0.0022]$ & --- \\
-G4 & Local trigram redundancy $\downarrow$ & $-0.00001$ & $[-0.0042,\ 0.0041]$ & --- \\
+Secondary & Local trigram redundancy $\downarrow$ & $-0.00001$ & $[-0.0042,\ 0.0041]$ & --- \\
 \bottomrule
 \end{tabular}
 \caption{Matched temporal-difference ablation under Direct decoding. Values
@@ -879,12 +889,11 @@ G1 & Motif rate $\downarrow$ & $+0.2543$ & $[0.2100,\ 0.2963]$ & $<.0001$ \\
 G2 & Paired bigram JSD $\downarrow$ & $-0.0232$ & $[-0.0305,\ -0.0152]$ & $<.0001$ \\
 G2 & Bigram support $\uparrow$ & $+0.0384$ & $[0.0283,\ 0.0492]$ & $<.0001$ \\
 G2 & Trigram support $\uparrow$ & $+0.3898$ & $[0.3551,\ 0.4238]$ & $<.0001$ \\
-G4 & Consistency accuracy $\uparrow$ & $-0.0133$ & $[-0.0233,\ -0.0030]$ & $0.0140$ \\
 \bottomrule
 \end{tabular}
 \caption{Paired Direct--Candidate comparison over 30 matched generation-seed--lesson
 units (10,000 bootstrap resamples; percentile intervals; BH correction over
-11 comparisons). Positive values mean Direct is numerically larger; metric
+10 retained comparisons). Positive values mean Direct is numerically larger; metric
 arrows indicate the desirable direction. The configurations also differ in
 rationale temperature, so this is a system-level comparison rather than a
 single-factor decoding ablation.}
@@ -910,22 +919,14 @@ policy decision or constitute faithful explanations; we also do not attach an
 inferential TD-effect claim to the descriptive G3 difference.
 
 \paragraph{Language realization remains a separate risk.}
-G4-v1 consistency accuracy is $0.0130$ for Direct and $0.0263$ for Candidate;
-the paired difference is $-0.0133$, 95\% CI $[-0.0233,-0.0030]$,
-$q=.0140$. Local trigram redundancy does not differ reliably ($0.0595$ vs.
-$0.0576$; $q=.5676$). Neither configuration contains exact repetitions or
-hits the two rule-defined severe-violation checks. However, the frozen
-consistency classifier has limited held-out expert performance, and no human
-judgment scores are complete. We therefore interpret G4 only as evidence of a
-possible action--language realization gap, not as a measure of classroom
-quality.
-
-The w/o-TD Direct ablation has consistency accuracy $0.0101$, compared with
-$0.0130$ for TD Direct. Their consistency Macro-F1 difference is effectively
-zero (TD--w/o-TD $=-0.0004$, 95\% CI $[-0.0025,0.0022]$), as is the local
-trigram-redundancy difference. Both have zero exact repetitions and zero
-rule-defined severe violations. Automatic G4 therefore provides no evidence
-that TD changes surface-realization quality.
+The planned G4-v1 action--utterance classifier did not complete its training
+protocol. We therefore exclude its preliminary agreement rates and all
+classifier-based system comparisons from the reported evidence. The remaining
+rule-based checks show no exact repetitions or rule-defined severe violations
+for Direct, Candidate, or w/o-TD Direct, while local trigram redundancy does
+not differ reliably between Direct and Candidate or between the two Direct
+checkpoints. These narrow checks do not measure realization quality or
+classroom appropriateness.
 
 Appendix~\ref{sec:additional-results} gives the full system-level comparison,
 G3-v2 table, and judgment status.
@@ -986,9 +987,8 @@ trade-off that end-to-end text can conceal. Direct selection gives the learned
 policy access to the full action space and yields stronger alignment with
 held-out human action patterns, but it also produces more short cycles and
 repeated motifs. Candidate re-ranking restricts action support to role-model
-proposals, reduces these repetitions, and scores higher on the automatic
-realization-consistency screen, but moves the resulting trajectories away from
-the held-out action distribution. Because the configurations also differ in
+proposals and reduces these repetitions, but moves the resulting trajectories
+away from the held-out action distribution. Because the configurations also differ in
 rationale temperature, this is a descriptive system-level contrast rather
 than a causal decoding ablation. Nevertheless, it shows that increasing policy
 autonomy is not uniformly beneficial: control over strategy support, temporal
@@ -1032,8 +1032,7 @@ measured difference in longer-horizon behavioral organization but does not
 establish a training-seed-general TD effect. Within LA-IQL,
 direct selection is closer to the held-out human
 action distribution than proposal-constrained candidate re-ranking, but also
-repeats short cycles and motifs more often and scores lower on an automatic
-action--utterance consistency screen. These findings position human-grounded
+repeats short cycles and motifs more often. These findings position human-grounded
 policy learning not as a guarantee of human-like interaction, but as a way to
 make strategy learning and its failures explicit. Building strategy-rich
 language agents requires evaluating human-pattern alignment, contextual
@@ -1128,19 +1127,18 @@ minimum allowed horizon, compared with none for main Direct.
 \small
 \setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lrrrrr}
+\begin{tabular}{lrrrr}
 \toprule
-Variant & D2 $\uparrow$ & Cycle-2 $\downarrow$ & Motif $\downarrow$ & JSD $\downarrow$ & Cons. Acc. $\uparrow$ \\
+Variant & D2 $\uparrow$ & Cycle-2 $\downarrow$ & Motif $\downarrow$ & JSD $\downarrow$ \\
 \midrule
-LA-IQL w/o TD (Direct) & 0.4118 & 0.2607 & 0.5379 & 0.0835 & 0.0101 \\
-\textbf{LA-IQL Direct} & 0.4370 & 0.1708 & 0.3957 & \textbf{0.0827} & 0.0130 \\
-Candidate re-ranking & 0.4478 & \textbf{0.0488} & \textbf{0.1413} & 0.1059 & \textbf{0.0263} \\
+LA-IQL w/o TD (Direct) & 0.4118 & 0.2607 & 0.5379 & 0.0835 \\
+\textbf{LA-IQL Direct} & 0.4370 & 0.1708 & 0.3957 & \textbf{0.0827} \\
+Candidate re-ranking & 0.4478 & \textbf{0.0488} & \textbf{0.1413} & 0.1059 \\
 \bottomrule
 \end{tabular}
 }
 \caption{Training and inference comparisons on the same held-out lessons. JSD is the G2
-paired lesson-level bigram divergence; consistency accuracy is the weak G4-v1
-automatic action--utterance screen.}
+paired lesson-level bigram divergence.}
 \label{tab:appendix-ablation-results}
 \end{table*}
 
@@ -1214,26 +1212,57 @@ an association diagnostic, not a causal-faithfulness measure.}
 
 \paragraph{Judgment status.}
 Blinded items, randomized manifests, and the rating rubric have been generated,
-but no completed human judgment scores are present. We therefore report only
-the automatic G4-v1 screen and make no claim about factuality, safety,
-pedagogical appropriateness, experienced naturalness, or learning outcomes
-from the zero severe-rule violation rate.
+but no completed human judgment scores are present. The incomplete G4-v1
+classifier results are excluded; only the independent rule-based diagnostics
+are retained. We make no claim about factuality, safety, pedagogical
+appropriateness, experienced naturalness, or learning outcomes from the zero
+severe-rule violation rate.
 
 \section{Implementation and Reproducibility}
 \label{sec:reproducibility}
 
-\paragraph{Evidence hierarchy and unresolved training fields.}
+\paragraph{Recovered training configuration and unresolved fields.}
 We transcribed inference settings from the terminal \texttt{config} object in
 the formal trajectory JSON files, data provenance from the frozen split
 manifest, and model identity from checkpoint metadata. These artifacts are
-authoritative for the reported runs. The current training scripts have changed
-since the main Full and no-TD checkpoints were produced, while their checkpoint
-metadata retains only the backbone and policy dimension. Consequently, the
-historical optimizer, learning rate, batch size, epoch count, loss weights,
-teacher/self-generated rationale ratio, training seed, initialization, code
-revision, and checkpoint-selection rule are not recoverable from the active
-artifacts. We neither substitute current defaults nor describe the no-TD result
-as replicated across training seeds.
+authoritative for the reported runs. The recovered run configuration confirms
+three two-epoch LoRA stages, the learning rates and loss weights below, physical
+batch size 4, one gradient-accumulation step, maximum length 512, gradient
+clipping at 1.0, and training seed 42. Full and no-TD share this configuration
+except that the Stage~3 TD-loss weight is 1 for Full and 0 for no-TD. The
+optimizer details, learning-rate scheduler and warm-up, LoRA rank/alpha/dropout
+and target modules, numerical precision, exact sample and optimizer-step counts,
+model/tokenizer revision, checkpoint-selection rule, and historical code
+revision remain to be verified. We do not substitute current defaults for
+those fields or describe the result as replicated across training seeds.
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llrrrrrrr}
+\toprule
+Stage & Initialization & Epochs & LR & Policy & Cons. & LM-act & TD Full/no-TD & Teacher/self \\
+\midrule
+1 & Base model & 2 & $10^{-4}$ & 0.25 & 0 & 1.0 & 0/0 & 1.0/0.0 \\
+2 & Stage 1 final & 2 & $10^{-4}$ & 1.0 & 0.1 & 0.5 & 0/0 & 0.8/0.2 \\
+3 & Stage 2 final & 2 & $5\times10^{-5}$ & 1.0 & 0.1 & 0.5 & 1/0 & 0.6/0.4 \\
+\bottomrule
+\end{tabular}
+\caption{Recovered three-stage configuration for the evaluated Full and no-TD
+checkpoints. ``Cons.'' is the cross-head consistency-loss weight and ``LM-act''
+is the LM action-class loss weight. The two configurations differ only in the
+Stage~3 TD-loss weight among the recovered fields.}
+\label{tab:main-training-stages}
+\end{table*}
+
+Across Stages 1--3, the recovery-loss weights are 0.5, 0.5, and 0.75; the
+action-token weights are 8, 5, and 5; the structure-token weights are 10, 8,
+and 8; the rationale-end-token weights are 50, 30, and 30; and the
+action-boundary-token weights are 30, 20, and 20. The TD discount is 0.99.
+The rationale generator uses maximum 256 new tokens and temperature 0 during
+training. Configuration comments that describe micro-batch 1 with accumulation
+4 are stale; the actual run parameters are physical batch 4 and accumulation 1.
 
 \begin{table*}[t]
 \centering

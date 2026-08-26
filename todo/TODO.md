@@ -23,13 +23,13 @@
 
 “格式”指最终应在论文或补充材料中采用的呈现形式，而不是文件格式。
 
-### 1.1 当前落稿状态（2026-08-26）
+### 1.1 当前落稿状态（2026-08-27）
 
-- **已写入并完成**：A1--A6、A8--A10；B1、B2、B4--B7、B9。
-- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（复现表已建立，主 checkpoint 历史训练参数仍受 D2 阻塞）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
+- **已写入并完成**：A1--A6、A8--A10；B1、B2、B4、B5、B7、B9。
+- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（核心训练配置已进入附录，其余 provenance 采用尽力恢复与透明披露原则）；B6（RQ4 已改写，正式 G4 证据待 C6）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
 - **仍可继续但本轮未完成**：B10（规则化定性案例）、B11（Related Work 增补）。
-- **受外部证据阻塞**：B8 必须与 D1 一起完成，不能仅凭代码目录推断数据许可、同意和去标识化流程。
-- **无需新增实验但已明确披露缺口**：D2 的不可恢复字段已在附录列明，避免用当前脚本默认值反推。
+- **受外部确认阻塞**：B8 只需与 D1 一起达到 CHI 投稿所需的如实披露水平；不能仅凭代码目录推断数据许可、伦理审查状态或去标识化流程。
+- **无需新增实验但已明确披露缺口**：D2 已恢复三阶段核心配置；其余尚未确认字段已在附录和 D2 清单列明，避免用当前脚本默认值反推。
 
 本轮写入位置：正文的 Abstract、Method、Experimental Design、Results、Discussion、Conclusion、Limitations，以及附录的 Implementation and Reproducibility 与 Context-Sensitivity Intervention。
 
@@ -139,11 +139,11 @@
 
 ### B3. 附录 Reproducibility Details
 
-- **名称**：完整复现表。
-- **内容及解释**：整理 optimizer、batch、epochs、LoRA、loss weights、context windows、prompt version、data hashes、software versions、checkpoint provenance 和运行入口。
+- **名称**：核心复现与 provenance 表。
+- **内容及解释**：优先整理会影响方法理解和 Full/no-TD 比较的核心配置，包括模型、batch、epochs、LoRA 训练方式、loss weights、context window、seed 与 checkpoint 来源。optimizer 细节、软件小版本、data/checkpoint hashes 和完整运行入口在能够可靠恢复时补充。
 - **获取方式**：先填已被 artifacts 证明的值；主 checkpoint 缺失参数标为“待历史日志核实”，不能直接使用当前 `sft.py` 默认配置。
-- **重要性及原因**：**P0**。当前方法段不足以复现，也无法审计 full/no-TD 是否真正单变量。
-- **格式**：附录 1--2 张表；prompt 全文放补充材料而非正文。
+- **重要性及原因**：**P1**。核心配置应足以解释方法与主要消融；无法恢复的次要执行细节只要透明披露，不阻塞模拟评审或投稿冻结。
+- **格式**：附录 1--2 张紧凑表；prompt 全文可在补充材料中提供，机器可读 manifest 属于增强项。
 
 ### B4. 系统差异与混杂表
 
@@ -161,13 +161,13 @@
 - **重要性及原因**：**P0**。避免把生成随机性错误外推为训练方法稳定性。
 - **格式**：摘要、Results、Discussion、Conclusion 统一改写；表注统一写 generation seeds。
 
-### B6. 重写 RQ4 和 realization 结论
+### B6. 将 RQ4 转为长程知识建构问题
 
-- **名称**：Realization-gap framing。
-- **内容及解释**：当前 consistency accuracy 仅 1.30%--2.63%，且分类器本身较弱、无人评。应把 RQ4 从“contextual appropriateness”收缩为自动 realization screening，并将结果解释为可能的 action--utterance gap，而不是 Candidate 已可靠改善实现质量。
-- **获取方式**：修改 RQ4、Evaluation Metrics、摘要、Results、Discussion 和 Conclusion；保持与 G4-v1 证据一致。
-- **重要性及原因**：**P0**。现有证据不能支持课堂适切性、自然度或教育质量结论。
-- **格式**：正文问题定义和结果段；附录保留完整弱分类器指标及限制。
+- **名称**：Knowledge-construction framing。
+- **内容及解释**：RQ4 改为考察学习策略与角色模型之间的动作控制分配，如何影响长程模拟课堂对话中可观察的知识引入、关联和发展模式。知识图谱和 LLM judge 是该问题的自动操作化方法，而不是 RQ 本身；结果只能说明生成文本中表达的知识结构，不能说明学生认知改变、教学质量或学习效果。
+- **获取方式**：以 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 为冻结设计依据，同步修改 RQ4、Evaluation Metrics、Results、Discussion、Conclusion 和中文翻译。原 G4-v1 分类器训练未完成，其一致率、Macro-F1、显著性和系统排名已从主稿移除。
+- **重要性及原因**：**P0**。新 RQ4 把 action-control allocation 与最终长程对话结果连接起来，比未验证的单轮 realization classifier 更符合当前 CHI 的可检查交互与控制分配主线。
+- **格式**：正文 RQ4 + G4 方法、主表和 growth curve；附录保留旧评测的协议、规则指标与失败说明，但不保留未完成分类器的数值证据。
 
 ### B7. 将上下文干预纳入论文
 
@@ -177,13 +177,13 @@
 - **重要性及原因**：**P0**。这是连接“Markov 高分但无语境能力”和“LA-IQL 是 state-conditioned policy”的关键证据。
 - **格式**：正文一段 + 附录一表；不要把它写成 contextual appropriateness 证明。
 
-### B8. 数据、未成年人和标注伦理写实化
+### B8. 满足 CHI 审核的数据与伦理声明
 
-- **名称**：Actual data-governance statement。
-- **内容及解释**：把当前 “should follow consent/license” 的原则性表述改成作者实际采取的措施；无法确认的部分明确写为数据提供方约束或不公开原因。
-- **获取方式**：先从数据说明、原论文和作者记录整理；涉及授权/同意的缺口转入 D1 确认。
-- **重要性及原因**：**P0**。课堂数据涉及未成年人，泛化伦理模板不足以回答真实来源与使用权限。
-- **格式**：正文 Data and Ethics 各一段；附录给数据表、去标识化和访问条件。
+- **名称**：Minimum CHI-compliant data and ethics statement。
+- **内容及解释**：如实说明课堂转录文本的来源类型、作者获得数据的方式与研究使用依据、伦理审查状态（如已批准、豁免、由原采集项目覆盖或不适用）、采用的去标识化措施，以及为何不公开原始转录。不得把未知情况写成已经获得同意或伦理批准。
+- **获取方式**：优先向导师或数据提供方取得一段可引用的事实说明；现阶段不要求建立完整的数据治理档案。仍无法确认的非关键细节可概括为受数据提供方协议限制。
+- **重要性及原因**：**P0**。目标是满足 CHI 对涉及真实参与者数据的透明披露和风险说明要求，而非完成超出投稿需要的全面治理审计。
+- **格式**：正文 Data/Method 与 Ethical Considerations 中各用一小段即可；除非模板或评审明确要求，不强制另设完整 Data Statement 或发布数据 manifest。
 
 ### B9. 统计报告一致性审计
 
@@ -261,13 +261,20 @@
 - **重要性及原因**：**P1**。若不完成，只能声称 simulatability/association，不能声称 rationale 是忠实或因果解释。
 - **格式**：附录为主；若结果稳定，可在正文 G3 加一张简表。
 
-### C6. 更可信的 action--utterance realization 评价
+### C6. 执行多视角知识建构 G4
 
-- **名称**：G4 realization evaluation。
-- **内容及解释**：当前自动分类器准确率极低。合规路径包括：改进并审计 independent classifier，或在伦理条件满足时完成匿名、随机、盲法的人类 action-support/classroom-appropriateness 判断。
-- **获取方式**：自动路径需冻结新 evaluator 并报告其 held-out expert performance；人评路径需先确认伦理、rubric、样本量、评审背景、一致性和 lesson-cluster 统计。
-- **重要性及原因**：**P0（若保留 contextual appropriateness/realization improvement 主张）**；若不补，则执行 B6，将其降级为失败/风险发现。
-- **格式**：正文主端点和 CI；附录放 evaluator performance、rubric、agreement、抽样与全部次级指标。
+- **名称**：G4 knowledge-construction evaluation。
+- **内容及解释**：在冻结的 formal-100 完整轨迹上，使用带逐字 evidence 的 LLM 知识图谱抽取作为主要证据、确定性图算法与规则指标作为可复核锚点、盲化且经过顺序/重复稳定性审计的 LLM judge 作为辅助证据。不得合成单一“课堂质量分”。
+- **获取方式**：复用 `scripts/traj_rd/formal_100/` 的 Full Direct、Full Candidate、w/o-TD Direct 三组 `generation seeds 42--44 × 10 lessons`，以及冻结的 10 个 held-out expert transcripts；原则上不重新生成轨迹。按 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 完成输入 hash、controlled-corruption validation、KG extraction、动态图指标和 lesson-cluster 统计。
+- **重要性及原因**：**P0**。新 RQ4 当前尚无正式系统级证据；完成该项后才能在摘要、Results 和 Conclusion 中回答知识建构问题。
+- **格式**：正文三个预冻结 KG 主端点、一张 knowledge-growth curve 和一个规则化案例；附录提供全部 extractor/judge 审计、次级指标与旧 G4 材料处置说明。
+
+### C6a. 原 action--utterance 评测的选择性保留
+
+- **保留**：冻结轨迹、数据划分、label mapping、训练/预测脚本、classifier audit、confusion matrix、盲化条目、rubric、随机化 manifest，以及不依赖分类器训练的局部冗余、完全重复和规则违规指标。
+- **暂不保留为论文证据**：Direct 1.30%、Candidate 2.63%、w/o-TD 1.01%、一致性 Macro-F1、对应 CI/$p$/$q$ 和“Candidate 改善 realization”的结论。
+- **恢复条件**：只有完整训练协议完成，且在冻结 held-out expert、类别覆盖、label mapping、受控错配和生成域稳定性 gates 上通过后，才以新版本号作为 secondary action--utterance diagnostic 重新进入附录；旧数值永久标记为 preliminary invalidated run，不与新结果合并。
+- **优先级**：**P2**。不阻塞新 G4；距离 DDL 较近时，先完成 KG 主分析和论文闭环。
 
 ### C7. END suppression 敏感性分析
 
@@ -289,21 +296,24 @@
 
 ## 5. D 类：需要人工或外部确认
 
-### D1. 数据名称、许可、同意与去标识化
+### D1. CHI 投稿所需的最低数据伦理确认
 
-- **名称**：Dataset governance confirmation。
-- **内容及解释**：需要确认数据集正式名称、采集机构、语言/地区、访问许可、未成年人及教师同意条件、研究用途授权、去标识化流程和是否可发布派生数据。
-- **获取方式**：查询数据提供协议、原始项目记录、IRB/伦理豁免文件和数据提供方；不能仅根据目录内容推断。
-- **重要性及原因**：**P0**。涉及真实课堂和未成年人，来源与授权不清可能阻塞投稿或数据发布。
-- **格式**：正文 Data 与 Ethical Considerations；附录 Data Statement；必要时 supplementary 只发布不可逆匿名化的 manifest。
+- **名称**：Minimum ethics confirmation for CHI submission。
+- **最低必须确认**：数据并非未经许可取得；当前研究可以使用这些课堂转录；论文能够准确陈述伦理审查/豁免/原项目覆盖状态；输入模型前已移除或替换直接身份信息；原始转录不会随论文公开。若涉及未成年人，应确认同意与数据使用责任由原采集项目或数据提供方承担，并避免作出无法证明的具体程序性声称。
+- **不再作为硬门槛**：正式数据集名称、完整采集机构档案、逐参与者同意文本、原始 IRB 文件副本、可发布派生数据范围和独立匿名化审计。只有计划公开数据或评审要求补充时再追查。
+- **获取方式**：向导师或数据提供方取得书面确认或可记录的事实摘要即可；无需为当前论文重建原始采集项目的全部伦理档案。
+- **重要性及原因**：**P0**。这是 CHI 审核的最低合规底线；超过该底线的治理材料属于增强项，不阻塞成稿。
+- **格式**：正文给出简洁、真实且不过度承诺的 Data/Ethics 声明；必要时在附录补充限制，不要求发布 manifest。
 
 ### D2. 主 checkpoint 的历史训练 provenance
 
 - **名称**：`sft_stage3/final` 与 `sft_stage3_woTD/final` 训练审计。
-- **内容及解释**：恢复实际 optimizer、LR、epochs、batch、LoRA、loss weights、teacher/self-generated ratio、训练 seed、初始化 checkpoint、代码版本和 checkpoint selection rule。当前 `sft.py` 已重构，不能证明旧 checkpoint 使用了现有默认值。
-- **获取方式**：查服务器 stdout/stderr、shell history、旧代码快照、checkpoint epoch metadata、训练平台任务记录或作者实验笔记；恢复后生成不可变 `training_manifest.json`。
-- **重要性及原因**：**P0**。这是完整 Implementation 表目前最大的证据缺口，也决定 no-TD 是否真是单变量消融。
-- **格式**：附录主训练配置表；补充材料提供 machine-readable manifest 与 checkpoint hash。
+- **已确认并写入论文**：三阶段 LoRA 训练；每阶段 2 epochs；Stage 1/2/3 学习率为 `1e-4/1e-4/5e-5`；物理 batch size 4、gradient accumulation 1、有效 batch 4；max length 512；training seed 42；grad clip 1.0；各阶段 policy、consistency、LM-action、结构 token、recovery 与 teacher/self-generated 权重。Full 与 no-TD 的已恢复配置仅在 Stage 3 TD loss weight 上不同，分别为 1 与 0。配置注释中的 micro-batch 1 × accumulation 4 以及 Stage 3 名称中的 “+ TD” 均为过时文字，以实际参数为准。
+- **优先确认**：optimizer 类型和 weight decay；scheduler/warm-up；LoRA rank/alpha/dropout/target modules；数值精度；base model/tokenizer revision；checkpoint selection rule。这些信息若无法恢复，应在附录中明确标为 unknown，而不是用当前默认值代替。
+- **非阻塞增强项**：betas/epsilon、stage 间 optimizer state、gradient checkpointing、精确 optimizer steps、四个新增 token 的 embedding 初始化、保存/验证频率、完整 deterministic 设置、历史代码 commit、各阶段 checkpoint hash 与完整训练日志。
+- **获取方式**：优先查现有 checkpoint metadata、训练配置和实验笔记；只有在方便且可靠时再追查 stdout/stderr、shell history 或平台记录。可选生成 `training_manifest.json`，不要求恢复到逐 bit 重放。
+- **重要性及原因**：**P1**。现有核心配置已经支持“Stage 3 TD weight 1 vs. 0”的受限单变量描述；剩余字段用于增强可信度和复用性，不再作为论文主张成立的硬性前提。
+- **格式**：附录保留主训练配置表和 unknown 标记；machine-readable manifest 与 checkpoint hash 为可选补充材料。
 
 ### D3. 计算硬件、时长与成本
 
@@ -338,9 +348,9 @@
 - [x] 完成 B1：已切换为 CHI 2027 单栏匿名审稿格式。
 - [x] 完成 A1--A6、A8--A10 的证据核对并落稿。
 - [ ] A7 部分完成：BC 训练 metadata 已写入附录；正式 trajectory comparison 尚未完成。
-- [x] 完成 B2、B4--B7：Implementation、系统差异、seed 边界、RQ4 和上下文干预。
-- [ ] B3 部分完成：复现表已建立；D2 所列历史训练字段仍待恢复。
-- [ ] 完成 B8、D1：实际数据治理表述至少达到可审计状态。
+- [ ] B2、B4--B7 部分完成：Implementation、系统差异、seed 边界和上下文干预已完成；RQ4 已改写，但新 G4 正式结果尚待 C6。
+- [x] B3 最低要求已完成：核心训练配置已写入；D2 的优先字段尽力恢复，无法恢复时透明标记即可，非阻塞增强项不影响冻结。
+- [ ] 完成 B8、D1：取得导师/数据提供方的最低事实确认，并形成足以通过 CHI 审核的真实 Data/Ethics 声明；不要求全面治理审计。
 - [x] 完成 B9：统计单位、多重校正与 fixed-checkpoint 推断边界已写明。
 - [ ] B12 部分完成：单栏转换与编译复核已完成；最终提交包清理仍待冻结时执行。
 - [x] 对 D2 无法恢复的参数显式标记，未由当前脚本默认值反推。
@@ -349,15 +359,16 @@
 
 ### 6.2 正式投稿主张分岔
 
-**路线一：不新增昂贵实验，收缩主张。**
+**路线一：不重新生成轨迹，完成新的自动 G4。**
 
-- 执行 B5、B6，把 TD 限定为固定-checkpoint finding，把 G4 降级为 realization risk。
+- 执行 B5、B6 和 C6：TD 限定为 fixed-checkpoint finding；G4 使用现有 formal-100 轨迹做 evidence-grounded KG、规则指标和经校准的 LLM judge。
 - 将现有 50-state context test 作为 exploratory evidence。
-- 不声称训练稳定性、课堂适切性、rationale faithfulness 或教育效果。
+- 旧 action--utterance classifier 仅选择性保留材料，不报告未完成训练的结果。
+- 不声称训练稳定性、课堂适切性、真实知识正确性、rationale faithfulness、学习结果或教育效果。
 
-**路线二：保留较强方法主张。**
+**路线二：在主稿闭环后增强方法主张。**
 
-- 优先完成 C1（独立训练 seeds）、C2（扩展 context test）和 C6（可信 realization 评价）。
+- 先完成 C6，再根据时间优先完成 C1（独立训练 seeds）或 C2（扩展 context test）。
 - 根据篇幅和预算选择 C3/C4/C5；C7 用于确认长程结论不依赖 END suppression。
 
 ### 6.3 建议暂不阻塞投稿的增强项
@@ -377,6 +388,6 @@
 3. 每个核心主张能指向正文中的直接证据，负结果与混杂没有被隐藏。
 4. Full/no-TD 的推断范围与训练重复数量一致；Direct/Candidate 不被写成未完成的单因素消融。
 5. RQ4 的措辞与实际 G4 证据强度一致。
-6. 数据许可、未成年人隐私、去标识化和可发布范围已经确认。
+6. 已确认数据可用于本研究、伦理审查状态和基本去标识化措施，并明确原始转录不公开；无需在投稿前恢复完整原始伦理档案。
 7. 主文自包含，关键实现与核心结果不依赖评审主动查看附录。
 8. PDF、source ZIP、supplement、匿名链接和投稿系统元数据通过最终合规检查。
