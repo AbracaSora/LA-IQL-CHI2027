@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{28}
+\begin{thebibliography}{35}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -38,218 +38,503 @@
 
 \bibitem[Achiam et~al\mbox{.}(2023)]%
         {achiam2023gpt}
-\bibfield{author}{\bibinfo{person}{Josh Achiam}, \bibinfo{person}{Steven Adler}, \bibinfo{person}{Sandhini Agarwal}, \bibinfo{person}{Lama Ahmad}, \bibinfo{person}{Ilge Akkaya}, \bibinfo{person}{Florencia~Leoni Aleman}, \bibinfo{person}{Diogo Almeida}, \bibinfo{person}{Janko Altenschmidt}, \bibinfo{person}{Sam Altman}, \bibinfo{person}{Shyamal Anadkat}, {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{}.
+\bibfield{author}{\bibinfo{person}{Josh Achiam}, \bibinfo{person}{Steven
+  Adler}, \bibinfo{person}{Sandhini Agarwal}, \bibinfo{person}{Lama Ahmad},
+  \bibinfo{person}{Ilge Akkaya}, \bibinfo{person}{Florencia~Leoni Aleman},
+  \bibinfo{person}{Diogo Almeida}, \bibinfo{person}{Janko Altenschmidt},
+  \bibinfo{person}{Sam Altman}, \bibinfo{person}{Shyamal Anadkat},
+  {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{}.
 \newblock \showarticletitle{Gpt-4 technical report}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2303.08774}} (\bibinfo{year}{2023}).
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2303.08774}}
+  (\bibinfo{year}{2023}).
 \newblock
 
 
 \bibitem[Amatari(2015)]%
         {amatari2015}
-\bibfield{author}{\bibinfo{person}{Veronica~Odiri Amatari}.} \bibinfo{year}{2015}\natexlab{}.
-\newblock \showarticletitle{The Instructional Process: A Review of {Flanders'} Interaction Analysis in a Classroom Setting}.
-\newblock \bibinfo{journal}{\emph{International Journal of Secondary Education}} \bibinfo{volume}{3}, \bibinfo{number}{5} (\bibinfo{year}{2015}), \bibinfo{pages}{43--49}.
+\bibfield{author}{\bibinfo{person}{Veronica~Odiri Amatari}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{The Instructional Process: A Review of {Flanders'}
+  Interaction Analysis in a Classroom Setting}.
+\newblock \bibinfo{journal}{\emph{International Journal of Secondary
+  Education}} \bibinfo{volume}{3}, \bibinfo{number}{5} (\bibinfo{year}{2015}),
+  \bibinfo{pages}{43--49}.
 \newblock
 \showeprint{https://article.sciencepublishinggroup.com/pdf/10.11648.j.ijsedu.20150305.11}
 \href{https://doi.org/10.11648/j.ijsedu.20150305.11}{doi:\nolinkurl{10.11648/j.ijsedu.20150305.11}}
 
 
+\bibitem[Anagnostopoulou et~al\mbox{.}(2025)]%
+        {anagnostopoulou2025rewired}
+\bibfield{author}{\bibinfo{person}{Aliki Anagnostopoulou},
+  \bibinfo{person}{Nils Feldhus}, \bibinfo{person}{Yi-Sheng Hsu},
+  \bibinfo{person}{Milad Alshomary}, \bibinfo{person}{Henning Wachsmuth}, {and}
+  \bibinfo{person}{Daniel Sonntag}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Human and {LLM}-based Assessment of Teaching Acts
+  in Expert-led Explanatory Dialogues}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 6th Workshop on Computational
+  Approaches to Discourse, Context and Document-Level Inferences (CODI 2025)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Suzhou, China}, \bibinfo{pages}{166--181}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.codi-1.15}{doi:\nolinkurl{10.18653/v1/2025.codi-1.15}}
+
+
 \bibitem[Cheng et~al\mbox{.}(2025)]%
         {cheng2025surrogates}
-\bibfield{author}{\bibinfo{person}{Yi~Fei Cheng}, \bibinfo{person}{Hirokazu Shirado}, {and} \bibinfo{person}{Shunichi Kasahara}.} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{Conversational Agents on Your Behalf: Opportunities and Challenges of Shared Autonomy in Voice Communication for Multitasking}. In \bibinfo{booktitle}{\emph{Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems}}. \bibinfo{publisher}{Association for Computing Machinery}, \bibinfo{address}{New York, NY, USA}.
+\bibfield{author}{\bibinfo{person}{Yi~Fei Cheng}, \bibinfo{person}{Hirokazu
+  Shirado}, {and} \bibinfo{person}{Shunichi Kasahara}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Conversational Agents on Your Behalf: Opportunities
+  and Challenges of Shared Autonomy in Voice Communication for Multitasking}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the 2025 CHI Conference on Human
+  Factors in Computing Systems}}. \bibinfo{publisher}{Association for Computing
+  Machinery}, \bibinfo{address}{New York, NY, USA}.
 \newblock
 \href{https://doi.org/10.1145/3706598.3714017}{doi:\nolinkurl{10.1145/3706598.3714017}}
 
 
-\bibitem[Christiano et~al\mbox{.}(2017)]%
-        {christiano2017deep}
-\bibfield{author}{\bibinfo{person}{Paul~F Christiano}, \bibinfo{person}{Jan Leike}, \bibinfo{person}{Tom Brown}, \bibinfo{person}{Miljan Martic}, \bibinfo{person}{Shane Legg}, {and} \bibinfo{person}{Dario Amodei}.} \bibinfo{year}{2017}\natexlab{}.
-\newblock \showarticletitle{Deep reinforcement learning from human preferences}.
-\newblock \bibinfo{journal}{\emph{Advances in neural information processing systems}}  \bibinfo{volume}{30} (\bibinfo{year}{2017}).
-\newblock
-
-
-\bibitem[Chu et~al\mbox{.}(2025)]%
-        {chu2025llm}
-\bibfield{author}{\bibinfo{person}{Zhendong Chu}, \bibinfo{person}{Shen Wang}, \bibinfo{person}{Jian Xie}, \bibinfo{person}{Tinghui Zhu}, \bibinfo{person}{Yibo Yan}, \bibinfo{person}{Jinheng Ye}, \bibinfo{person}{Aoxiao Zhong}, \bibinfo{person}{Xuming Hu}, \bibinfo{person}{Jing Liang}, \bibinfo{person}{Philip~S Yu}, {et~al\mbox{.}}} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{Llm agents for education: Advances and applications}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2503.11733}}  \bibinfo{volume}{2} (\bibinfo{year}{2025}).
-\newblock
-
-
 \bibitem[DeYoung et~al\mbox{.}(2020)]%
         {deyoung2020eraser}
-\bibfield{author}{\bibinfo{person}{Jay DeYoung}, \bibinfo{person}{Sarthak Jain}, \bibinfo{person}{Nazneen~Fatema Rajani}, \bibinfo{person}{Eric Lehman}, \bibinfo{person}{Caiming Xiong}, \bibinfo{person}{Richard Socher}, {and} \bibinfo{person}{Byron~C. Wallace}.} \bibinfo{year}{2020}\natexlab{}.
-\newblock \showarticletitle{{ERASER}: A Benchmark to Evaluate Rationalized {NLP} Models}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics}}. \bibinfo{publisher}{Association for Computational Linguistics}, \bibinfo{pages}{4443--4458}.
+\bibfield{author}{\bibinfo{person}{Jay DeYoung}, \bibinfo{person}{Sarthak
+  Jain}, \bibinfo{person}{Nazneen~Fatema Rajani}, \bibinfo{person}{Eric
+  Lehman}, \bibinfo{person}{Caiming Xiong}, \bibinfo{person}{Richard Socher},
+  {and} \bibinfo{person}{Byron~C. Wallace}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{ERASER}: A Benchmark to Evaluate Rationalized
+  {NLP} Models}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th Annual
+  Meeting of the Association for Computational Linguistics}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{pages}{4443--4458}.
 \newblock
 \href{https://doi.org/10.18653/v1/2020.acl-main.408}{doi:\nolinkurl{10.18653/v1/2020.acl-main.408}}
 
 
+\bibitem[Dinucu-Jianu et~al\mbox{.}(2025)]%
+        {dinucu2025teaching}
+\bibfield{author}{\bibinfo{person}{David Dinucu-Jianu}, \bibinfo{person}{Jakub
+  Macina}, \bibinfo{person}{Nico Daheim}, \bibinfo{person}{Ido Hakimi},
+  \bibinfo{person}{Iryna Gurevych}, {and} \bibinfo{person}{Mrinmaya Sachan}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{From Problem-Solving to Teaching Problem-Solving:
+  Aligning {LLM}s with Pedagogy Using Reinforcement Learning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2025 Conference on Empirical
+  Methods in Natural Language Processing}}. \bibinfo{publisher}{Association for
+  Computational Linguistics}, \bibinfo{address}{Suzhou, China},
+  \bibinfo{pages}{272--292}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.emnlp-main.15}{doi:\nolinkurl{10.18653/v1/2025.emnlp-main.15}}
+
+
 \bibitem[Garg et~al\mbox{.}(2021)]%
         {garg2021iqlearn}
-\bibfield{author}{\bibinfo{person}{Divyansh Garg}, \bibinfo{person}{Shuvam Chakraborty}, \bibinfo{person}{Chris Cundy}, \bibinfo{person}{Jiaming Song}, {and} \bibinfo{person}{Stefano Ermon}.} \bibinfo{year}{2021}\natexlab{}.
-\newblock \showarticletitle{IQ-Learn: Inverse soft-{Q} Learning for Imitation}. In \bibinfo{booktitle}{\emph{Advances in Neural Information Processing Systems}}.
+\bibfield{author}{\bibinfo{person}{Divyansh Garg}, \bibinfo{person}{Shuvam
+  Chakraborty}, \bibinfo{person}{Chris Cundy}, \bibinfo{person}{Jiaming Song},
+  {and} \bibinfo{person}{Stefano Ermon}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{IQ-Learn: Inverse soft-{Q} Learning for Imitation}.
+  In \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}.
 \newblock
 
 
 \bibitem[Hase et~al\mbox{.}(2020)]%
         {hase2020leakage}
-\bibfield{author}{\bibinfo{person}{Peter Hase}, \bibinfo{person}{Shiyue Zhang}, \bibinfo{person}{Harry Xie}, {and} \bibinfo{person}{Mohit Bansal}.} \bibinfo{year}{2020}\natexlab{}.
-\newblock \showarticletitle{Leakage-Adjusted Simulatability: Can Models Generate Non-Trivial Explanations of Their Behavior in Natural Language?}. In \bibinfo{booktitle}{\emph{Findings of the Association for Computational Linguistics: EMNLP 2020}}. \bibinfo{publisher}{Association for Computational Linguistics}, \bibinfo{pages}{4351--4367}.
+\bibfield{author}{\bibinfo{person}{Peter Hase}, \bibinfo{person}{Shiyue Zhang},
+  \bibinfo{person}{Harry Xie}, {and} \bibinfo{person}{Mohit Bansal}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Leakage-Adjusted Simulatability: Can Models
+  Generate Non-Trivial Explanations of Their Behavior in Natural Language?}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: EMNLP 2020}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{pages}{4351--4367}.
 \newblock
 \href{https://doi.org/10.18653/v1/2020.findings-emnlp.390}{doi:\nolinkurl{10.18653/v1/2020.findings-emnlp.390}}
 
 
+\bibitem[Houde et~al\mbox{.}(2025)]%
+        {houde2025controlling}
+\bibfield{author}{\bibinfo{person}{Stephanie Houde}, \bibinfo{person}{Kristina
+  Brimijoin}, \bibinfo{person}{Michael~J. Muller}, \bibinfo{person}{Steven~I.
+  Ross}, \bibinfo{person}{Dar{\'i}o~Andr{\'e}s Silva~Moran},
+  \bibinfo{person}{Gabriel~Enrique Gonzalez}, \bibinfo{person}{Siya Kunde},
+  \bibinfo{person}{Morgan~A. Foreman}, {and} \bibinfo{person}{Justin~D.
+  Weisz}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Controlling {AI} Agent Participation in Group
+  Conversations: A Human-Centered Approach}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 30th International Conference on
+  Intelligent User Interfaces}}. \bibinfo{publisher}{Association for Computing
+  Machinery}, \bibinfo{address}{Cagliari, Italy}, \bibinfo{pages}{390--408}.
+\newblock
+\href{https://doi.org/10.1145/3708359.3712089}{doi:\nolinkurl{10.1145/3708359.3712089}}
+
+
 \bibitem[Jacovi and Goldberg(2020)]%
         {jacovi2020faithfully}
-\bibfield{author}{\bibinfo{person}{Alon Jacovi} {and} \bibinfo{person}{Yoav Goldberg}.} \bibinfo{year}{2020}\natexlab{}.
-\newblock \showarticletitle{Towards Faithfully Interpretable {NLP} Systems: How Should We Define and Evaluate Faithfulness?}. In \bibinfo{booktitle}{\emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics}}. \bibinfo{publisher}{Association for Computational Linguistics}, \bibinfo{pages}{4198--4205}.
+\bibfield{author}{\bibinfo{person}{Alon Jacovi} {and} \bibinfo{person}{Yoav
+  Goldberg}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Towards Faithfully Interpretable {NLP} Systems: How
+  Should We Define and Evaluate Faithfulness?}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 58th Annual Meeting of the
+  Association for Computational Linguistics}}. \bibinfo{publisher}{Association
+  for Computational Linguistics}, \bibinfo{pages}{4198--4205}.
 \newblock
 \href{https://doi.org/10.18653/v1/2020.acl-main.386}{doi:\nolinkurl{10.18653/v1/2020.acl-main.386}}
 
 
-\bibitem[Jaques et~al\mbox{.}(2020)]%
-        {jaques2020way}
-\bibfield{author}{\bibinfo{person}{Natasha Jaques}, \bibinfo{person}{Judy~Hanwen Shen}, \bibinfo{person}{Asma Ghandeharioun}, \bibinfo{person}{Craig Ferguson}, \bibinfo{person}{Agata Lapedriza}, \bibinfo{person}{Noah Jones}, \bibinfo{person}{Shixiang~Shane Gu}, {and} \bibinfo{person}{Rosalind Picard}.} \bibinfo{year}{2020}\natexlab{}.
-\newblock \showarticletitle{Human-centric dialog training via offline reinforcement learning}. In \bibinfo{booktitle}{\emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}}. \bibinfo{pages}{3951--3964}.
-\newblock
-
-
 \bibitem[Kasneci et~al\mbox{.}(2023)]%
         {kasneci2023chatgpt}
-\bibfield{author}{\bibinfo{person}{Enkelejda Kasneci}, \bibinfo{person}{Kathrin Se{\ss}ler}, \bibinfo{person}{Stefan K{\"u}chemann}, \bibinfo{person}{Maria Bannert}, \bibinfo{person}{Daryna Dementieva}, \bibinfo{person}{Frank Fischer}, \bibinfo{person}{Urs Gasser}, \bibinfo{person}{Georg Groh}, \bibinfo{person}{Stephan G{\"u}nnemann}, \bibinfo{person}{Eyke H{\"u}llermeier}, {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{ChatGPT for good? On opportunities and challenges of large language models for education}.
-\newblock \bibinfo{journal}{\emph{Learning and individual differences}}  \bibinfo{volume}{103} (\bibinfo{year}{2023}), \bibinfo{pages}{102274}.
+\bibfield{author}{\bibinfo{person}{Enkelejda Kasneci}, \bibinfo{person}{Kathrin
+  Se{\ss}ler}, \bibinfo{person}{Stefan K{\"u}chemann}, \bibinfo{person}{Maria
+  Bannert}, \bibinfo{person}{Daryna Dementieva}, \bibinfo{person}{Frank
+  Fischer}, \bibinfo{person}{Urs Gasser}, \bibinfo{person}{Georg Groh},
+  \bibinfo{person}{Stephan G{\"u}nnemann}, \bibinfo{person}{Eyke
+  H{\"u}llermeier}, {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{ChatGPT for good? On opportunities and challenges
+  of large language models for education}.
+\newblock \bibinfo{journal}{\emph{Learning and individual differences}}
+  \bibinfo{volume}{103} (\bibinfo{year}{2023}), \bibinfo{pages}{102274}.
 \newblock
+
+
+\bibitem[Kwon et~al\mbox{.}(2024)]%
+        {kwon2024biped}
+\bibfield{author}{\bibinfo{person}{Soonwoo Kwon}, \bibinfo{person}{Sojung Kim},
+  \bibinfo{person}{Minju Park}, \bibinfo{person}{Seunghyun Lee}, {and}
+  \bibinfo{person}{Kyuseok Kim}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{BIPED}: Pedagogically Informed Tutoring System for
+  {ESL} Education}. In \bibinfo{booktitle}{\emph{Proceedings of the 62nd Annual
+  Meeting of the Association for Computational Linguistics (Volume 1: Long
+  Papers)}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Bangkok, Thailand}, \bibinfo{pages}{3389--3414}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.acl-long.186}{doi:\nolinkurl{10.18653/v1/2024.acl-long.186}}
 
 
 \bibitem[Li et~al\mbox{.}(2016a)]%
         {li2016diversity}
-\bibfield{author}{\bibinfo{person}{Jiwei Li}, \bibinfo{person}{Michel Galley}, \bibinfo{person}{Chris Brockett}, \bibinfo{person}{Jianfeng Gao}, {and} \bibinfo{person}{Bill Dolan}.} \bibinfo{year}{2016}\natexlab{a}.
-\newblock \showarticletitle{A diversity-promoting objective function for neural conversation models}. In \bibinfo{booktitle}{\emph{Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies}}. \bibinfo{pages}{110--119}.
+\bibfield{author}{\bibinfo{person}{Jiwei Li}, \bibinfo{person}{Michel Galley},
+  \bibinfo{person}{Chris Brockett}, \bibinfo{person}{Jianfeng Gao}, {and}
+  \bibinfo{person}{Bill Dolan}.} \bibinfo{year}{2016}\natexlab{a}.
+\newblock \showarticletitle{A diversity-promoting objective function for neural
+  conversation models}. In \bibinfo{booktitle}{\emph{Proceedings of the 2016
+  Conference of the North American Chapter of the Association for Computational
+  Linguistics: Human Language Technologies}}. \bibinfo{pages}{110--119}.
 \newblock
 
 
 \bibitem[Li et~al\mbox{.}(2016b)]%
         {li2016deep}
-\bibfield{author}{\bibinfo{person}{Jiwei Li}, \bibinfo{person}{Will Monroe}, \bibinfo{person}{Alan Ritter}, \bibinfo{person}{Michel Galley}, \bibinfo{person}{Jianfeng Gao}, {and} \bibinfo{person}{Dan Jurafsky}.} \bibinfo{year}{2016}\natexlab{b}.
-\newblock \showarticletitle{Deep reinforcement learning for dialogue generation}. In \bibinfo{booktitle}{\emph{Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing}}. \bibinfo{pages}{1192--1202}.
+\bibfield{author}{\bibinfo{person}{Jiwei Li}, \bibinfo{person}{Will Monroe},
+  \bibinfo{person}{Alan Ritter}, \bibinfo{person}{Michel Galley},
+  \bibinfo{person}{Jianfeng Gao}, {and} \bibinfo{person}{Dan Jurafsky}.}
+  \bibinfo{year}{2016}\natexlab{b}.
+\newblock \showarticletitle{Deep reinforcement learning for dialogue
+  generation}. In \bibinfo{booktitle}{\emph{Proceedings of the 2016 Conference
+  on Empirical Methods in Natural Language Processing}}.
+  \bibinfo{pages}{1192--1202}.
 \newblock
 
 
 \bibitem[Li et~al\mbox{.}(2019)]%
         {li2018dialogue}
-\bibfield{author}{\bibinfo{person}{Ziming Li}, \bibinfo{person}{Julia Kiseleva}, {and} \bibinfo{person}{Maarten~de Rijke}.} \bibinfo{year}{2019}\natexlab{}.
-\newblock \showarticletitle{Dialogue Generation: From Imitation Learning to Inverse Reinforcement Learning}. In \bibinfo{booktitle}{\emph{Proceedings of the AAAI Conference on Artificial Intelligence}}, Vol.~\bibinfo{volume}{33}. \bibinfo{pages}{6722--6729}.
+\bibfield{author}{\bibinfo{person}{Ziming Li}, \bibinfo{person}{Julia
+  Kiseleva}, {and} \bibinfo{person}{Maarten~de Rijke}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Dialogue Generation: From Imitation Learning to
+  Inverse Reinforcement Learning}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the AAAI Conference on Artificial Intelligence}}, Vol.~\bibinfo{volume}{33}.
+  \bibinfo{pages}{6722--6729}.
 \newblock
 \href{https://doi.org/10.1609/aaai.v33i01.33016722}{doi:\nolinkurl{10.1609/aaai.v33i01.33016722}}
 
 
+\bibitem[Li et~al\mbox{.}(2026)]%
+        {li2026scaffoldlm}
+\bibfield{author}{\bibinfo{person}{Zechen Li}, \bibinfo{person}{Qiannan Zhu},
+  \bibinfo{person}{Mei Wang}, \bibinfo{person}{Jia Li}, {and}
+  \bibinfo{person}{Hua Huang}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Planning-Guided Tutoring with Assessment-Driven
+  Memory for Pedagogical {LLM} Tutors}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 64th Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{San Diego, California, United States},
+  \bibinfo{pages}{7165--7188}.
+\newblock
+\href{https://doi.org/10.18653/v1/2026.acl-long.325}{doi:\nolinkurl{10.18653/v1/2026.acl-long.325}}
+
+
 \bibitem[Liu et~al\mbox{.}(2025)]%
         {liu2025proactive}
-\bibfield{author}{\bibinfo{person}{Xingyu~Bruce Liu}, \bibinfo{person}{Shitao Fang}, \bibinfo{person}{Weiyan Shi}, \bibinfo{person}{Chien-Sheng Wu}, \bibinfo{person}{Takeo Igarashi}, {and} \bibinfo{person}{Xiang~Anthony Chen}.} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{Proactive Conversational Agents with Inner Thoughts}. In \bibinfo{booktitle}{\emph{Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems}}. \bibinfo{publisher}{Association for Computing Machinery}, \bibinfo{address}{New York, NY, USA}.
+\bibfield{author}{\bibinfo{person}{Xingyu~Bruce Liu}, \bibinfo{person}{Shitao
+  Fang}, \bibinfo{person}{Weiyan Shi}, \bibinfo{person}{Chien-Sheng Wu},
+  \bibinfo{person}{Takeo Igarashi}, {and} \bibinfo{person}{Xiang~Anthony
+  Chen}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Proactive Conversational Agents with Inner
+  Thoughts}. In \bibinfo{booktitle}{\emph{Proceedings of the 2025 CHI
+  Conference on Human Factors in Computing Systems}}.
+  \bibinfo{publisher}{Association for Computing Machinery},
+  \bibinfo{address}{New York, NY, USA}.
 \newblock
 \href{https://doi.org/10.1145/3706598.3713760}{doi:\nolinkurl{10.1145/3706598.3713760}}
 
 
+\bibitem[Martynova et~al\mbox{.}(2025)]%
+        {martynova2025simulate}
+\bibfield{author}{\bibinfo{person}{Daria Martynova}, \bibinfo{person}{Jakub
+  Macina}, \bibinfo{person}{Nico Daheim}, \bibinfo{person}{Nilay Yalcin},
+  \bibinfo{person}{Xiaoyu Zhang}, {and} \bibinfo{person}{Mrinmaya Sachan}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Can {LLM}s Effectively Simulate Human Learners?
+  Teachers' Insights from Tutoring {LLM} Students}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 20th Workshop on Innovative Use
+  of NLP for Building Educational Applications}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Vienna, Austria}, \bibinfo{pages}{100--117}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.bea-1.8}{doi:\nolinkurl{10.18653/v1/2025.bea-1.8}}
+
+
+\bibitem[Maurya et~al\mbox{.}(2025)]%
+        {maurya2025unifying}
+\bibfield{author}{\bibinfo{person}{Kaushal~Kumar Maurya},
+  \bibinfo{person}{Kv~Aditya Srivatsa}, \bibinfo{person}{Kseniia Petukhova},
+  {and} \bibinfo{person}{Ekaterina Kochmar}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Unifying {AI} Tutor Evaluation: An Evaluation
+  Taxonomy for Pedagogical Ability Assessment of {LLM}-Powered {AI} Tutors}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2025 Conference of the Nations
+  of the Americas Chapter of the Association for Computational Linguistics:
+  Human Language Technologies (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Albuquerque, New Mexico}, \bibinfo{pages}{1234--1251}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.naacl-long.57}{doi:\nolinkurl{10.18653/v1/2025.naacl-long.57}}
+
+
 \bibitem[Ouyang et~al\mbox{.}(2022)]%
         {ouyang2022training}
-\bibfield{author}{\bibinfo{person}{Long Ouyang}, \bibinfo{person}{Jeffrey Wu}, \bibinfo{person}{Xu Jiang}, \bibinfo{person}{Diogo Almeida}, \bibinfo{person}{Carroll Wainwright}, \bibinfo{person}{Pamela Mishkin}, \bibinfo{person}{Chong Zhang}, \bibinfo{person}{Sandhini Agarwal}, \bibinfo{person}{Katarina Slama}, \bibinfo{person}{Alex Ray}, {et~al\mbox{.}}} \bibinfo{year}{2022}\natexlab{}.
-\newblock \showarticletitle{Training language models to follow instructions with human feedback}.
-\newblock \bibinfo{journal}{\emph{Advances in neural information processing systems}}  \bibinfo{volume}{35} (\bibinfo{year}{2022}), \bibinfo{pages}{27730--27744}.
+\bibfield{author}{\bibinfo{person}{Long Ouyang}, \bibinfo{person}{Jeffrey Wu},
+  \bibinfo{person}{Xu Jiang}, \bibinfo{person}{Diogo Almeida},
+  \bibinfo{person}{Carroll Wainwright}, \bibinfo{person}{Pamela Mishkin},
+  \bibinfo{person}{Chong Zhang}, \bibinfo{person}{Sandhini Agarwal},
+  \bibinfo{person}{Katarina Slama}, \bibinfo{person}{Alex Ray},
+  {et~al\mbox{.}}} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Training language models to follow instructions
+  with human feedback}.
+\newblock \bibinfo{journal}{\emph{Advances in neural information processing
+  systems}}  \bibinfo{volume}{35} (\bibinfo{year}{2022}),
+  \bibinfo{pages}{27730--27744}.
 \newblock
 
 
 \bibitem[Park et~al\mbox{.}(2023)]%
         {park2023generative}
-\bibfield{author}{\bibinfo{person}{Joon~Sung Park}, \bibinfo{person}{Joseph~C O'Brien}, \bibinfo{person}{Carrie~J Cai}, \bibinfo{person}{Meredith~Ringel Morris}, \bibinfo{person}{Percy Liang}, {and} \bibinfo{person}{Michael~S Bernstein}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{Generative agents: Interactive simulacra of human behavior}. In \bibinfo{booktitle}{\emph{Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology}}. \bibinfo{pages}{1--22}.
+\bibfield{author}{\bibinfo{person}{Joon~Sung Park}, \bibinfo{person}{Joseph~C
+  O'Brien}, \bibinfo{person}{Carrie~J Cai}, \bibinfo{person}{Meredith~Ringel
+  Morris}, \bibinfo{person}{Percy Liang}, {and} \bibinfo{person}{Michael~S
+  Bernstein}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Generative agents: Interactive simulacra of human
+  behavior}. In \bibinfo{booktitle}{\emph{Proceedings of the 36th Annual ACM
+  Symposium on User Interface Software and Technology}}.
+  \bibinfo{pages}{1--22}.
 \newblock
+
+
+\bibitem[Puech et~al\mbox{.}(2025)]%
+        {puech2025steering}
+\bibfield{author}{\bibinfo{person}{Romain Puech}, \bibinfo{person}{Jakub
+  Macina}, \bibinfo{person}{Julia Chatain}, \bibinfo{person}{Mrinmaya Sachan},
+  {and} \bibinfo{person}{Manu Kapur}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Towards the Pedagogical Steering of Large Language
+  Models for Tutoring: A Case Study with Modeling Productive Failure}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: ACL 2025}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{pages}{26291--26311}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.findings-acl.1348}{doi:\nolinkurl{10.18653/v1/2025.findings-acl.1348}}
+
+
+\bibitem[Scarlatos et~al\mbox{.}(2026)]%
+        {scarlatos2026simulated}
+\bibfield{author}{\bibinfo{person}{Alexander Scarlatos},
+  \bibinfo{person}{Jaewook Lee}, \bibinfo{person}{Simon Woodhead}, {and}
+  \bibinfo{person}{Andrew Lan}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Simulated Students in Tutoring Dialogues: Substance
+  or Illusion?}. In \bibinfo{booktitle}{\emph{Proceedings of the 64th Annual
+  Meeting of the Association for Computational Linguistics (Volume 1: Long
+  Papers)}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{San Diego, California, United States},
+  \bibinfo{pages}{42349--42385}.
+\newblock
+\href{https://doi.org/10.18653/v1/2026.acl-long.1960}{doi:\nolinkurl{10.18653/v1/2026.acl-long.1960}}
+
+
+\bibitem[Schneider et~al\mbox{.}(2024)]%
+        {schneider2024bridgekg}
+\bibfield{author}{\bibinfo{person}{Phillip Schneider},
+  \bibinfo{person}{Nektarios Machner}, \bibinfo{person}{Kristiina Jokinen},
+  {and} \bibinfo{person}{Florian Matthes}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Bridging Information Gaps in Dialogues with
+  Grounded Exchanges Using Knowledge Graphs}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 25th Annual Meeting of the
+  Special Interest Group on Discourse and Dialogue}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Kyoto, Japan}, \bibinfo{pages}{110--120}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.sigdial-1.10}{doi:\nolinkurl{10.18653/v1/2024.sigdial-1.10}}
 
 
 \bibitem[Schulman et~al\mbox{.}(2017)]%
         {schulman2017proximal}
-\bibfield{author}{\bibinfo{person}{John Schulman}, \bibinfo{person}{Filip Wolski}, \bibinfo{person}{Prafulla Dhariwal}, \bibinfo{person}{Alec Radford}, {and} \bibinfo{person}{Oleg Klimov}.} \bibinfo{year}{2017}\natexlab{}.
+\bibfield{author}{\bibinfo{person}{John Schulman}, \bibinfo{person}{Filip
+  Wolski}, \bibinfo{person}{Prafulla Dhariwal}, \bibinfo{person}{Alec Radford},
+  {and} \bibinfo{person}{Oleg Klimov}.} \bibinfo{year}{2017}\natexlab{}.
 \newblock \showarticletitle{Proximal policy optimization algorithms}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1707.06347}} (\bibinfo{year}{2017}).
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1707.06347}}
+  (\bibinfo{year}{2017}).
 \newblock
 
 
 \bibitem[Serban et~al\mbox{.}(2017)]%
         {serban2017hierarchical}
-\bibfield{author}{\bibinfo{person}{Iulian~Vlad Serban}, \bibinfo{person}{Alessandro Sordoni}, \bibinfo{person}{Ryan Lowe}, \bibinfo{person}{Laurent Charlin}, \bibinfo{person}{Joelle Pineau}, \bibinfo{person}{Aaron Courville}, {and} \bibinfo{person}{Yoshua Bengio}.} \bibinfo{year}{2017}\natexlab{}.
-\newblock \showarticletitle{A hierarchical latent variable encoder-decoder model for generating dialogues}. In \bibinfo{booktitle}{\emph{Proceedings of the AAAI Conference on Artificial Intelligence}}, Vol.~\bibinfo{volume}{31}.
+\bibfield{author}{\bibinfo{person}{Iulian~Vlad Serban},
+  \bibinfo{person}{Alessandro Sordoni}, \bibinfo{person}{Ryan Lowe},
+  \bibinfo{person}{Laurent Charlin}, \bibinfo{person}{Joelle Pineau},
+  \bibinfo{person}{Aaron Courville}, {and} \bibinfo{person}{Yoshua Bengio}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{A hierarchical latent variable encoder-decoder
+  model for generating dialogues}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the AAAI Conference on Artificial Intelligence}}, Vol.~\bibinfo{volume}{31}.
 \newblock
+
+
+\bibitem[Shi et~al\mbox{.}(2025)]%
+        {shi2025educationq}
+\bibfield{author}{\bibinfo{person}{Yao Shi}, \bibinfo{person}{Rongkeng Liang},
+  {and} \bibinfo{person}{Yong Xu}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{EducationQ}: Evaluating {LLM}s' Teaching
+  Capabilities Through Multi-Agent Dialogue Framework}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 63rd Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Vienna, Austria}, \bibinfo{pages}{32799--32828}.
+\newblock
+\href{https://doi.org/10.18653/v1/2025.acl-long.1576}{doi:\nolinkurl{10.18653/v1/2025.acl-long.1576}}
 
 
 \bibitem[Song et~al\mbox{.}(2023)]%
         {songyu79}
-\bibfield{author}{\bibinfo{person}{Yu Song}, \bibinfo{person}{Changliang Xu}, \bibinfo{person}{Jia Zhu}, {and} \bibinfo{person}{Shaoming Chai}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{Thinking Training Oriented: Analysis and Application of Intelligent Classroom Teaching Based on Accurate Labeling Technology}.
-\newblock \bibinfo{journal}{\emph{Journal of East China Normal University(Education Science)(In Chinese)}} \bibinfo{volume}{41}, \bibinfo{number}{8} (\bibinfo{year}{2023}), \bibinfo{pages}{79}.
+\bibfield{author}{\bibinfo{person}{Yu Song}, \bibinfo{person}{Changliang Xu},
+  \bibinfo{person}{Jia Zhu}, {and} \bibinfo{person}{Shaoming Chai}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Thinking Training Oriented: Analysis and
+  Application of Intelligent Classroom Teaching Based on Accurate Labeling
+  Technology}.
+\newblock \bibinfo{journal}{\emph{Journal of East China Normal
+  University(Education Science)(In Chinese)}} \bibinfo{volume}{41},
+  \bibinfo{number}{8} (\bibinfo{year}{2023}), \bibinfo{pages}{79}.
 \newblock
 \href{https://doi.org/10.16382/j.cnki.1000-5560.2023.08.008}{doi:\nolinkurl{10.16382/j.cnki.1000-5560.2023.08.008}}
 
 
 \bibitem[Sutskever et~al\mbox{.}(2014)]%
         {sutskever2014sequence}
-\bibfield{author}{\bibinfo{person}{Ilya Sutskever}, \bibinfo{person}{Oriol Vinyals}, {and} \bibinfo{person}{Quoc~V Le}.} \bibinfo{year}{2014}\natexlab{}.
-\newblock \showarticletitle{Sequence to sequence learning with neural networks}.
-\newblock \bibinfo{journal}{\emph{Advances in neural information processing systems}}  \bibinfo{volume}{27} (\bibinfo{year}{2014}).
-\newblock
-
-
-\bibitem[Tu et~al\mbox{.}(2023)]%
-        {tu2023littlemu}
-\bibfield{author}{\bibinfo{person}{Shangqing Tu}, \bibinfo{person}{Zheyuan Zhang}, \bibinfo{person}{Jifan Yu}, \bibinfo{person}{Chunyang Li}, \bibinfo{person}{Siyu Zhang}, \bibinfo{person}{Zijun Yao}, \bibinfo{person}{Lei Hou}, {and} \bibinfo{person}{Juanzi Li}.} \bibinfo{year}{2023}\natexlab{}.
-\newblock \showarticletitle{LittleMu: Deploying an online virtual teaching assistant via heterogeneous sources integration and chain of teach prompts}. In \bibinfo{booktitle}{\emph{Proceedings of the 32nd ACM International Conference on Information and Knowledge Management}}. \bibinfo{pages}{4843--4849}.
+\bibfield{author}{\bibinfo{person}{Ilya Sutskever}, \bibinfo{person}{Oriol
+  Vinyals}, {and} \bibinfo{person}{Quoc~V Le}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Sequence to sequence learning with neural
+  networks}.
+\newblock \bibinfo{journal}{\emph{Advances in neural information processing
+  systems}}  \bibinfo{volume}{27} (\bibinfo{year}{2014}).
 \newblock
 
 
 \bibitem[Verma et~al\mbox{.}(2022)]%
         {verma2022chai}
-\bibfield{author}{\bibinfo{person}{Siddharth Verma}, \bibinfo{person}{Justin Fu}, \bibinfo{person}{Mengjiao Yang}, {and} \bibinfo{person}{Sergey Levine}.} \bibinfo{year}{2022}\natexlab{}.
-\newblock \showarticletitle{{CHAI}: A {CH}atbot {AI} for Task-Oriented Dialogue with Offline Reinforcement Learning}. In \bibinfo{booktitle}{\emph{Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies}}. \bibinfo{publisher}{Association for Computational Linguistics}, \bibinfo{address}{Seattle, United States}, \bibinfo{pages}{4471--4491}.
+\bibfield{author}{\bibinfo{person}{Siddharth Verma}, \bibinfo{person}{Justin
+  Fu}, \bibinfo{person}{Mengjiao Yang}, {and} \bibinfo{person}{Sergey Levine}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{{CHAI}: A {CH}atbot {AI} for Task-Oriented Dialogue
+  with Offline Reinforcement Learning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2022 Conference of the North
+  American Chapter of the Association for Computational Linguistics: Human
+  Language Technologies}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{address}{Seattle, United States},
+  \bibinfo{pages}{4471--4491}.
 \newblock
 
 
 \bibitem[Vinyals and Le(2015)]%
         {vinyals2015neural}
-\bibfield{author}{\bibinfo{person}{Oriol Vinyals} {and} \bibinfo{person}{Quoc Le}.} \bibinfo{year}{2015}\natexlab{}.
+\bibfield{author}{\bibinfo{person}{Oriol Vinyals} {and} \bibinfo{person}{Quoc
+  Le}.} \bibinfo{year}{2015}\natexlab{}.
 \newblock \showarticletitle{A neural conversational model}.
-\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1506.05869}} (\bibinfo{year}{2015}).
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1506.05869}}
+  (\bibinfo{year}{2015}).
 \newblock
 
 
 \bibitem[Wulfmeier et~al\mbox{.}(2024)]%
         {wulfmeier2024imitating}
-\bibfield{author}{\bibinfo{person}{Markus Wulfmeier}, \bibinfo{person}{Sandy Huang}, \bibinfo{person}{Michael Bloesch}, \bibinfo{person}{Artem Sokolov}, \bibinfo{person}{Sarah Maria~Elisabeth Bechtle}, \bibinfo{person}{Olivier Bachem}, \bibinfo{person}{Nino Vieillard}, \bibinfo{person}{Matt Barnes}, \bibinfo{person}{Arun Ahuja}, \bibinfo{person}{Guillaume Desjardins}, \bibinfo{person}{Jost~Tobias Springenberg}, \bibinfo{person}{Matthieu Geist}, \bibinfo{person}{J{\"o}rg Bornschein}, \bibinfo{person}{Alex Bewley}, \bibinfo{person}{Nikola Momchev}, {and} \bibinfo{person}{Martin Riedmiller}.} \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Imitating Language via Scalable Inverse Reinforcement Learning}. In \bibinfo{booktitle}{\emph{Advances in Neural Information Processing Systems}}.
+\bibfield{author}{\bibinfo{person}{Markus Wulfmeier}, \bibinfo{person}{Sandy
+  Huang}, \bibinfo{person}{Michael Bloesch}, \bibinfo{person}{Artem Sokolov},
+  \bibinfo{person}{Sarah Maria~Elisabeth Bechtle}, \bibinfo{person}{Olivier
+  Bachem}, \bibinfo{person}{Nino Vieillard}, \bibinfo{person}{Matt Barnes},
+  \bibinfo{person}{Arun Ahuja}, \bibinfo{person}{Guillaume Desjardins},
+  \bibinfo{person}{Jost~Tobias Springenberg}, \bibinfo{person}{Matthieu Geist},
+  \bibinfo{person}{J{\"o}rg Bornschein}, \bibinfo{person}{Alex Bewley},
+  \bibinfo{person}{Nikola Momchev}, {and} \bibinfo{person}{Martin Riedmiller}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Imitating Language via Scalable Inverse
+  Reinforcement Learning}. In \bibinfo{booktitle}{\emph{Advances in Neural
+  Information Processing Systems}}.
 \newblock
 
 
 \bibitem[Xi et~al\mbox{.}(2025)]%
         {xi2025rise}
-\bibfield{author}{\bibinfo{person}{Zhiheng Xi}, \bibinfo{person}{Wenxiang Chen}, \bibinfo{person}{Xin Guo}, \bibinfo{person}{Wei He}, \bibinfo{person}{Yiwen Ding}, \bibinfo{person}{Boyang Hong}, \bibinfo{person}{Ming Zhang}, \bibinfo{person}{Junzhe Wang}, \bibinfo{person}{Senjie Jin}, \bibinfo{person}{Enyu Zhou}, {et~al\mbox{.}}} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{The rise and potential of large language model based agents: A survey}.
-\newblock \bibinfo{journal}{\emph{Science China Information Sciences}} \bibinfo{volume}{68}, \bibinfo{number}{2} (\bibinfo{year}{2025}), \bibinfo{pages}{121101}.
+\bibfield{author}{\bibinfo{person}{Zhiheng Xi}, \bibinfo{person}{Wenxiang
+  Chen}, \bibinfo{person}{Xin Guo}, \bibinfo{person}{Wei He},
+  \bibinfo{person}{Yiwen Ding}, \bibinfo{person}{Boyang Hong},
+  \bibinfo{person}{Ming Zhang}, \bibinfo{person}{Junzhe Wang},
+  \bibinfo{person}{Senjie Jin}, \bibinfo{person}{Enyu Zhou}, {et~al\mbox{.}}}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{The rise and potential of large language model
+  based agents: A survey}.
+\newblock \bibinfo{journal}{\emph{Science China Information Sciences}}
+  \bibinfo{volume}{68}, \bibinfo{number}{2} (\bibinfo{year}{2025}),
+  \bibinfo{pages}{121101}.
 \newblock
 
 
 \bibitem[Zhang et~al\mbox{.}(2025)]%
         {zhang2024simulating}
-\bibfield{author}{\bibinfo{person}{Zheyuan Zhang}, \bibinfo{person}{Daniel Zhang-Li}, \bibinfo{person}{Jifan Yu}, \bibinfo{person}{Linlu Gong}, \bibinfo{person}{Jinchang Zhou}, \bibinfo{person}{Zhanxin Hao}, \bibinfo{person}{Jianxiao Jiang}, \bibinfo{person}{Jie Cao}, \bibinfo{person}{Huiqin Liu}, \bibinfo{person}{Zhiyuan Liu}, \bibinfo{person}{Lei Hou}, {and} \bibinfo{person}{Juanzi Li}.} \bibinfo{year}{2025}\natexlab{}.
-\newblock \showarticletitle{Simulating Classroom Education with {LLM}-Empowered Agents}. In \bibinfo{booktitle}{\emph{Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)}}. \bibinfo{publisher}{Association for Computational Linguistics}, \bibinfo{address}{Albuquerque, New Mexico}, \bibinfo{pages}{10364--10379}.
+\bibfield{author}{\bibinfo{person}{Zheyuan Zhang}, \bibinfo{person}{Daniel
+  Zhang-Li}, \bibinfo{person}{Jifan Yu}, \bibinfo{person}{Linlu Gong},
+  \bibinfo{person}{Jinchang Zhou}, \bibinfo{person}{Zhanxin Hao},
+  \bibinfo{person}{Jianxiao Jiang}, \bibinfo{person}{Jie Cao},
+  \bibinfo{person}{Huiqin Liu}, \bibinfo{person}{Zhiyuan Liu},
+  \bibinfo{person}{Lei Hou}, {and} \bibinfo{person}{Juanzi Li}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Simulating Classroom Education with {LLM}-Empowered
+  Agents}. In \bibinfo{booktitle}{\emph{Proceedings of the 2025 Conference of
+  the Nations of the Americas Chapter of the Association for Computational
+  Linguistics: Human Language Technologies (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Albuquerque, New Mexico}, \bibinfo{pages}{10364--10379}.
 \newblock
 \href{https://doi.org/10.18653/v1/2025.naacl-long.520}{doi:\nolinkurl{10.18653/v1/2025.naacl-long.520}}
 
 
 \bibitem[Zhao et~al\mbox{.}(2017)]%
         {zhao2017learning}
-\bibfield{author}{\bibinfo{person}{Tiancheng Zhao}, \bibinfo{person}{Ran Zhao}, {and} \bibinfo{person}{Maxine Eskenazi}.} \bibinfo{year}{2017}\natexlab{}.
-\newblock \showarticletitle{Learning discourse-level diversity for neural dialog models using conditional variational autoencoders}. In \bibinfo{booktitle}{\emph{Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}}. \bibinfo{pages}{654--664}.
+\bibfield{author}{\bibinfo{person}{Tiancheng Zhao}, \bibinfo{person}{Ran Zhao},
+  {and} \bibinfo{person}{Maxine Eskenazi}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Learning discourse-level diversity for neural
+  dialog models using conditional variational autoencoders}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 55th Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{pages}{654--664}.
 \newblock
 
 

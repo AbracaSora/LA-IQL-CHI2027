@@ -1,6 +1,6 @@
 # CHI 2027 论文成稿缺口与执行清单
 
-更新日期：2026-08-26
+更新日期：2026-08-27
 
 适用主稿：`sigconf-authordraft.tex`
 
@@ -15,23 +15,41 @@
 3. **C：需要实验得到**：必须运行新实验、重新统计或完成人工评价后才能填写。
 4. **D：需要人工或外部确认**：无法仅从现有代码和产物可靠恢复，需要作者、数据提供方或伦理/平台记录确认。
 
-重要性等级：
+当前优先级按论文所处里程碑划分，而不是只按正式投稿风险划分：
 
-- **P0（阻塞）**：不完成可能导致 desk reject、核心结论不成立或评审无法判断实验是否公平。
-- **P1（重要）**：显著影响正确性、可复现性、说服力或修改轮次。
-- **P2（增强）**：不一定阻塞投稿，但能减少质疑、提高完整度或便于复现。
+- **P0-Draft（导师初稿）**：阻塞理论收口、文章结构完整或导师有效审阅；当前立即完成。
+- **P1-Evidence（证据补全）**：在导师确认主线后补充正式实验、统计或材料；可能阻塞核心结果定稿，但不阻塞结构完整的导师初稿。
+- **P2-Submission（投稿合规）**：正式投稿前必须完成的伦理、匿名、复现和提交包工作；不应阻塞当前初稿形成。
+- **P3-Enhancement（增强项）**：只有在主稿闭环、关键证据完成且时间允许时继续。
+
+文中原有的 **P0/P1/P2** 表示面向正式投稿的风险等级；若与以上阶段优先级冲突，以本节和第 6 节的当前执行顺序为准。
 
 “格式”指最终应在论文或补充材料中采用的呈现形式，而不是文件格式。
 
 ### 1.1 当前落稿状态（2026-08-27）
 
-- **已写入并完成**：A1--A6、A8--A10；B1、B2、B4、B5、B7、B9。
-- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（核心训练配置已进入附录，其余 provenance 采用尽力恢复与透明披露原则）；B6（RQ4 已改写，正式 G4 证据待 C6）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
-- **仍可继续但本轮未完成**：B10（规则化定性案例）、B11（Related Work 增补）。
+- **已写入并完成**：A1--A6、A8--A10；B1、B2、B4、B5、B6a、B7、B9、B11；全文 claim--evidence 主线审计。
+- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（核心训练配置已进入附录，其余 provenance 采用尽力恢复与透明披露原则）；B6b（RQ4 的理论、方法、统计单位、Results 骨架与限制已写入，正式 G4 证据待 C6）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
+- **仍可继续但本轮未完成**：B10（规则化定性案例）。
 - **受外部确认阻塞**：B8 只需与 D1 一起达到 CHI 投稿所需的如实披露水平；不能仅凭代码目录推断数据许可、伦理审查状态或去标识化流程。
 - **无需新增实验但已明确披露缺口**：D2 已恢复三阶段核心配置；其余尚未确认字段已在附录和 D2 清单列明，避免用当前脚本默认值反推。
 
 本轮写入位置：正文的 Abstract、Method、Experimental Design、Results、Discussion、Conclusion、Limitations，以及附录的 Implementation and Reproducibility 与 Context-Sensitivity Intervention。
+
+### 1.2 当前里程碑：供导师修改的理论闭环初稿
+
+当前首要目标不是立即补齐全部实验或投稿材料，而是形成一份理论主线闭合、章节齐全、已有证据与主张边界一致的初稿。该版本应允许导师直接修改研究问题、贡献定位和论证结构，而不必等待新增实验。
+
+当前 claim--evidence 工作表：[`CLAIM_EVIDENCE_MATRIX.md`](CLAIM_EVIDENCE_MATRIX.md)。该表是全文主张审计的唯一入口；新增或删除核心主张时，应同步更新其证据、允许措辞与禁止外推边界。
+
+当前优先顺序如下：
+
+1. **P0-Draft**：claim--evidence 主线审计、B6a 与 B11 已完成；下一步完成 B10 和 B12a，并在后续修改核心主张时维护对照表。
+2. **P1-Evidence**：导师确认主线后执行 C6，并视反馈补 A7、C1--C3；再把正式结果写回摘要、Results 和 Conclusion。
+3. **P2-Submission**：完成 B8/D1、D3--D5、B12b 和剩余 provenance/匿名/提交包工作。
+4. **P3-Enhancement**：C4、C5、C7、C8 及其他不改变当前核心论证的增强实验。
+
+导师初稿允许存在明确标记的内部结果占位符，但不得预写实验方向、虚构数值或把计划中的 C6 当成已完成证据。
 
 ---
 
@@ -90,7 +108,7 @@
 - **名称**：强 learned baseline provenance。
 - **内容及解释**：Frozen BC 和 LoRA BC 已有三训练 seeds 的 `baseline_meta.json`，包括 objective、base model、样本数、validation 数、epochs、batch size、learning rate、max length、LoRA rank、dtype、peak memory 和 epoch history。
 - **获取方式**：读取 `checkpoints/baselines/formal/sft_bc_seed*/baseline_meta.json` 与 `lora_policy_seed*/baseline_meta.json`。
-- **重要性及原因**：**P0**。当前论文主要展示统计控制与 no-TD，而完整同数据 learned BC 能帮助评审判断 LA-IQL 是否超过局部 imitation。
+- **重要性及原因**：**P1-Evidence；正式投稿时是否升为 P0 取决于最终 baseline 主张**。它不阻塞导师初稿，但完整同数据 learned BC 能帮助评审判断 LA-IQL 是否超过局部 imitation；若暂不纳入，初稿必须明确其状态和当前比较边界。
 - **格式**：正文 baseline 表至少列 Frozen BC/LoRA BC 是否进入主比较；完整超参数和训练曲线放附录。
 
 ### A8. 上下文敏感性干预结果
@@ -163,11 +181,11 @@
 
 ### B6. 将 RQ4 转为长程知识建构问题
 
-- **名称**：Knowledge-construction framing。
-- **内容及解释**：RQ4 改为考察学习策略与角色模型之间的动作控制分配，如何影响长程模拟课堂对话中可观察的知识引入、关联和发展模式。知识图谱和 LLM judge 是该问题的自动操作化方法，而不是 RQ 本身；结果只能说明生成文本中表达的知识结构，不能说明学生认知改变、教学质量或学习效果。
-- **获取方式**：以 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 为冻结设计依据，同步修改 RQ4、Evaluation Metrics、Results、Discussion、Conclusion 和中文翻译。原 G4-v1 分类器训练未完成，其一致率、Macro-F1、显著性和系统排名已从主稿移除。
-- **重要性及原因**：**P0**。新 RQ4 把 action-control allocation 与最终长程对话结果连接起来，比未验证的单轮 realization classifier 更符合当前 CHI 的可检查交互与控制分配主线。
-- **格式**：正文 RQ4 + G4 方法、主表和 growth curve；附录保留旧评测的协议、规则指标与失败说明，但不保留未完成分类器的数值证据。
+- **名称**：Knowledge-construction framing 与结果集成。
+- **内容及解释**：拆为两个里程碑。**B6a（P0-Draft）** 完成理论定义与文章结构：RQ4 考察学习策略与角色模型之间采用不同动作控制分配时，长程模拟课堂对话中呈现哪些可观察的知识引入、关联和发展模式；知识图谱和 LLM judge 是操作化方法，而不是 RQ 本身。**B6b（P1-Evidence）** 在 C6 完成后写入正式数值、主表、growth curve 和结论。结果只能说明生成文本中表达的知识结构，不能说明学生认知改变、教学质量或学习效果。
+- **获取方式**：以 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 为冻结设计依据，同步修改 RQ4、Evaluation Metrics、Results、Discussion、Conclusion 和中文翻译。导师初稿先补齐方法、统计单位、结果小节骨架与限制，并使用醒目的内部占位符标记 C6；不得预写结果方向。原 G4-v1 分类器训练未完成，其一致率、Macro-F1、显著性和系统排名已从主稿移除。
+- **重要性及原因**：**B6a 为 P0-Draft；B6b 为 P1-Evidence，正式投稿时为 P0**。先固定理论问题和证据边界，避免在导师审阅前把时间投入到可能因主线调整而作废的完整实验。
+- **格式**：导师初稿包含完整 RQ4、G4 方法、Results 占位小节和限制；C6 完成后再加入主表、growth curve 和结论。附录保留旧评测的协议、规则指标与失败说明，但不保留未完成分类器的数值证据。
 
 ### B7. 将上下文干预纳入论文
 
@@ -182,7 +200,7 @@
 - **名称**：Minimum CHI-compliant data and ethics statement。
 - **内容及解释**：如实说明课堂转录文本的来源类型、作者获得数据的方式与研究使用依据、伦理审查状态（如已批准、豁免、由原采集项目覆盖或不适用）、采用的去标识化措施，以及为何不公开原始转录。不得把未知情况写成已经获得同意或伦理批准。
 - **获取方式**：优先向导师或数据提供方取得一段可引用的事实说明；现阶段不要求建立完整的数据治理档案。仍无法确认的非关键细节可概括为受数据提供方协议限制。
-- **重要性及原因**：**P0**。目标是满足 CHI 对涉及真实参与者数据的透明披露和风险说明要求，而非完成超出投稿需要的全面治理审计。
+- **重要性及原因**：**P2-Submission，正式投稿前为 P0**。导师初稿可保留醒目的事实核实标记；提交前必须满足 CHI 对真实参与者数据的透明披露和风险说明要求，但不需要完成超出投稿范围的全面治理审计。
 - **格式**：正文 Data/Method 与 Ethical Considerations 中各用一小段即可；除非模板或评审明确要求，不强制另设完整 Data Statement 或发布数据 manifest。
 
 ### B9. 统计报告一致性审计
@@ -195,18 +213,20 @@
 
 ### B10. 规则化定性案例
 
+- **状态**：**最低 P0-Draft 版本已完成（2026-08-27）**。正文已按预先声明的确定性规则选入一个可追溯案例：在 30 个匹配单元中选择 Direct--Candidate 两步循环率差值最大者，并以模体率差值和字典序破局；入选课程 4873、生成种子 43、第 13--16 回合。案例同时呈现局部上下文、action、压缩后的 rationale 与 utterance，既展示 Direct 的 action recurrence，也保留 Candidate 第 15 回合可检查的局部 rationale--realization shift，并明确说明动作循环不等同于语义停滞或教学失败。扩展为 2--3 个规则化案例仍属 P1-Evidence。
 - **名称**：Inspectable trajectory examples。
 - **内容及解释**：从预先固定规则选出的 2--3 个相同 lesson/seed 片段，展示 expert、Direct、Candidate/no-TD 的 action sequence、rationale 和 utterance，包含成功、重复和 realization mismatch，而非只挑有利案例。
 - **获取方式**：先冻结选例规则，例如最大 paired motif difference、典型 alignment--repetition disagreement、自动 consistency disagreement，再从 formal trajectories 导出。
-- **重要性及原因**：**P1**。CHI 读者需要看到指标对应的实际交互行为，单靠 JSD/cycle 数值难以理解设计意义。
-- **格式**：正文一张案例图或紧凑表；完整轨迹放补充材料。
+- **重要性及原因**：**至少一个可检查案例为 P0-Draft；扩展到 2--3 个规则化案例为 P1-Evidence**。导师需要从实例判断 action mediation、控制分配和失败模式是否被论文准确表达，单靠 JSD/cycle 数值难以修改理论叙事。
+- **格式**：导师初稿正文先放一个带来源的案例图或紧凑表；正式版本扩展规则化选例，完整轨迹放补充材料。
 
 ### B11. Related Work 与贡献定位补强
 
+- **状态**：**已完成（2026-08-27）**。英文正文已重组为教学结构化 LLM 对话、示范驱动的交互策略学习、主动性与控制分配、教学对话评价与模拟有效性四条文献线，并已同步中文翻译；新增文献均已写入 `references.bib` 并通过编译。
 - **名称**：HCI literature integration。
 - **内容及解释**：补充 inspectable/controllable conversational agents、mixed initiative、strategy-mediated interaction、教育对话代理与 explanation/traceability 的直接比较；明确技术贡献是集成与动作层设计，而非新 IRL 目标。
 - **获取方式**：在现有 Related Work 基础上建立 nearest-work comparison，逐项比较输入、显式动作层、离线数据、控制边界和评价对象。
-- **重要性及原因**：**P1**。当前稿仍容易被看作 NLP/RL 方法加 HCI framing，CHI 2027 明确要求清晰的 HCI 贡献。
+- **重要性及原因**：**P0-Draft**。这是理论收口而非普通润色；当前稿仍容易被看作 NLP/RL 方法加 HCI framing，导师需要基于清晰的 nearest-work 边界判断贡献是否成立。
 - **格式**：Related Work 增补 2--4 段；可选附录 comparison table。
 
 ### B12. 编译、可访问性与提交包清理
@@ -214,8 +234,8 @@
 - **名称**：Submission hygiene。
 - **内容及解释**：修复 overfull boxes，检查单栏图中文字、黑白/色盲可读性、`\Description{}`、PDF metadata 和匿名化；删除提交包中的示例 tex、示例图片、临时 aux/log/synctex 与无关模板文件。
 - **获取方式**：在干净临时目录 `latexmk`；检查 log、`pdfinfo`、字体嵌入、压缩包文件清单和匿名关键词。
-- **重要性及原因**：**P0**（格式/匿名/编译）与 **P2**（包体清理）。错误格式或匿名泄漏可能 desk reject。
-- **格式**：最终单栏 PDF + 最小可编译 source ZIP + 独立 supplementary ZIP。
+- **重要性及原因**：拆为 **B12a（P0-Draft）**：正文可编译、无缺图/缺表/未定义引用、图表可读；以及 **B12b（P2-Submission）**：匿名、metadata、source ZIP、supplement 和包体清理。错误格式或匿名泄漏可能 desk reject，但不应阻塞导师对理论主线的审阅。
+- **格式**：导师初稿先提供稳定可读 PDF；投稿前生成最终单栏匿名 PDF、最小可编译 source ZIP 和独立 supplementary ZIP。
 
 ---
 
@@ -266,7 +286,7 @@
 - **名称**：G4 knowledge-construction evaluation。
 - **内容及解释**：在冻结的 formal-100 完整轨迹上，使用带逐字 evidence 的 LLM 知识图谱抽取作为主要证据、确定性图算法与规则指标作为可复核锚点、盲化且经过顺序/重复稳定性审计的 LLM judge 作为辅助证据。不得合成单一“课堂质量分”。
 - **获取方式**：复用 `scripts/traj_rd/formal_100/` 的 Full Direct、Full Candidate、w/o-TD Direct 三组 `generation seeds 42--44 × 10 lessons`，以及冻结的 10 个 held-out expert transcripts；原则上不重新生成轨迹。按 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 完成输入 hash、controlled-corruption validation、KG extraction、动态图指标和 lesson-cluster 统计。
-- **重要性及原因**：**P0**。新 RQ4 当前尚无正式系统级证据；完成该项后才能在摘要、Results 和 Conclusion 中回答知识建构问题。
+- **重要性及原因**：**P1-Evidence；正式投稿时为 P0**。新 RQ4 当前尚无正式系统级证据；它不阻塞理论与结构完整的导师初稿，但完成后才能在摘要、Results 和 Conclusion 中回答知识建构问题。原则上先由导师确认 RQ4 和贡献主线，再投入正式抽取与评审成本。
 - **格式**：正文三个预冻结 KG 主端点、一张 knowledge-growth curve 和一个规则化案例；附录提供全部 extractor/judge 审计、次级指标与旧 G4 材料处置说明。
 
 ### C6a. 原 action--utterance 评测的选择性保留
@@ -302,7 +322,7 @@
 - **最低必须确认**：数据并非未经许可取得；当前研究可以使用这些课堂转录；论文能够准确陈述伦理审查/豁免/原项目覆盖状态；输入模型前已移除或替换直接身份信息；原始转录不会随论文公开。若涉及未成年人，应确认同意与数据使用责任由原采集项目或数据提供方承担，并避免作出无法证明的具体程序性声称。
 - **不再作为硬门槛**：正式数据集名称、完整采集机构档案、逐参与者同意文本、原始 IRB 文件副本、可发布派生数据范围和独立匿名化审计。只有计划公开数据或评审要求补充时再追查。
 - **获取方式**：向导师或数据提供方取得书面确认或可记录的事实摘要即可；无需为当前论文重建原始采集项目的全部伦理档案。
-- **重要性及原因**：**P0**。这是 CHI 审核的最低合规底线；超过该底线的治理材料属于增强项，不阻塞成稿。
+- **重要性及原因**：**P2-Submission，正式投稿前为 P0**。这是 CHI 审核的最低合规底线；导师初稿阶段先明确待确认事实和禁止臆测的边界，超过该底线的治理材料属于增强项。
 - **格式**：正文给出简洁、真实且不过度承诺的 Data/Ethics 声明；必要时在附录补充限制，不要求发布 manifest。
 
 ### D2. 主 checkpoint 的历史训练 provenance
@@ -343,43 +363,59 @@
 
 ## 6. 推荐执行顺序
 
-### 6.1 模拟评审稿最低冻结门槛
+### 6.1 P0-Draft：导师初稿冻结门槛
 
+- [x] 完成全文 claim--evidence 审计：已逐句核对 Abstract、Problem、Contributions、RQ1--RQ4、Results、Discussion、Conclusion、Limitations 和附录中的主张层级，并同步英文主稿、中文翻译与对照表。
+- [x] 完成 B6a：新 RQ4 的理论定义、G4 方法、统计单位、三个主端点、Results 小节骨架和限制均已到位；C6 未完成部分使用内部占位符，未预写结果。
+- [x] 完成 B11：已补齐最邻近 HCI/NLP/教育对话工作，并明确 action mediation、inspectability、control allocation、自动评价与模拟有效性的贡献边界。
+- [x] 完成 B10 最低版本：正文已有一个按冻结规则选择、可追溯到课程 4873／生成种子 43／第 13--16 回合的轨迹案例，同时展示 action、rationale、utterance 及 action-recurrence 解释边界。
+- [ ] 完成 B12a：主稿可稳定编译，无缺图、缺表、undefined reference/citation 或阻碍阅读的版面问题。
+- [ ] 检查旧 G4-v1 未完成分类器的数值、显著性和系统排名已全部从主论证移除。
 - [x] 完成 B1：已切换为 CHI 2027 单栏匿名审稿格式。
 - [x] 完成 A1--A6、A8--A10 的证据核对并落稿。
-- [ ] A7 部分完成：BC 训练 metadata 已写入附录；正式 trajectory comparison 尚未完成。
-- [ ] B2、B4--B7 部分完成：Implementation、系统差异、seed 边界和上下文干预已完成；RQ4 已改写，但新 G4 正式结果尚待 C6。
-- [x] B3 最低要求已完成：核心训练配置已写入；D2 的优先字段尽力恢复，无法恢复时透明标记即可，非阻塞增强项不影响冻结。
-- [ ] 完成 B8、D1：取得导师/数据提供方的最低事实确认，并形成足以通过 CHI 审核的真实 Data/Ethics 声明；不要求全面治理审计。
-- [x] 完成 B9：统计单位、多重校正与 fixed-checkpoint 推断边界已写明。
-- [ ] B12 部分完成：单栏转换与编译复核已完成；最终提交包清理仍待冻结时执行。
-- [x] 对 D2 无法恢复的参数显式标记，未由当前脚本默认值反推。
+- [x] B3 最低要求已完成：核心训练配置已写入，无法恢复的字段透明标记。
+- [x] 完成 B5、B7、B9：推断边界、上下文干预和统计单位已写明。
 
-达到以上门槛后，稿件适合进入一次真正关注贡献和证据的模拟评审。
+达到以上门槛后，稿件即定义为“可交导师修改的理论闭环初稿”。A7、C6、完整伦理确认和提交包不阻塞这一里程碑。
 
-### 6.2 正式投稿主张分岔
+### 6.2 P1-Evidence：导师确认主线后的证据补全
 
-**路线一：不重新生成轨迹，完成新的自动 G4。**
+1. 优先完成 C6，并执行 B6b：把正式 G4 主表、growth curve、案例和边界写回摘要、Results、Discussion 与 Conclusion。
+2. 根据导师对核心主张的要求决定 A7、C1、C2、C3：只有保留对应强主张时才升级为必做。
+3. 扩展 B10 为 2--3 个按冻结规则选择的定性案例。
+4. 保持 TD 为 fixed-checkpoint finding，除非 C1 独立训练重复完成；保持 Direct--Candidate 为 system-level contrast，除非 C3 完成。
 
-- 执行 B5、B6 和 C6：TD 限定为 fixed-checkpoint finding；G4 使用现有 formal-100 轨迹做 evidence-grounded KG、规则指标和经校准的 LLM judge。
-- 将现有 50-state context test 作为 exploratory evidence。
-- 旧 action--utterance classifier 仅选择性保留材料，不报告未完成训练的结果。
-- 不声称训练稳定性、课堂适切性、真实知识正确性、rationale faithfulness、学习结果或教育效果。
+### 6.3 P2-Submission：正式投稿前
 
-**路线二：在主稿闭环后增强方法主张。**
+- [ ] 完成 B8/D1：取得最低数据使用、伦理状态和去标识化事实确认，并写入 Data/Ethics。
+- [ ] 完成 D3--D5：硬件/成本、外部 API 版本、匿名与学术合规确认。
+- [ ] 完成 B12b：最终匿名 PDF、source ZIP、supplement、metadata 和文件清单清理。
+- [ ] 完成 A7 或在正文明确其不进入正式主比较；核对全部模型、数据、checkpoint 和 seed provenance。
+- [ ] 确认每个最终核心主张均有已完成证据，不保留内部占位符。
 
-- 先完成 C6，再根据时间优先完成 C1（独立训练 seeds）或 C2（扩展 context test）。
-- 根据篇幅和预算选择 C3/C4/C5；C7 用于确认长程结论不依赖 END suppression。
+### 6.4 P3-Enhancement：不阻塞当前主线
 
-### 6.3 建议暂不阻塞投稿的增强项
-
-- C3 在 Candidate 仅作为描述性探索时可延后。
-- C4/C5 在明确把 rationale 限定为 supervised textual intermediate 时可延后。
-- 正式用户研究不是当前成稿的必要条件；没有伦理和招募条件时，不应仓促开展。
+- C4/C5：在 rationale 明确限定为 supervised textual intermediate 时可延后。
+- C7：仅在需要证明长程结果不依赖 END suppression 时升级。
+- C8：用于增强 rationale 语义可信度，不支持当前因果 faithfulness 主张。
+- 正式用户研究不是当前初稿的必要条件；没有伦理和招募条件时，不应仓促开展。
 
 ---
 
-## 7. 成稿完成定义
+## 7. 完成定义
+
+### 7.1 可交导师修改的初稿
+
+满足以下条件即可交导师，不等待新增实验：
+
+1. 理论问题、方法设计、四个 RQ 和贡献声明形成单一一致主线。
+2. 每个 RQ 均有对应的方法、评价、Results 位置、讨论和限制；未完成结果以内部占位符明确标识。
+3. Abstract 和 Conclusion 只总结已有证据，不把计划实验写成结论。
+4. Related Work 足以判断与最邻近 HCI/NLP/RL 工作的差异。
+5. 至少一个可检查轨迹案例帮助理解显式动作层和控制分配。
+6. 论文可稳定编译，图表、交叉引用和引用完整，不存在明显结构空洞。
+
+### 7.2 可提交成稿
 
 只有同时满足以下条件，才把论文标为“可提交成稿”：
 

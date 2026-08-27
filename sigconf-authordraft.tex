@@ -11,7 +11,7 @@
 \copyrightyear{2027}
 \acmYear{2027}
 
-\usepackage{booktabs}       \usepackage{tabularx}       \usepackage{amsmath}        \usepackage{amsfonts}       \usepackage{nicefrac}       \usepackage{microtype}      \usepackage{enumitem}       \usepackage{tikz}
+\usepackage{booktabs}       \usepackage{tabularx}       \usepackage{amsmath}        \usepackage{amsfonts}       \usepackage{nicefrac}       \usepackage{microtype}      \usepackage{enumitem}       \usepackage{tikz}           \usepackage{placeins}
 \usetikzlibrary{positioning,arrows.meta,shapes.geometric,calc,decorations.pathreplacing,fit,backgrounds}
 
 
@@ -29,34 +29,31 @@ Language Policies}
 
 \begin{document}
 \begin{abstract}
-Human interaction unfolds through strategies such as clarifying, challenging,
-guiding, and building on prior contributions. Language models can generate
-fluent turns, yet the behavioral choices organizing their longer interactions
-remain implicit and need not reflect patterns found in human practice. We ask
-how authentic human interaction can ground strategy-rich language agents while
-keeping strategy selection explicit enough to evaluate. We introduce
-Language-Action Inverse Q-Learning (LA-IQL), an action-mediated language policy
-that decomposes open-ended behavior into a readable rationale, a value-based
-choice over human-readable interaction acts, and a separate language
-realization. LA-IQL learns offline from human demonstrations without online
-exploration or a hand-designed scalar reward. We instantiate it on cognitively
-annotated K--12 classroom discourse with 31 teacher--student acts and evaluate
-90 formal trajectories of up to 100 turns across a matched checkpoint ablation
-and two inference configurations. Removing temporal-difference regularization
-from the evaluated Direct checkpoints increases two-step cycles from 0.1708 to 0.2607 and
-repeated motifs from 0.3957 to 0.5379, without a reliable change in paired
-bigram JSD (0.0827 vs. 0.0835). Direct action selection more closely matches
-held-out human action patterns than proposal-constrained candidate re-ranking
-(paired bigram JSD 0.0827 vs. 0.1059), but produces substantially more
-two-step cycles and repeated motifs.
-A first-order Markov control is strongest on several local alignment measures,
-showing that aggregate human-pattern similarity alone does not establish a
-context-sensitive interaction policy. In a frozen 50-state intervention,
-semantic context replacement changes the main policy distribution (60\% action
-flip rate; mean JSD 0.2957), providing exploratory evidence that the policy
-uses dialogue text without establishing contextual appropriateness. These
-results show how action mediation exposes an alignment--repetition trade-off
-that fluent utterances or aggregate similarity measures can conceal.
+Human interaction is organized through strategies such as clarifying,
+challenging, guiding, and building on prior contributions. Language models can
+produce fluent turns, but the behavioral choices organizing their longer
+interactions remain implicit. We advance an \emph{action-mediated} research
+paradigm in which authentic human interaction grounds an explicit strategy
+layer that can be learned, inspected, and evaluated separately from language
+realization. We instantiate it in Language-Action Inverse Q-Learning (LA-IQL),
+which learns offline without online exploration or a hand-designed scalar
+reward and decomposes behavior into a readable rationale, a value-based choice
+over human-readable interaction acts, and a separately realized utterance.
+Across 90 formal K--12 trajectories, the evaluated TD Direct checkpoint has
+35\% fewer two-step cycles and 26\% fewer repeated motifs than w/o-TD Direct,
+while paired bigram JSD is numerically similar. A masked-label diagnostic raises
+action-prediction Macro-F1 from 0.0159 to 0.4044 when rationales are added, and
+a frozen semantic intervention flips 60\% of policy actions, showing
+action-predictive intermediate information and sensitivity to dialogue text
+beyond preserved action history. Direct more closely matches held-out human
+action patterns than Candidate, whereas Candidate recurs less, exposing a
+control-dependent alignment--repetition trade-off. A metric-matched Markov
+control further shows that strong local alignment can be achieved without
+reading the dialogue. Together, these results establish action mediation as a
+practical way to learn human-grounded strategy policies and to separate
+alignment, temporal organization, context use, control allocation, and
+realization for analysis. The rationale and intervention results are diagnostic
+rather than evidence of causal faithfulness or contextual appropriateness.
 \end{abstract}
 
 \begin{CCSXML}
@@ -180,7 +177,8 @@ exposes a rationale and selected strategy before language realization; and the
 resulting action boundary supports separate evaluation of behavioral choice and
 surface expression. In our classroom testbed, this boundary reveals a trade-off:
 direct selection more closely matches held-out human action patterns, whereas
-candidate re-ranking reduces repetition but moves farther from those patterns.}
+the completed candidate configuration has less repetition but lies farther
+from those patterns.}
 \Description{A three-panel teaser. The first panel shows authentic classroom
 dialogue becoming fixed trajectories over 31 readable interaction acts. The
 second panel shows an interaction context followed by a readable rationale and
@@ -227,12 +225,13 @@ training trajectories, and comparison patterns come from observed human
 interaction. The term does not imply that generated dialogue is globally
 human-like, natural, or effective for people.
 
-We take an action-mediated view in which a language policy first chooses a
+Our central contribution is an action-mediated research paradigm in which a language policy first chooses a
 discrete, human-readable interaction act and then realizes that choice in
 language. This separates the source of a strategy---human demonstrations---from
 the wording of any individual turn. It also creates a traceable boundary at
-which the selected strategy and its eventual language realization can be
-evaluated separately. Learning from fixed trajectories avoids online
+which strategy learning, temporal organization, control allocation, and the
+eventual language realization can be evaluated as related but distinct
+objects. Learning from fixed trajectories avoids online
 exploration and a hand-designed scalar reward
 ~\citep{li2016deep,schulman2017proximal,ouyang2022training}.
 
@@ -254,9 +253,11 @@ offline inverse soft Q-learning over fixed transitions
 from the learned policy, and delegates its language realization to a role
 model. We evaluate whether generated trajectories reproduce held-out human
 action patterns, whether that alignment coexists with repetitive behavior,
-whether rationales carry action-relevant information, and how the allocation
-of action control shapes observable knowledge introduction, connection, and
-development across the resulting long-horizon dialogues.
+and whether rationales carry action-relevant information. We additionally
+define a frozen evaluation of how action-control allocation relates to
+observable knowledge introduction, connection, and development across the
+resulting long-horizon dialogues; that revised G4 analysis is not yet reported
+in this working draft.
 
 \begin{figure*}[t]
 \centering
@@ -302,74 +303,113 @@ realization.}
  
 Our contributions are threefold:
 \begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
-    \item We formulate human-grounded interaction-strategy learning as an
-    action-mediated language-policy problem, separating a human-readable
-    behavioral choice from its surface realization. Both the action repertoire
-    and training trajectories come from authentic human interaction, and the
-    resulting policies are evaluated against held-out authentic human patterns.
-    \item We instantiate this formulation in LA-IQL, a rationale-conditioned
+    \item We advance an action-mediated research paradigm for
+    human-grounded interaction-strategy learning. It turns strategy into an
+    explicit interface between authentic human trajectories and open-ended
+    language generation, making behavioral choice, temporal organization,
+    control allocation, and surface realization separately inspectable.
+    \item We instantiate the paradigm in LA-IQL, a rationale-conditioned
     dual-head language model that combines token-level supervision, action
     prediction, and cross-head consistency with offline inverse Q-learning over
-    fixed human interaction trajectories, adapting its temporal-difference
-    regularization to a human-readable interaction-action policy.
-    \item We show that matching local human action patterns is not sufficient
-    evidence of context-sensitive interaction: a first-order Markov control is
-    competitive on local alignment metrics, while the learned configurations
-    expose an alignment--repetition trade-off that aggregate similarity alone
-    conceals and provide an explicit boundary for examining downstream
-    knowledge-development patterns.
+    fixed human interaction trajectories. This integration adapts
+    temporal-difference-regularized imitation from token generation to a
+    human-readable interaction-action policy with separate role-conditioned
+    realization.
+    \item We contribute a long-horizon evaluation paradigm that jointly audits
+    human-pattern alignment, recurrence, associations between rationales and
+    actions, semantic context sensitivity, and language realization. It reveals both a
+    TD-associated reduction in recurrent organization and a control-dependent
+    alignment--repetition trade-off that fluent text or aggregate similarity
+    alone would conceal.
 \end{itemize}
 
 \section{Related Work}
 
-\subsection{Language-Mediated Agent Interaction}
+\subsection{Pedagogically Structured Dialogue and Policy Learning}
 
-End-to-end dialogue generation has progressed from sequence-to-sequence and hierarchical models to pretrained Transformers~\citep{sutskever2014sequence,serban2017hierarchical,vinyals2015neural}.
-More recently, role prompting and multi-agent simulation have used LLMs to produce extended social and task interactions~\citep{park2023generative,xi2025rise}.
-Related educational systems apply supervised fine-tuning, behavioral cloning, prompting, or role simulation to teacher--student exchanges~\citep{zhang2024simulating,tu2023littlemu,chu2025llm}.
-These methods can generate fluent, role-consistent utterances, but their interaction decisions remain implicit.
-Consequently, surface diversity need not imply that an agent has learned the
-structured strategies found in human trajectories, and those strategies are
-difficult to control or evaluate directly~\citep{li2016diversity,zhao2017learning}.
+End-to-end dialogue generation has progressed from sequence-to-sequence and
+hierarchical models to pretrained Transformers
+~\citep{sutskever2014sequence,serban2017hierarchical,vinyals2015neural}.
+Role prompting and multi-agent simulation now support extended social, task,
+and classroom interactions~\citep{park2023generative,xi2025rise,zhang2024simulating},
+but fluent role realization does not by itself expose or control the
+pedagogical decision that produced an utterance. Recent educational systems
+therefore introduce intermediate instructional structure. BIPED derives
+fine-grained tutor and student dialogue acts from human tutoring data and first
+predicts a tutor act before generating its response~\citep{kwon2024biped}.
+StratL steers an LLM through a prespecified multi-turn tutoring plan represented
+as a transition graph~\citep{puech2025steering}, while ScaffoldLM maintains a
+stepwise plan, inferred learner state, and assessment-driven memory to select
+tutoring actions across turns~\citep{li2026scaffoldlm}. Together, these systems
+show a shift from unconstrained response generation toward explicit pedagogical
+planning and action selection. LA-IQL shares this separation of decision and
+realization, but learns a policy over human-annotated cognitive interaction acts
+from fixed classroom trajectories rather than prescribing a tutoring plan or
+inferring a task-specific solution path.
 
-\subsection{Proactivity, Mixed Initiative, and Agent Autonomy}
+This separation also connects educational dialogue to dialogue-policy learning.
+Task-oriented dialogue is commonly formulated as sequential decision making,
+with abstract actions selected from dialogue states and policies optimized by
+reinforcement learning~\citep{li2016deep,li2018dialogue}. In educational
+dialogue, recent online RL aligns tutors through simulated student--tutor
+interaction and an explicit trade-off between pedagogical support and task
+success~\citep{dinucu2025teaching}. Such simulation-based optimization offers
+controllable objectives but depends on the validity of the simulator and reward.
+Offline alternatives avoid new interaction: CHAI ranks language-model
+candidates with a learned Q-function~\citep{verma2022chai}, IQ-Learn recovers a
+policy from expert demonstrations~\citep{garg2021iqlearn}, and Wulfmeier et
+al.~\citep{wulfmeier2024imitating} cast inverse soft Q-learning for language as
+MLE with temporal-difference regularization. LA-IQL adapts this last objective
+from token-level imitation to a 31-class teacher--student action policy (two
+roles $\times$ 15 cognitive-act symbols $+$ \texttt{END}) grounded in authentic
+classroom trajectories~\citep{songyu79,amatari2015}. Its contribution is not a
+new IRL objective: it combines rationale-conditioned action selection,
+action-level TD regularization, and separate language realization without
+online exploration or a hand-designed scalar reward.
+
+\subsection{Proactivity, Mixed Initiative, and Control Allocation}
 
 HCI research treats conversational agency as more than response quality: an
 agent must decide when and how to contribute, how much control to assume, and
-how its behavior remains legible to people. Liu et al.'s Inner Thoughts
-framework separates covert thought formation from overt participation to
-support proactive conversational behavior~\citep{liu2025proactive}. Cheng et
-al. show that conversational autonomy creates non-monotonic trade-offs: full
-automation can improve multitasking while creating discomfort, whereas shared
-control can impose monitoring costs that erase performance gains
-~\citep{cheng2025surrogates}. These studies motivate examining how control is
-allocated within a conversational system rather than assuming that either
-more autonomy or more user/model oversight is uniformly beneficial. Our focus
-is complementary: we ask how authentic human interaction can ground the action
-decision that precedes language realization, then compare full-action-space
-policy selection with a proposal-constrained division of control between the
-policy and role model.
+how its behavior remains legible to people. The Inner Thoughts framework
+separates covert thought formation from overt participation to support
+proactive conversation~\citep{liu2025proactive}. Studies of shared autonomy find
+non-monotonic trade-offs: delegating communication can aid multitasking while
+creating discomfort, whereas shared control can impose monitoring costs
+~\citep{cheng2025surrogates}. In group conversation, users also resist agents
+that dominate and seek controls over when, what, and where an agent contributes
+~\citep{houde2025controlling}. These works frame initiative as an allocation of
+control rather than a uniformly desirable increase in autonomy. Our allocation
+boundary is internal to the generated interaction: we compare a learned policy
+that selects from the full action space with proposal-constrained re-ranking in
+which the role model first limits the available actions. This does not test user
+control or establish a preferred autonomy level; it makes the policy--role-model
+division inspectable at the action layer.
 
-\subsection{Dialogue Policy Learning}
+\subsection{Evaluating Pedagogical Dialogue and Simulation}
 
-Task-oriented dialogue has often been formulated as sequential decision-making, where dialogue states are mapped to abstract actions and policies are optimized with reinforcement learning~\citep{li2016deep, li2018dialogue}.
-Existing methods differ in state/action design, simulator construction, and online versus offline training.
-However, when policies operate over abstract dialogue acts, surface realization often depends on templates, retrieval, or a separate generator.
-This separation is problematic for classroom dialogue generation: action-level alignment may not translate into contextually appropriate utterances, especially under fine-grained interaction-act spaces.
-In our setting, a 31-action interaction space (two roles $\times$ 15 symbols $+$ \texttt{END}) permits explicit action-level comparisons with expert trajectories~\citep{songyu79, amatari2015}.
+Evaluation must likewise distinguish structural fidelity from pedagogical
+quality. MRBench provides human annotations over eight learning-science-based
+dimensions of tutor responses~\citep{maurya2025unifying}. ReWIRED annotates
+fine-grained teaching acts in expert explanatory dialogue and shows both that
+few-shot LLMs struggle to recover these acts and that functional explanation
+quality requires evaluation beyond static structural metrics
+~\citep{anagnostopoulou2025rewired}. EducationQ instead evaluates teaching in
+dynamic multi-agent scenarios and finds that general model capability does not
+map monotonically to teaching effectiveness~\citep{shi2025educationq}.
+Knowledge-graph representations can provide a semantic layer between dialogue
+utterances and grounded information items~\citep{schneider2024bridgekg}, but
+they do not by themselves establish pedagogical value or learning.
 
-\subsection{Offline Imitation for Language Models}
-
-To overcome the limitations of template-based realization and online exploration, recent work has combined language models with value-based or offline reinforcement learning~\citep{jaques2020way, verma2022chai}.
-Model-based methods and online RL rely on accurate user simulators or human interaction, which are costly and risky in education and can induce language degradation by exploiting simulator errors~\citep{christiano2017deep, ouyang2022training}.
-CHAI scores language-model candidates with a Q-function for task-oriented response selection~\citep{verma2022chai}, while IQ-Learn provides an inverse Q-learning objective for learning from expert demonstrations~\citep{garg2021iqlearn}.
-For language-model imitation, Wulfmeier et al.~\citep{wulfmeier2024imitating} reformulate inverse soft Q-learning as a temporal-difference regularized extension of MLE, making offline IRL practical for fixed supervised fine-tuning data.
-Our work is most closely related to these directions but differs in its target problem and modeling requirements.
-Rather than treating classroom response generation as the endpoint, we treat
-cognitively annotated classroom trajectories as a source of human-grounded
-interaction strategies. We use their fine-grained interaction-act space to
-condition policy decisions on generated rationales and to separate action-value
-estimation from utterance generation.
+The validity of simulated learners is a separate concern. Teachers report that
+prompted LLM students can be unnaturally attentive, linguistically complex, and
+logically inconsistent~\citep{martynova2025simulate}; a broader 2026 benchmark
+likewise finds simple prompting inadequate across linguistic, behavioral, and
+cognitive simulation criteria~\citep{scarlatos2026simulated}. We therefore
+evaluate action-pattern diversity and expert alignment, rationale--action
+association, and observable knowledge structures as distinct diagnostics. We
+do not treat generated classroom trajectories as evidence of authentic learner
+behavior, instructional appropriateness, or learning outcomes.
 
 \section{Method}
 
@@ -416,8 +456,9 @@ Agreement, querying, guide & Ag, Qu, Gu & student/teacher $\times$ symbol \\
 \end{table}
 
 We evaluate interaction-pattern diversity (G1), expert-pattern alignment (G2),
-rationale--action consistency (G3), and observable knowledge-construction
-patterns in generated dialogue (G4).
+and rationale--action consistency (G3). The revised G4 targets observable
+knowledge-construction patterns in generated dialogue, with its frozen
+system-level analysis pending in this working draft.
 
 \subsection{Data Construction and Rationale Annotation}
 
@@ -580,18 +621,21 @@ This adjustment scores a candidate through its associated action label and does 
 \label{sec:experiments}
 
 \paragraph{Research questions.}
-Our evaluation addresses four questions:
+The paper is organized around four questions. This working draft reports
+evidence for RQ1--RQ3 and freezes the evaluation structure for RQ4:
 \textbf{RQ1}: How do action-mediated learned policies compare with direct
 language generation and statistical policies in behavioral diversity,
 repetition, and alignment with held-out patterns from authentic human
 interaction?
-\textbf{RQ2}: How do temporal-difference regularization and the allocation of
-action control between direct full-action-space selection and
-proposal-constrained candidate re-ranking affect long-horizon behavior?
+\textbf{RQ2}: What long-horizon behavioral differences are observed between
+the evaluated fixed checkpoints with and without temporal-difference
+regularization, and between direct full-action-space selection and
+proposal-constrained candidate re-ranking under the completed configurations?
 \textbf{RQ3}: Do generated rationales contain action-relevant information beyond the dialogue state and explicit label leakage?
-\textbf{RQ4}: How does the allocation of action control between the learned
-policy and the role model shape observable patterns of knowledge introduction,
-connection, and development across long-horizon simulated classroom dialogues?
+\textbf{RQ4}: What observable patterns of knowledge introduction, connection,
+and development arise under different allocations of action control between
+the learned policy and the role model across long-horizon simulated classroom
+dialogues?
 
 \subsection{Data and Splits}
 
@@ -644,12 +688,14 @@ does not produce an utterance whose realization can be inspected. Its role is
 therefore to test how much local human-pattern alignment can be recovered from
 aggregate action transitions alone.
 LA-IQL uses the direct decoding rule in Equation~\ref{eq:direct-policy-decoding}. We also report \emph{LA-IQL + candidate re-ranking}, an inference-time adjustment that substitutes the proposal-constrained rule in Equation~\ref{eq:proposal-constrained-selection} without retraining the policy. This comparison was elevated after inspection of the current held-out results and is therefore descriptive rather than a preregistered model-selection claim. Both configurations use the same checkpoint, lessons, horizon, role-model temperature, and generation seeds. However, the completed Direct trajectories use rationale temperature 0.0 whereas Candidate uses 0.6. We therefore treat them as two system configurations and do not attribute differences solely to decoding mode.
-To isolate the training contribution of temporal-difference regularization, we
-add a matched \emph{LA-IQL w/o TD (Direct)} ablation trained without the TD
-term. It uses Direct decoding, rationale temperature 0.0, the same held-out
-lessons, role model, context windows, generation seeds, horizon, and stopping
-rule as the main LA-IQL system. Thus, unlike the Direct--Candidate contrast,
-this is a single-factor training ablation.
+To examine the checkpoint-level difference associated with temporal-difference
+regularization, we add \emph{LA-IQL w/o TD (Direct)}, trained with Stage~3 TD
+weight 0 rather than 1. It uses Direct decoding, rationale temperature 0.0,
+the same held-out lessons, role model, context windows, generation seeds,
+horizon, and stopping rule as the main LA-IQL system. The recovered training
+fields otherwise match (Appendix~\ref{sec:reproducibility}), but each condition
+contains one trained checkpoint; we therefore treat this as a fixed-checkpoint
+contrast rather than a training-seed-general causal estimate.
 
 \subsection{Evaluation Metrics}
 
@@ -673,8 +719,15 @@ classifier did not complete its training protocol, so we exclude all results
 derived from that classifier. These remaining checks do not measure contextual
 or classroom appropriateness; open-ended text overlap is secondary because
 multiple responses can be valid.
-The knowledge-construction operationalization for the revised G4 is being
-evaluated separately and no G4 system-level inference is reported in this
+For the revised G4, the frozen protocol uses
+system--generation-seed--lesson as the statistical unit. Its primary evidence
+is an evidence-grounded knowledge-graph extraction followed by deterministic
+calculation of three prespecified endpoints: unique entities per 100 non-END
+turns, mean relational degree, and the proportion of final relations first
+introduced in the latter half of a trajectory. Rule-based diagnostics provide
+auditable anchors, and blinded repeated LLM judgments are auxiliary; they are
+not combined into a single classroom-quality score. This protocol is being
+evaluated separately, and no G4 system-level inference is reported in this
 working draft.
 Appendix~\ref{sec:evaluation-details} gives the complete metric and intervention protocol.
 
@@ -689,8 +742,8 @@ learned-system comparisons, we additionally pair the 30 matching
 generation-seed--lesson trajectories, cluster resampling by the 10 lessons, run
 10,000 bootstrap resamples, and report percentile 95\% intervals. The reported
 TD $p$-values are unadjusted within an exploratory matched-checkpoint family;
-the Direct--Candidate table applies Benjamini--Hochberg correction over its 11
-reported comparisons. The TD ablation holds Direct decoding and rationale
+the Direct--Candidate table applies Benjamini--Hochberg correction over its 10
+retained comparisons. The TD contrast holds Direct decoding and rationale
 temperature fixed. By contrast, Direct and Candidate differ in rationale
 temperature and were examined after observing held-out results, so that
 comparison remains a descriptive system-level contrast rather than a
@@ -765,7 +818,7 @@ lessons. Each system has three generation runs (seeds 42--44) from the same
 checkpoint, with up to 100 generated actions for each test lesson. All formal trajectories suppress \texttt{END}
 before action 50. The frequency and Markov controls use only the frozen
 training split. Main Direct and candidate re-ranking use the
-\texttt{sft\_stage3/final} checkpoint; the matched training ablation uses
+\texttt{sft\_stage3/final} checkpoint; the w/o-TD fixed-checkpoint contrast uses
 \texttt{sft\_stage3\_woTD/final}. Direct action selection is the default
 inference rule, whereas candidate re-ranking is a proposal-constrained
 inference-time configuration. Main Direct and w/o-TD Direct both use rationale
@@ -776,20 +829,21 @@ ablation. Five of 30 w/o-TD trajectories terminate after 57--95 actions; all
 observed policy outcome under the shared rule, not a post-hoc truncation.
 
 \paragraph{The evaluated TD checkpoint shows less repetitive long-horizon organization.}
-Table~\ref{tab:td-ablation-paired} reports the matched Direct-decoding training
-ablation. Removing TD increases two-step cycles from $0.1708$ to $0.2607$
-(TD--w/o-TD difference $-0.0900$, 95\% CI $[-0.1400,-0.0438]$,
-$p=.0002$) and motif recurrence from $0.3957$ to $0.5379$ (difference
-$-0.1422$, 95\% CI $[-0.2013,-0.0889]$, $p=.0002$). These correspond to
-53\% and 36\% relative increases when TD is removed. Distinct-2 and normalized
+Table~\ref{tab:td-ablation-paired} reports the matched Direct-decoding
+checkpoint contrast. The w/o-TD checkpoint has more two-step cycles
+($0.2607$ vs. $0.1708$; TD--w/o-TD difference $-0.0900$, 95\% CI
+$[-0.1400,-0.0438]$,
+$p=.0002$) and greater motif recurrence ($0.5379$ vs. $0.3957$; difference
+$-0.1422$, 95\% CI $[-0.2013,-0.0889]$, $p=.0002$). These are 53\% and 36\%
+relative differences, respectively. Distinct-2 and normalized
 entropy are numerically higher with TD but do not differ reliably. Both
 systems cover all top-20 expert patterns, indicating that the reduction in
-recurrence is not obtained by abandoning those common patterns.
+recurrence does not coincide with abandoning those common patterns.
 
 Local expert-distribution alignment changes little. Paired bigram JSD is
 $0.0827$ with TD and $0.0835$ without TD (difference $-0.0007$, 95\% CI
 $[-0.0063,0.0043]$, $p=.8281$); transition JSD is likewise
-indistinguishable. Bigram support shows a borderline descriptive advantage for
+not reliably different. Bigram support shows a borderline descriptive advantage for
 TD ($0.9906$ vs. $0.9833$, $p=.0510$). For these fixed checkpoints, the
 observed TD-associated difference is concentrated in recurrent sequence
 structure rather than local imitation fidelity. Independent training
@@ -813,7 +867,7 @@ G2 & Bigram support $\uparrow$ & $+0.0073$ & $[-0.00001,\ 0.0140]$ & $0.0510$ \\
 Secondary & Local trigram redundancy $\downarrow$ & $-0.00001$ & $[-0.0042,\ 0.0041]$ & --- \\
 \bottomrule
 \end{tabular}
-\caption{Matched temporal-difference ablation under Direct decoding. Values
+\caption{Fixed-checkpoint temporal-difference contrast under Direct decoding. Values
 compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson
 trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap
 resamples. Both systems use rationale temperature 0.0 and otherwise identical
@@ -871,8 +925,8 @@ has substantially more two-step cycles ($0.1708$ vs. $0.0488$; paired
 difference $+0.1220$, 95\% CI $[0.0986,0.1447]$, $q<.0001$) and repeated
 motifs ($0.3957$ vs. $0.1413$; difference $+0.2543$, 95\% CI
 $[0.2100,0.2963]$, $q<.0001$). Distinct-2 has no reliable paired difference
-($-0.0108$, 95\% CI $[-0.0377,0.0165]$, $q=.5483$). Candidate therefore
-changes the organization of action sequences more clearly than their local
+($-0.0108$, 95\% CI $[-0.0377,0.0165]$, $q=.5483$). The configurations
+therefore differ more clearly in action-sequence organization than in local
 combinatorial diversity.
 
 \begin{table*}[t]
@@ -900,13 +954,72 @@ single-factor decoding ablation.}
 \label{tab:direct-candidate-paired}
 \end{table*}
 
+\paragraph{A rule-selected trace makes the recurrence difference inspectable.}
+Before reading trajectory text, we selected the matched lesson--seed unit with
+the largest Direct--Candidate Cycle-2 difference, breaking any tie by motif-rate
+difference and then lexical order. This rule selects the Grade-9 chemistry
+lesson on atomic structure at generation seed 43 (Cycle-2: $0.309$ vs.
+$0.052$; motif rate: $0.55$ vs. $0.17$). Table~\ref{tab:trajectory-example}
+shows the earliest four-turn Direct cycle and the same turn positions in the
+matched Candidate trajectory. Rationales and utterances are abridged
+translations from Chinese; action symbols follow Table~\ref{tab:action-space}.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Configuration and local context & Four-turn decision trace: action; rationale $\rightarrow$ utterance \\
+\midrule
+Direct\\
+Student had just restated the teacher's explanation of nuclear force.
+& \textbf{t13 Teacher--Ag:} confirm understanding and extend the issue $\rightarrow$
+``Exactly. Does having more protons mean stronger nuclear force and a more stable nucleus?''
+\newline \textbf{t14 Student--Pk:} answer the hypothesis from prior knowledge $\rightarrow$
+``I think so; more protons should mean more nuclear force.''
+\newline \textbf{t15 Teacher--Ag:} affirm the analogy, then introduce a competing force $\rightarrow$
+``But electrostatic repulsion also increases; which force wins?''
+\newline \textbf{t16 Student--Pk:} respond to that comparison $\rightarrow$
+``Repulsion also grows, so the nucleus may not necessarily become more stable.'' \\
+\addlinespace
+Candidate\\
+Student had just estimated electron mass and located most atomic mass in the nucleus.
+& \textbf{t13 Teacher--Gu:} confirm the estimate and consolidate mass-distribution understanding $\rightarrow$
+``Draw an atomic model and mark each part's position and approximate mass share.''
+\newline \textbf{t14 Student--An:} construct and explain the requested model $\rightarrow$
+``A small central nucleus contains protons and neutrons; light electrons move outside it.''
+\newline \textbf{t15 Teacher--Iu:} refine the diagram's component placement and mass analogy $\rightarrow$
+``What force keeps the electrons and nucleus in a stable relation?''
+\newline \textbf{t16 Student--Pk:} supply the requested relation $\rightarrow$
+``The attraction between negative electrons and the positive nucleus.'' \\
+\bottomrule
+\end{tabularx}
+\caption{Rule-selected inspectable case from formal trajectories (lesson 4873,
+generation seed 43, turns 13--16). The Direct window instantiates an
+Ag--Pk--Ag--Pk two-step cycle, whereas Candidate traverses Gu--An--Iu--Pk.
+The entries preserve the recorded action, rationale intent, and utterance
+content while abbreviating the original text for space.}
+\label{tab:trajectory-example}
+\end{table*}
+
+The action trace exposes recurring decision types that would be difficult to
+audit from surface text alone. At the same time, the Direct utterances advance
+from a claim about nuclear force to the countervailing role of electrostatic
+repulsion. The Candidate trace also exposes a local rationale--realization shift
+at t15: the recorded rationale focuses on refining placement and mass, while
+the utterance asks about electrostatic stability. The example therefore
+illustrates, but does not by itself validate, the aggregate recurrence contrast
+or realization quality: a repeated action motif is not equivalent to verbatim
+repetition or instructional failure. Determining whether either interaction is
+more coherent or useful still requires human judgment.
+
  
 \paragraph{Rationales carry action-predictive information.}
 Under the same G3-v2 dual TF--IDF evaluator, masked rationale-only Macro-F1 is
 $0.3986$ for Direct and $0.1013$ for Candidate, compared with state-only
 scores of $0.0159$ and $0.0123$. Generation-seed-level incremental simulatability
 $\Delta_{\mathrm{sim}}$ is $0.3885$ for Direct and $0.0863$ for Candidate.
-The matched w/o-TD Direct ablation obtains rationale-only Macro-F1 $0.3682$,
+The w/o-TD Direct checkpoint obtains rationale-only Macro-F1 $0.3682$,
 combined Macro-F1 $0.3629$, $\Delta_{\mathrm{sim}}=0.3372$, and accuracy
 $0.6867$, descriptively below the corresponding TD Direct values of $0.3986$,
 $0.4044$, $0.3885$, and $0.7097$.
@@ -928,80 +1041,90 @@ not differ reliably between Direct and Candidate or between the two Direct
 checkpoints. These narrow checks do not measure realization quality or
 classroom appropriateness.
 
+\paragraph{RQ4 knowledge-construction results are pending.}
+The frozen G4 structure will compare the prespecified knowledge-graph
+endpoints across matched system--generation-seed--lesson units and will report
+lesson-cluster uncertainty. Extractor and judge quality gates, system-level
+estimates, and the planned growth curve have not yet been completed. We
+therefore leave the numerical table and figure unpopulated and make no claim
+about which configuration produces richer, better connected, or more
+educationally valuable knowledge construction.
+
 Appendix~\ref{sec:additional-results} gives the full system-level comparison,
 G3-v2 table, and judgment status.
  
 \section{Discussion}
 
-\subsection{Human-Grounded Interaction Is a Source, Not a Guarantee}
+\subsection{Human Grounding Becomes an Inspectable Design Resource}
 
-Our results clarify what it means for a language policy to be
-human-grounded. The action vocabulary, demonstrations, and held-out comparison
-patterns all come from authentic classroom interaction. This grounding gives
-the policy a strategy repertoire that is more structured than unconstrained
-next-utterance generation. It does not, however, guarantee interaction that is
-globally human-like or contextually appropriate. The first-order Markov
-control's strong local alignment is the clearest counterexample: it reproduces
-many human-supported transitions without reading the dialogue. Human-pattern
-similarity is therefore evidence about a specified behavioral representation,
-not a complete measure of interaction quality.
+Our first result is methodological: action mediation makes human grounding an
+operational and inspectable design resource. The action vocabulary, training
+demonstrations, and held-out comparison patterns all come from authentic
+classroom interaction, connecting policy learning, generation, and evaluation
+through the same human-readable strategy layer. This is more than a structured
+prompt for next-utterance generation: it provides a stable interface at which
+designers can inspect what strategy was selected, how strategies organize over
+time, and how each choice is realized in language.
 
-This distinction matters when human traces are used to design conversational
-agents. Demonstrations provide both useful regularities and the limits of what
-the system can learn. A policy can conservatively reproduce common patterns,
-amplify annotation or population biases, or organize familiar actions into
-repetitive trajectories. Claims about human-grounded behavior should therefore
-identify which elements are grounded---here, the action ontology, training
-transitions, and evaluation reference---and which remain unverified, including
-experienced naturalness, pedagogical value, and responsiveness to longer-term
-goals.
+The metric-matched Markov control strengthens the case for this paradigm. Its
+strong local alignment shows that transition similarity can be reproduced
+without reading the dialogue; the semantic intervention, in contrast, shows
+that the learned policy distribution responds to dialogue text beyond the
+preserved action history. Human-pattern similarity is therefore useful when it
+is situated inside a broader, inspectable evaluation rather than treated as a
+complete measure of context-sensitive interaction. Human grounding still does
+not guarantee globally human-like or contextually appropriate behavior, but
+the action boundary makes the relevant successes and failures empirically
+separable.
 
-\subsection{Fixed-Checkpoint TD Differences Concentrate in Sequence Organization}
+\subsection{TD-Associated Differences Reveal Longer-Horizon Organization}
 
 The matched Direct-decoding checkpoint contrast localizes the clearest observed
-TD-associated difference. Removing the TD term leaves local
-expert-pattern alignment statistically indistinguishable, but increases
-two-step cycles by 53\% and repeated motifs by 36\%. This pattern suggests that
-the TD objective does not merely expand the action vocabulary or improve
-one-step imitation. Its observable contribution is to discourage locally
-plausible choices from accumulating into repetitive longer-horizon behavior.
+TD-associated difference. The w/o-TD checkpoint shows no reliably detected
+difference in local expert-pattern alignment but has 53\% more two-step cycles
+and 36\% more repeated motifs. This pattern is consistent with the TD term
+affecting recurrent sequence organization rather than merely expanding the
+action vocabulary or improving one-step imitation, but the single checkpoint
+per condition prevents a training-objective-level causal conclusion.
 The w/o-TD policy also terminates five of 30 trajectories before the
 100-action horizon, whereas the TD policy terminates none, providing further
 descriptive evidence of different rollout behavior. Because each condition
 contains one trained checkpoint, the bootstrap captures held-out lesson and
 generation variation but not training-seed uncertainty.
 
-This distinction is relevant to interaction design because local
-appropriateness and temporal organization can fail independently. A policy
-may repeatedly choose actions that are individually common in human data while
-still producing an interaction that feels stalled. The action-mediated
-representation makes this failure inspectable as a sequence of recurring
-decisions. However, the present metrics do not establish that participants
-would perceive the TD trajectories as more coherent or useful; that claim
-requires human evaluation of complete interactions.
+This result demonstrates the analytical leverage of the action-mediated
+formulation. It localizes the observed TD-associated difference in temporal
+organization---35\% fewer two-step cycles and 26\% fewer repeated motifs for
+the evaluated TD checkpoint---rather than in local expert-pattern alignment or
+action-vocabulary expansion. End-to-end text evaluation would make this
+distinction difficult to recover. The present metrics do not establish that
+participants would perceive the TD trajectories as more coherent or useful;
+that claim requires human evaluation of complete interactions.
 
-\subsection{Action Mediation Exposes a Control Trade-off}
+\subsection{Action Mediation Makes Control Allocation Observable}
 
-Separating strategy selection from language realization makes visible a
-trade-off that end-to-end text can conceal. Direct selection gives the learned
-policy access to the full action space and yields stronger alignment with
-held-out human action patterns, but it also produces more short cycles and
-repeated motifs. Candidate re-ranking restricts action support to role-model
-proposals and reduces these repetitions, but moves the resulting trajectories
-away from the held-out action distribution. Because the configurations also differ in
+Separating strategy selection from language realization turns control
+allocation into an observable design variable. The completed Direct configuration
+gives the learned policy access to the full action space and has stronger
+alignment with held-out human action patterns, but also more short cycles and
+repeated motifs. The Candidate configuration restricts action support to
+role-model proposals and has fewer repetitions, but its trajectories are
+farther from the held-out action distribution. Because the configurations also differ in
 rationale temperature, this is a descriptive system-level contrast rather
-than a causal decoding ablation. Nevertheless, it shows that increasing policy
-autonomy is not uniformly beneficial: control over strategy support, temporal
-organization, and wording must be considered together.
+than a causal decoding ablation. Nevertheless, the completed configurations
+illustrate that greater policy control over action support need not coincide
+with lower recurrence: strategy support, temporal organization, and wording
+must be considered together.
 
-The explicit action boundary provides structural traceability rather than a
-validated user-facing explanation. It lets system designers compare the
-strategy selected for a state with the utterance eventually produced and
-localize whether a failure originates in policy choice or realization. Whether
-people can use this boundary effectively for oversight or intervention remains
-an HCI question requiring direct study.
+The explicit action boundary provides a concrete substrate for structural
+traceability. It lets system designers compare the strategy selected for a
+state with the utterance eventually produced, inspect recurring control
+patterns, and localize whether a divergence originates in policy choice or
+realization. This is a method-level capability, not yet a validated user-facing
+explanation; whether people can use the boundary effectively for oversight or
+intervention remains an HCI question requiring direct study.
 
-\subsection{Implications for Evaluating Strategy-Rich Language Agents}
+\subsection{A Research Paradigm for Strategy-Rich Language Agents}
 
 Three implications follow from the present testbed. First, action-pattern
 metrics should be paired with controls whose inductive biases match those
@@ -1011,34 +1134,49 @@ and language realization as separate but coupled objects: an appropriate
 action label is not useful when the utterance fails to express it. Third,
 long-horizon repetition must be reported alongside diversity and alignment,
 because a policy can cover human-supported patterns while repeatedly cycling
-among a small subset. Together, these checks offer a more discriminating way
-to study language agents that aim to learn from human interaction without
-equating any single similarity score with human-like behavior.
+among a small subset. Together, these checks define a reusable research
+paradigm for language agents that learn from human interaction: ground a
+readable strategy layer in human practice, learn and expose the policy over
+that layer, and evaluate its alignment, temporal organization, context use,
+and realization separately. The classroom instantiation demonstrates the
+value of this decomposition without assuming that any single similarity score
+establishes human-like behavior.
 
 \section{Conclusion}
 
-We presented LA-IQL as an action-mediated language policy for learning
-human-grounded interaction strategies from fixed demonstrations. The approach
-represents strategy as a rationale-conditioned, human-readable action choice
-before realizing that choice with a long-context role model. A first-order
-Markov control matches held-out local action transitions as well as or better
-than the learned systems on several measures, demonstrating that aggregate
-human-pattern similarity alone is insufficient evidence of context-sensitive
-interaction. In the matched Direct-decoding ablation, temporal-difference
-the evaluated checkpoint trained with temporal-difference regularization shows
-fewer short cycles and repeated motifs without a reliable change in local
-expert-distribution alignment. This fixed-checkpoint result locates the main
-measured difference in longer-horizon behavioral organization but does not
-establish a training-seed-general TD effect. Within LA-IQL,
-direct selection is closer to the held-out human
-action distribution than proposal-constrained candidate re-ranking, but also
-repeats short cycles and motifs more often. These findings position human-grounded
-policy learning not as a guarantee of human-like interaction, but as a way to
-make strategy learning and its failures explicit. Building strategy-rich
-language agents requires evaluating human-pattern alignment, contextual
-choice, long-horizon repetition, and language realization as distinct but
-interdependent concerns; transfer and human-facing utility beyond this testbed
-remain to be established.
+We advanced an action-mediated research paradigm for learning and evaluating
+human-grounded interaction strategies. Its central move is to place a readable
+strategy layer between dialogue context and language realization, turning
+otherwise implicit behavioral choices into objects that can be learned,
+inspected, and evaluated over long horizons. LA-IQL operationalizes this
+paradigm through rationale-conditioned action selection,
+temporal-difference-regularized offline imitation, and separate
+role-conditioned realization.
+
+The completed evidence demonstrates the leverage of this formulation. For the
+evaluated fixed checkpoints, TD Direct has 35\% fewer two-step cycles and 26\%
+fewer repeated motifs than w/o-TD Direct, localizing the observed difference in
+longer-horizon organization while local expert-pattern alignment remains
+numerically similar. Direct selection more closely matches held-out human
+action patterns than proposal-constrained Candidate, while Candidate recurs
+less, making control allocation and its alignment--repetition trade-off
+directly visible. Masked-label diagnostics show that generated rationales carry
+substantial action-predictive information beyond state-only features, and the
+semantic intervention shows that the policy responds to dialogue text beyond
+preserved action history. Finally, the metric-matched Markov control confirms
+the need for the broader paradigm by showing that local human-pattern alignment
+alone can be achieved without context use.
+
+These results do not establish a training-seed-general TD effect, causal
+rationale faithfulness, contextual appropriateness, or human-facing utility;
+the frozen knowledge-construction analysis also remains to be completed.
+Nevertheless, they establish the core contribution: action mediation provides
+a practical bridge from authentic human interaction to inspectable policy
+learning, while supplying the measurement boundary needed to distinguish
+alignment, temporal organization, context use, control allocation, and language
+realization. This paradigm opens a concrete path toward strategy-rich language
+agents whose behavior can be studied and shaped at a level more informative
+than fluent text alone.
 
 \label{main-content-end}
 
@@ -1061,6 +1199,11 @@ They are supervised textual intermediates and can be plausible while remaining i
 The explored proposal-constrained adjustment is limited by candidate coverage: a strong Q-function cannot select an action absent from the proposal set, and it does not distinguish utterances sharing the same action label. Direct decoding avoids this support restriction but delegates realization of its selected action to a separate role model, which may fail to express that action faithfully.
 Finally, automatic action-distribution metrics do not establish educational effectiveness.
 Claims about learning outcomes or teacher-training utility require evaluation with educators and learners in realistic settings.
+The pending G4 protocol likewise measures knowledge structures expressed in
+generated text, not changes in student cognition, factual correctness,
+instructional quality, or learning outcomes. Its extractor and LLM-judge
+outputs require the frozen schema, evidence, corruption, and stability gates
+before they can support even system-level automatic comparisons.
 Moreover, the current G2 endpoints emphasize local action $n$-grams and
 transition distributions. A policy such as the first-order Markov control can
 score highly by conservatively reusing training-supported transitions without
@@ -1153,11 +1296,11 @@ variation.
 \includegraphics[width=\textwidth]{figure/paired_effects_forest.pdf}
 \Description{Two-panel forest plot of desirability-aligned paired effects.
 The evaluated TD checkpoint has lower Cycle-2 and motif rate than the checkpoint
-without TD. Direct decoding improves bigram and trigram support relative
-to candidate re-ranking, while candidate re-ranking improves Cycle-2 and motif
-rate. Several other intervals cross zero.}
-\caption{Desirability-aligned paired effects for temporal-difference training
-and decoding configuration. For metrics marked $\downarrow$ in the result
+without TD. The Direct configuration has higher bigram and trigram support than
+the Candidate configuration, while Candidate has lower Cycle-2 and motif rate.
+Several other intervals cross zero.}
+\caption{Desirability-aligned paired effects for the fixed-checkpoint TD
+contrast and Direct--Candidate system contrast. For metrics marked $\downarrow$ in the result
 tables, the reported difference and interval are multiplied by $-1$ so that
 positive values consistently favor the first named system (TD or Direct).
 Horizontal bars are percentile 95\% intervals from 10,000 paired bootstrap
@@ -1217,6 +1360,43 @@ classifier results are excluded; only the independent rule-based diagnostics
 are retained. We make no claim about factuality, safety, pedagogical
 appropriateness, experienced naturalness, or learning outcomes from the zero
 severe-rule violation rate.
+
+\paragraph{Complete G1 diversity and recurrence diagnostics.}
+Table~\ref{tab:appendix-full-g1-results} reports the full G1 suite for every
+completed system. Cov.@20 is the fraction of the 20 expert bigram or trigram
+patterns with greatest lesson support (with occurrence count as a tie-breaker)
+that appears in a generated run. These diagnostics must be interpreted jointly:
+high diversity or low recurrence alone does not imply expert-pattern alignment.
+
+\begin{table*}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{\begin{tabular}{lrrrrrrrr}
+\toprule
+Method & Runs & Dist.-1 & Dist.-2 & Dist.-3 & Motif $\downarrow$ & Cycle-2 $\downarrow$ & Cov.@20 & $H_{\mathrm{norm}}$ \\
+\midrule
+Direct Role LLM & $10\!\times\!3$ & $0.2692 \pm 0.0050$ & $0.4364 \pm 0.0348$ & $0.5913 \pm 0.0427$ & $0.4486 \pm 0.0287$ & $0.0286 \pm 0.0088$ & $0.5500 \pm 0.0408$ & $0.6722 \pm 0.0102$ \\
+Constrained Prompt & $10\!\times\!3$ & $0.2866 \pm 0.0029$ & $0.5279 \pm 0.0117$ & $0.7264 \pm 0.0144$ & $0.3403 \pm 0.0204$ & $0.1520 \pm 0.0147$ & $0.5333 \pm 0.0236$ & $0.6818 \pm 0.0015$ \\
+Uniform Random & $10\!\times\!3$ & $0.4149 \pm 0.0198$ & $0.9593 \pm 0.0048$ & $0.9986 \pm 0.0013$ & $0.0048 \pm 0.0012$ & $0.0000 \pm 0.0000$ & $0.3500 \pm 0.0000$ & $0.9287 \pm 0.0066$ \\
+Expert Frequency & $10\!\times\!3$ & $0.2154 \pm 0.0145$ & $0.6951 \pm 0.0277$ & $0.9449 \pm 0.0069$ & $0.0795 \pm 0.0098$ & $0.0067 \pm 0.0033$ & $0.9500 \pm 0.0000$ & $0.7144 \pm 0.0111$ \\
+First-order Markov & $10\!\times\!3$ & $0.2004 \pm 0.0047$ & $0.5144 \pm 0.0072$ & $0.7815 \pm 0.0026$ & $0.2136 \pm 0.0417$ & $0.0819 \pm 0.0140$ & $1.0000 \pm 0.0000$ & $0.7072 \pm 0.0012$ \\
+\midrule
+LA-IQL w/o TD (Direct) & $10\!\times\!3$ & $0.1606 \pm 0.0088$ & $0.4118 \pm 0.0236$ & $0.6352 \pm 0.0219$ & $0.5379 \pm 0.0361$ & $0.2607 \pm 0.0193$ & $1.0000 \pm 0.0000$ & $0.6412 \pm 0.0120$ \\
+\textbf{LA-IQL} & $10\!\times\!3$ & $0.1663 \pm 0.0034$ & $0.4370 \pm 0.0101$ & $0.6983 \pm 0.0050$ & $0.3957 \pm 0.0240$ & $0.1708 \pm 0.0126$ & $1.0000 \pm 0.0000$ & $0.6670 \pm 0.0084$ \\
+LA-IQL + candidate re-ranking & $10\!\times\!3$ & $0.1493 \pm 0.0070$ & $0.4478 \pm 0.0205$ & $0.7221 \pm 0.0238$ & $0.1413 \pm 0.0017$ & $0.0488 \pm 0.0013$ & $0.7000 \pm 0.0408$ & $0.6664 \pm 0.0131$ \\
+\bottomrule
+\end{tabular}
+}
+\caption{Complete G1 diversity and recurrence diagnostics for all completed
+systems. Values are mean $\pm$ population standard deviation across generation
+seeds 42, 43, and 44; each seed contains 10 held-out lessons. Learned systems
+reuse one checkpoint per condition across those seeds. Diagnostic baselines are
+included to show that high diversity or low recurrence alone does not establish
+expert-pattern alignment.}
+\label{tab:appendix-full-g1-results}
+\end{table*}
+\FloatBarrier
 
 \section{Implementation and Reproducibility}
 \label{sec:reproducibility}
@@ -1286,6 +1466,9 @@ horizon-100 trajectory tables.}
 \label{tab:system-provenance}
 \end{table*}
 
+% Temporarily hidden from the review draft; retain the provenance record here
+% so that it can be restored once the reproducibility appendix is finalized.
+\iffalse
 \begin{table}[t]
 \centering
 \small
@@ -1306,6 +1489,7 @@ for readability; the machine-readable manifests retain the full SHA-256 values.
 The external API records contain aliases, not immutable provider revisions.}
 \label{tab:artifact-provenance}
 \end{table}
+\fi
 
 \paragraph{Completed BC training metadata.}
 The frozen-backbone BC checkpoints use \texttt{Qwen/Qwen3.5-0.8B}, 6,181
@@ -1373,41 +1557,12 @@ canonical names, abbreviations, and deterministic label strings before
 prediction. We report leakage rates, per-class scores, confusion matrices, and
 majority and shuffled-rationale controls.
 
-The current G3 evaluation establishes association through independent
+The current G3 evaluation provides association evidence through independent
 prediction and within-lesson/role shuffle controls. Remove, paraphrase, and
 role-compatible counterfactual interventions~\citep{deyoung2020eraser} remain
 future tests of causal sensitivity. Blinded action-support and classroom-
 appropriateness materials have been prepared, but no completed human judgment
 scores are reported. We therefore avoid claims about explanation faithfulness,
 educational effectiveness, or experienced naturalness.
-
-\section{Full G1 Statistics}
-
-\begin{table*}[t]
-\centering
-\small
-\setlength{\tabcolsep}{4pt}
-\resizebox{\textwidth}{!}{\begin{tabular}{lrrrrrrrr}
-\toprule
-Method & Runs & Dist.-1 & Dist.-2 & Dist.-3 & Motif $\downarrow$ & Cycle-2 $\downarrow$ & Cov.@20 & $H_{\mathrm{norm}}$ \\
-\midrule
-Direct Role LLM & $10\!\times\!3$ & $0.2692 \pm 0.0050$ & $0.4364 \pm 0.0348$ & $0.5913 \pm 0.0427$ & $0.4486 \pm 0.0287$ & $0.0286 \pm 0.0088$ & $0.5500 \pm 0.0408$ & $0.6722 \pm 0.0102$ \\
-Constrained Prompt & $10\!\times\!3$ & $0.2866 \pm 0.0029$ & $0.5279 \pm 0.0117$ & $0.7264 \pm 0.0144$ & $0.3403 \pm 0.0204$ & $0.1520 \pm 0.0147$ & $0.5333 \pm 0.0236$ & $0.6818 \pm 0.0015$ \\
-Uniform Random & $10\!\times\!3$ & $0.4149 \pm 0.0198$ & $0.9593 \pm 0.0048$ & $0.9986 \pm 0.0013$ & $0.0048 \pm 0.0012$ & $0.0000 \pm 0.0000$ & $0.3500 \pm 0.0000$ & $0.9287 \pm 0.0066$ \\
-Expert Frequency & $10\!\times\!3$ & $0.2154 \pm 0.0145$ & $0.6951 \pm 0.0277$ & $0.9449 \pm 0.0069$ & $0.0795 \pm 0.0098$ & $0.0067 \pm 0.0033$ & $0.9500 \pm 0.0000$ & $0.7144 \pm 0.0111$ \\
-First-order Markov & $10\!\times\!3$ & $0.2004 \pm 0.0047$ & $0.5144 \pm 0.0072$ & $0.7815 \pm 0.0026$ & $0.2136 \pm 0.0417$ & $0.0819 \pm 0.0140$ & $1.0000 \pm 0.0000$ & $0.7072 \pm 0.0012$ \\
-\midrule
-LA-IQL w/o TD (Direct) & $10\!\times\!3$ & $0.1606 \pm 0.0088$ & $0.4118 \pm 0.0236$ & $0.6352 \pm 0.0219$ & $0.5379 \pm 0.0361$ & $0.2607 \pm 0.0193$ & $1.0000 \pm 0.0000$ & $0.6412 \pm 0.0120$ \\
-\textbf{LA-IQL} & $10\!\times\!3$ & $0.1663 \pm 0.0034$ & $0.4370 \pm 0.0101$ & $0.6983 \pm 0.0050$ & $0.3957 \pm 0.0240$ & $0.1708 \pm 0.0126$ & $1.0000 \pm 0.0000$ & $0.6670 \pm 0.0084$ \\
-LA-IQL + candidate re-ranking & $10\!\times\!3$ & $0.1493 \pm 0.0070$ & $0.4478 \pm 0.0205$ & $0.7221 \pm 0.0238$ & $0.1413 \pm 0.0017$ & $0.0488 \pm 0.0013$ & $0.7000 \pm 0.0408$ & $0.6664 \pm 0.0131$ \\
-\bottomrule
-\end{tabular}
-}
-\caption{Full G1 statistics for all completed systems. Values are mean $\pm$
-population standard deviation across generation seeds 42, 43, and 44; each
-seed contains 10 held-out lessons. Learned systems reuse one checkpoint per
-condition across those seeds.}
-\label{tab:appendix-full-g1-results}
-\end{table*}
 
 \end{document}

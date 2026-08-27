@@ -1,8 +1,8 @@
-PWD e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template
+PWD E:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template
 INPUT d:/texlive/2026/texmf.cnf
 INPUT d:/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt
-INPUT e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template/sigconf-authordraft.tex
+INPUT sigconf-authordraft.tex
 OUTPUT sigconf-authordraft.log
 INPUT ./acmart.cls
 INPUT acmart.cls
@@ -340,6 +340,8 @@ INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandler
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+INPUT d:/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty
+INPUT d:/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 INPUT d:/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
