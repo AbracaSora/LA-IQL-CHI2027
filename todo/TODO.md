@@ -29,7 +29,8 @@
 ### 1.1 当前落稿状态（2026-08-27）
 
 - **已写入并完成**：A1--A6、A8--A10；B1、B2、B4、B5、B6a、B7、B9、B11；全文 claim--evidence 主线审计。
-- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（核心训练配置已进入附录，其余 provenance 采用尽力恢复与透明披露原则）；B6b（RQ4 的理论、方法、统计单位、Results 骨架与限制已写入，正式 G4 证据待 C6）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
+- **已部分写入**：A7（BC 训练 metadata 已进入附录，但尚未进入正式 horizon-100 主比较）；B3（核心训练配置已进入附录，其余 provenance 采用尽力恢复与透明披露原则）；B12（已转换单栏匿名格式并通过编译，仍需最终 source ZIP 清理）。
+- **已完成写入**：B6a 与 B6b-KG（RQ4 理论、KG 方法、250 图谱的九系统主表、配对统计、Results、Conclusion、Limitations 及中文翻译已同步）；辅助 Judge、人工 KG 审计、受控门修复、稳定性改进和 growth curve 转入 C6b--C6e。
 - **仍可继续但本轮未完成**：B10（规则化定性案例）。
 - **受外部确认阻塞**：B8 只需与 D1 一起达到 CHI 投稿所需的如实披露水平；不能仅凭代码目录推断数据许可、伦理审查状态或去标识化流程。
 - **无需新增实验但已明确披露缺口**：D2 已恢复三阶段核心配置；其余尚未确认字段已在附录和 D2 清单列明，避免用当前脚本默认值反推。
@@ -181,11 +182,12 @@
 
 ### B6. 将 RQ4 转为长程知识建构问题
 
+- **状态（2026-08-29）**：**KG-only 初稿闭环已完成**。英文主稿与中文翻译已写入 250 张正式图谱、九个系统的三个预指定端点、Direct--Candidate 与 Direct--w/o-TD 的 lesson-cluster 比较，并同步更新 Abstract、Results、Conclusion 与 Limitations。正文暂不写入 LLM Judge、临时可靠性阈值、受控门失败、人工审计空表或稳定性改进结果。
 - **名称**：Knowledge-construction framing 与结果集成。
-- **内容及解释**：拆为两个里程碑。**B6a（P0-Draft）** 完成理论定义与文章结构：RQ4 考察学习策略与角色模型之间采用不同动作控制分配时，长程模拟课堂对话中呈现哪些可观察的知识引入、关联和发展模式；知识图谱和 LLM judge 是操作化方法，而不是 RQ 本身。**B6b（P1-Evidence）** 在 C6 完成后写入正式数值、主表、growth curve 和结论。结果只能说明生成文本中表达的知识结构，不能说明学生认知改变、教学质量或学习效果。
-- **获取方式**：以 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 为冻结设计依据，同步修改 RQ4、Evaluation Metrics、Results、Discussion、Conclusion 和中文翻译。导师初稿先补齐方法、统计单位、结果小节骨架与限制，并使用醒目的内部占位符标记 C6；不得预写结果方向。原 G4-v1 分类器训练未完成，其一致率、Macro-F1、显著性和系统排名已从主稿移除。
+- **内容及解释**：**B6a（P0-Draft）** 理论定义与文章结构已完成；**B6b-KG（P0-Draft）** 正式 KG 数值、主表和结论已完成。尚未进入论文的辅助 judge、growth curve、人工语义审计和受控验证改进继续留在 C6，不阻塞导师初稿。结果只能说明生成文本中表达的知识结构，不能说明学生认知改变、事实正确性、教学质量或学习效果。
+- **获取方式**：以 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 为冻结设计依据；KG 主结果已同步写入 RQ4、Evaluation Metrics、Results、Conclusion、Limitations 和中文翻译。未完成的辅助评价不在论文中预留位置，分别按 C6b--C6e 继续追踪。原 G4-v1 分类器训练未完成，其一致率、Macro-F1、显著性和系统排名已从主稿移除。
 - **重要性及原因**：**B6a 为 P0-Draft；B6b 为 P1-Evidence，正式投稿时为 P0**。先固定理论问题和证据边界，避免在导师审阅前把时间投入到可能因主线调整而作废的完整实验。
-- **格式**：导师初稿包含完整 RQ4、G4 方法、Results 占位小节和限制；C6 完成后再加入主表、growth curve 和结论。附录保留旧评测的协议、规则指标与失败说明，但不保留未完成分类器的数值证据。
+- **格式**：导师初稿正文包含完整 RQ4、KG 方法、主表、配对区间、结论与边界；不保留明显占位段。未完成或需重设计的辅助评价只在本 TODO 中追踪。
 
 ### B7. 将上下文干预纳入论文
 
@@ -283,11 +285,36 @@
 
 ### C6. 执行多视角知识建构 G4
 
+- **状态（2026-08-29）**：**KG 主分析完成并已写入论文；多视角辅助验证尚未收口。** 已完成正式输入审计、250/250 图谱抽取、九系统汇总、七组配对统计、70/70 受控图谱抽取和 25/25（10%）重复抽取。正文当前只采用三个预指定 KG 端点。
 - **名称**：G4 knowledge-construction evaluation。
-- **内容及解释**：在冻结的 formal-100 完整轨迹上，使用带逐字 evidence 的 LLM 知识图谱抽取作为主要证据、确定性图算法与规则指标作为可复核锚点、盲化且经过顺序/重复稳定性审计的 LLM judge 作为辅助证据。不得合成单一“课堂质量分”。
+- **内容及解释**：在冻结的 formal-100 完整轨迹上，使用带逐字 evidence 的知识图谱抽取作为当前论文证据，并以确定性图算法计算 UER$_{100}$、平均关系度和后期关系增长。辅助 LLM Judge、人工 KG 审计、受控破坏和重复抽取稳定性暂不作为正文证据，不得合成单一“课堂质量分”。
 - **获取方式**：复用 `scripts/traj_rd/formal_100/` 的 Full Direct、Full Candidate、w/o-TD Direct 三组 `generation seeds 42--44 × 10 lessons`，以及冻结的 10 个 held-out expert transcripts；原则上不重新生成轨迹。按 `todo/G4_KNOWLEDGE_CONSTRUCTION_EVALUATION_PLAN.md` 完成输入 hash、controlled-corruption validation、KG extraction、动态图指标和 lesson-cluster 统计。
-- **重要性及原因**：**P1-Evidence；正式投稿时为 P0**。新 RQ4 当前尚无正式系统级证据；它不阻塞理论与结构完整的导师初稿，但完成后才能在摘要、Results 和 Conclusion 中回答知识建构问题。原则上先由导师确认 RQ4 和贡献主线，再投入正式抽取与评审成本。
-- **格式**：正文三个预冻结 KG 主端点、一张 knowledge-growth curve 和一个规则化案例；附录提供全部 extractor/judge 审计、次级指标与旧 G4 材料处置说明。
+- **重要性及原因**：**KG 主分析已满足 P0-Draft**。以下剩余项为 P1-Evidence；正式投稿前需由导师决定是否恢复为正文证据。
+- **格式**：正文当前保留三个 KG 主端点及一张九系统主表；growth curve、辅助 judge、受控门和审计材料完成后再决定进入附录或补充材料。
+
+#### C6b. KG 人工语义审计
+
+- **当前状态**：审计模板已有 180 项，但 `evaluator_id`、证据支持、类型/范围/关系正确性和 notes 均为 0/180。
+- **获取方式**：至少由一名领域评审者完成分层抽样；正式投稿若声称图语义有效，应加入第二评审者与一致性统计。
+- **重要性及原因**：**P1-Evidence；强 KG 有效性主张下为 P0-Submission**。当前 100% acceptance 仅是机器 schema 与证据 ID 校验，不能替代语义正确性。
+
+#### C6c. KG 稳定性与受控门修复
+
+- **当前状态**：10% 重复抽取覆盖门通过，但 node-name F1 为 0.681、canonical-edge F1 为 0.352；UER$_{100}$、平均关系度和后期增长的平均绝对差分别为 5.463、0.259 和 0.057。五个非 Judge 受控门中四个通过；`loop_duplicate_relation_evidence_increases` 失败（差值 $-0.0331$）。
+- **获取方式**：优先改进实体规范化、关系合并和 loop proxy；冻结修订版后只重跑稳定性样本与对应受控项，不覆盖当前正式结果。
+- **重要性及原因**：**P1-Evidence**。节点层面尚可，但精确边稳定性偏低；最终稿中的边级解释必须保守或由人工审计支撑。
+
+#### C6d. LLM Judge 协议重设计
+
+- **当前状态**：现有成对 Judge 已完成数据调用，但存在明显 A/B 位置偏置；冻结 order-consistency 目标 0.80 未达到。为生成导师初稿报告曾临时使用 0.05 门限，该门限不得作为最终论文标准。relation-corruption 对照在现有五维 rubric 下全部判平，原因是局部事实/关系词替换没有破坏 rubric 所测的互动连贯性。
+- **获取方式**：改为单轨迹独立五维评分，再在相同 lesson/seed 上离线配对；以重复评分 MAE、ICC 或 weighted kappa 替代顺序一致性。若继续 relation corruption，应构造真正破坏跨话轮 uptake/coherence 的矛盾，而不是只修改数字和局部词语。
+- **重要性及原因**：**P2-Draft、P1-Submission**。当前论文不依赖 Judge，因此不阻塞导师初稿；若最终将其作为辅助证据，必须先冻结新协议并重新运行。
+
+#### C6e. Growth curve 与 KG 定性案例
+
+- **当前状态**：动态图端点已计算，但正文尚无 growth curve，也没有按预注册规则选择的 KG 案例。
+- **获取方式**：从已有图谱产物生成按归一化话轮进度的实体/关系增长曲线；先冻结选例规则，再导出 1--2 个可核查案例。
+- **重要性及原因**：**P1-Evidence**。用于解释聚合端点，不阻塞当前 KG-only 初稿。
 
 ### C6a. 原 action--utterance 评测的选择性保留
 
@@ -366,21 +393,21 @@
 ### 6.1 P0-Draft：导师初稿冻结门槛
 
 - [x] 完成全文 claim--evidence 审计：已逐句核对 Abstract、Problem、Contributions、RQ1--RQ4、Results、Discussion、Conclusion、Limitations 和附录中的主张层级，并同步英文主稿、中文翻译与对照表。
-- [x] 完成 B6a：新 RQ4 的理论定义、G4 方法、统计单位、三个主端点、Results 小节骨架和限制均已到位；C6 未完成部分使用内部占位符，未预写结果。
+- [x] 完成 B6a 与 B6b-KG：新 RQ4 的理论定义、KG 方法、统计单位、三个主端点、九系统主表、配对结果、结论和限制均已同步至英文主稿与中文翻译；正文不再保留 RQ4 数值占位符。
 - [x] 完成 B11：已补齐最邻近 HCI/NLP/教育对话工作，并明确 action mediation、inspectability、control allocation、自动评价与模拟有效性的贡献边界。
 - [x] 完成 B10 最低版本：正文已有一个按冻结规则选择、可追溯到课程 4873／生成种子 43／第 13--16 回合的轨迹案例，同时展示 action、rationale、utterance 及 action-recurrence 解释边界。
 - [ ] 完成 B12a：主稿可稳定编译，无缺图、缺表、undefined reference/citation 或阻碍阅读的版面问题。
-- [ ] 检查旧 G4-v1 未完成分类器的数值、显著性和系统排名已全部从主论证移除。
+- [x] 检查旧 G4-v1 未完成分类器的数值、显著性和系统排名已全部从主论证移除；正文仅保留其未完成及排除说明。
 - [x] 完成 B1：已切换为 CHI 2027 单栏匿名审稿格式。
 - [x] 完成 A1--A6、A8--A10 的证据核对并落稿。
 - [x] B3 最低要求已完成：核心训练配置已写入，无法恢复的字段透明标记。
 - [x] 完成 B5、B7、B9：推断边界、上下文干预和统计单位已写明。
 
-达到以上门槛后，稿件即定义为“可交导师修改的理论闭环初稿”。A7、C6、完整伦理确认和提交包不阻塞这一里程碑。
+达到以上门槛后，稿件即定义为“可交导师修改的理论闭环初稿”。A7、C6b--C6e、完整伦理确认和提交包不阻塞这一里程碑。
 
 ### 6.2 P1-Evidence：导师确认主线后的证据补全
 
-1. 优先完成 C6，并执行 B6b：把正式 G4 主表、growth curve、案例和边界写回摘要、Results、Discussion 与 Conclusion。
+1. KG 主表与正文闭环已完成；下一步由导师决定是否继续 C6b--C6e（人工审计、稳定性/受控门、独立单轨迹 Judge、growth curve 与 KG 案例）。
 2. 根据导师对核心主张的要求决定 A7、C1、C2、C3：只有保留对应强主张时才升级为必做。
 3. 扩展 B10 为 2--3 个按冻结规则选择的定性案例。
 4. 保持 TD 为 fixed-checkpoint finding，除非 C1 独立训练重复完成；保持 Direct--Candidate 为 system-level contrast，除非 C3 完成。

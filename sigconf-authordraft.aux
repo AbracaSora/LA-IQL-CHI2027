@@ -2,26 +2,26 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand*\HyPL@Entry[1]{}
 \HyPL@Entry{0<</S/D>>}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {From human practice to inspectable language-mediated behavior.} Authentic dialogue grounds trajectories over readable interaction acts; LA-IQL exposes a rationale and selected strategy before language realization; and the resulting action boundary supports separate evaluation of behavioral choice and surface expression. In our classroom testbed, this boundary reveals a trade-off: direct selection more closely matches held-out human action patterns, whereas the completed candidate configuration has less repetition but lies farther from those patterns.}}{1}{figure.caption.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Action mediation makes interaction strategy explicit and inspectable.} End-to-end generation leaves strategy implicit, supervised imitation emphasizes local reproduction, and online reinforcement learning depends on reward design and exploration. LA-IQL instead learns offline from authentic human trajectories over a human-readable strategy space, exposes a rationale and selected strategy, and conditions utterance generation on that choice. This explicit boundary makes human-pattern alignment, long-horizon organization, and strategy--language realization separately observable.}}{1}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:teaser}{{1}{1}{\textbf {From human practice to inspectable language-mediated behavior.} Authentic dialogue grounds trajectories over readable interaction acts; LA-IQL exposes a rationale and selected strategy before language realization; and the resulting action boundary supports separate evaluation of behavioral choice and surface expression. In our classroom testbed, this boundary reveals a trade-off: direct selection more closely matches held-out human action patterns, whereas the completed candidate configuration has less repetition but lies farther from those patterns}{figure.caption.1}{}}
+\newlabel{fig:teaser}{{1}{1}{\textbf {Action mediation makes interaction strategy explicit and inspectable.} End-to-end generation leaves strategy implicit, supervised imitation emphasizes local reproduction, and online reinforcement learning depends on reward design and exploration. LA-IQL instead learns offline from authentic human trajectories over a human-readable strategy space, exposes a rationale and selected strategy, and conditions utterance generation on that choice. This explicit boundary makes human-pattern alignment, long-horizon organization, and strategy--language realization separately observable}{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.2}\protected@file@percent }
 \citation{park2023generative,xi2025rise}
-\citation{achiam2023gpt,kasneci2023chatgpt,park2023generative,zhang2024simulating,xi2025rise}
+\citation{achiam2023gpt,kasneci2023chatgpt,park2023generative,xi2025rise}
 \citation{li2016diversity,zhao2017learning}
-\citation{li2016deep,schulman2017proximal,ouyang2022training}
+\citation{li2016deep,ouyang2022training,schulman2017proximal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\citation{songyu79}
+\citation{li2016deep,ouyang2022training,schulman2017proximal}
 \citation{songyu79}
 \citation{garg2021iqlearn,wulfmeier2024imitating}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Human-grounded, action-mediated interaction. LA-IQL learns a human-readable strategy layer from authentic interaction trajectories and separates strategy selection from language realization. This boundary makes behavioral patterns traceable while exposing a realization risk when the final utterance does not express the selected action.}}{3}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:hci-framing}{{2}{3}{Human-grounded, action-mediated interaction. LA-IQL learns a human-readable strategy layer from authentic interaction trajectories and separates strategy selection from language realization. This boundary makes behavioral patterns traceable while exposing a realization risk when the final utterance does not express the selected action}{figure.caption.3}{}}
 \citation{sutskever2014sequence,serban2017hierarchical,vinyals2015neural}
 \citation{park2023generative,xi2025rise,zhang2024simulating}
 \citation{kwon2024biped}
 \citation{puech2025steering}
 \citation{li2026scaffoldlm}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Human-grounded, action-mediated interaction. LA-IQL learns a human-readable strategy layer from authentic interaction trajectories and separates strategy selection from language realization. This boundary makes behavioral patterns traceable while exposing a realization risk when the final utterance does not express the selected action.}}{3}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:hci-framing}{{2}{3}{Human-grounded, action-mediated interaction. LA-IQL learns a human-readable strategy layer from authentic interaction trajectories and separates strategy selection from language realization. This boundary makes behavioral patterns traceable while exposing a realization risk when the final utterance does not express the selected action}{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Pedagogically Structured Dialogue and Policy Learning}{3}{subsection.2.1}\protected@file@percent }
 \citation{li2016deep,li2018dialogue}
 \citation{dinucu2025teaching}
 \citation{verma2022chai}
@@ -31,70 +31,74 @@
 \citation{liu2025proactive}
 \citation{cheng2025surrogates}
 \citation{houde2025controlling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Interaction-Strategy Learning in Pedagogical Dialogue}{4}{subsection.2.1}\protected@file@percent }
 \citation{maurya2025unifying}
 \citation{anagnostopoulou2025rewired}
 \citation{shi2025educationq}
 \citation{schneider2024bridgekg}
 \citation{martynova2025simulate}
 \citation{scarlatos2026simulated}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Proactivity, Mixed Initiative, and Control Allocation}{4}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Evaluating Pedagogical Dialogue and Simulation}{4}{subsection.2.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Compact definition of the 31-action interaction space.}}{5}{table.caption.4}\protected@file@percent }
-\newlabel{tab:action-space}{{1}{5}{Compact definition of the 31-action interaction space}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Conversational Agency in Human--AI Interaction}{5}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Evaluating Interactive Behavior in Pedagogical Dialogue}{5}{subsection.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Method}{5}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Classroom Interaction as an Observable Testbed}{5}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:problem}{{3.1}{5}{Classroom Interaction as an Observable Testbed}{subsection.3.1}{}}
-\citation{wulfmeier2024imitating}
-\citation{garg2021iqlearn}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Compact definition of the 31-action interaction space.}}{6}{table.caption.4}\protected@file@percent }
+\newlabel{tab:action-space}{{1}{6}{Compact definition of the 31-action interaction space}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation and Interaction Action Space}{6}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:problem}{{3.1}{6}{Problem Formulation and Interaction Action Space}{subsection.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Construction and Rationale Annotation}{6}{subsection.3.2}\protected@file@percent }
 \newlabel{eq:rationale-action-factorization}{{1}{6}{Data Construction and Rationale Annotation}{equation.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}From MLE to Expert Distribution Matching}{6}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}TD-Regularized Offline IQLearn Objective}{6}{subsection.3.4}\protected@file@percent }
-\newlabel{eq:total-loss}{{6}{7}{TD-Regularized Offline IQLearn Objective}{equation.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Rationale-Conditioned Policy Parameterization}{7}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Direct Policy Decoding and Language Realization}{7}{subsection.3.6}\protected@file@percent }
-\newlabel{eq:direct-policy-decoding}{{7}{7}{Direct Policy Decoding and Language Realization}{equation.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {LA-IQL framework and technical flow.} Human-grounded classroom dialogue and cognitive-act annotations are converted into rationale-augmented expert transitions (left). Rationale-conditioned LA-IQL jointly trains language and policy/value components with language, consistency, policy, and temporal-difference objectives (center). At inference, the learned policy selects an interaction action and a long-context role model realizes it as an utterance; candidate re-ranking is shown as an inference-time alternative (right).}}{8}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:method-overview}{{3}{8}{\textbf {LA-IQL framework and technical flow.} Human-grounded classroom dialogue and cognitive-act annotations are converted into rationale-augmented expert transitions (left). Rationale-conditioned LA-IQL jointly trains language and policy/value components with language, consistency, policy, and temporal-difference objectives (center). At inference, the learned policy selects an interaction action and a long-context role model realizes it as an utterance; candidate re-ranking is shown as an inference-time alternative (right)}{figure.caption.5}{}}
-\newlabel{eq:proposal-constrained-selection}{{8}{8}{Direct Policy Decoding and Language Realization}{equation.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Implementation summary. Values are transcribed from checkpoint, split, annotation, and formal-trajectory artifacts. Historical training fields not retained by those artifacts are listed as unresolved in Appendix\nonbreakingspace \ref {sec:reproducibility}.}}{9}{table.caption.7}\protected@file@percent }
-\newlabel{tab:implementation-summary}{{2}{9}{Implementation summary. Values are transcribed from checkpoint, split, annotation, and formal-trajectory artifacts. Historical training fields not retained by those artifacts are listed as unresolved in Appendix~\ref {sec:reproducibility}}{table.caption.7}{}}
+\citation{wulfmeier2024imitating}
+\citation{garg2021iqlearn}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}From MLE to Expert Distribution Matching}{7}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}TD-Regularized Offline IQLearn Objective}{7}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:total-loss}{{6}{8}{TD-Regularized Offline IQLearn Objective}{equation.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Rationale-Conditioned Policy Parameterization}{8}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Direct Policy Decoding and Language Realization}{8}{subsection.3.6}\protected@file@percent }
+\newlabel{eq:direct-policy-decoding}{{7}{8}{Direct Policy Decoding and Language Realization}{equation.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {LA-IQL framework and technical flow.} Human-grounded classroom dialogue and cognitive-act annotations are converted into rationale-augmented expert transitions (left). Rationale-conditioned LA-IQL jointly trains language and policy/value components with language, consistency, policy, and temporal-difference objectives (center). At inference, the learned policy selects an interaction action and a long-context role model realizes it as an utterance; candidate re-ranking is shown as an inference-time alternative (right).}}{9}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:method-overview}{{3}{9}{\textbf {LA-IQL framework and technical flow.} Human-grounded classroom dialogue and cognitive-act annotations are converted into rationale-augmented expert transitions (left). Rationale-conditioned LA-IQL jointly trains language and policy/value components with language, consistency, policy, and temporal-difference objectives (center). At inference, the learned policy selects an interaction action and a long-context role model realizes it as an utterance; candidate re-ranking is shown as an inference-time alternative (right)}{figure.caption.5}{}}
+\newlabel{eq:proposal-constrained-selection}{{8}{9}{Direct Policy Decoding and Language Realization}{equation.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Design}{9}{section.4}\protected@file@percent }
 \newlabel{sec:experiments}{{4}{9}{Experimental Design}{section.4}{}}
 \@writefile{toc}{\contentsline {paragraph}{Research questions.}{9}{section*.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data and Splits}{9}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines and Ablations}{9}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Implementation summary. Values are transcribed from checkpoint, split, annotation, and formal-trajectory artifacts. Historical training fields not retained by those artifacts are documented as unavailable in Appendix\nonbreakingspace \ref {sec:reproducibility}.}}{10}{table.caption.7}\protected@file@percent }
+\newlabel{tab:implementation-summary}{{2}{10}{Implementation summary. Values are transcribed from checkpoint, split, annotation, and formal-trajectory artifacts. Historical training fields not retained by those artifacts are documented as unavailable in Appendix~\ref {sec:reproducibility}}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data and Splits}{10}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines and Ablations}{10}{subsection.4.2}\protected@file@percent }
 \citation{hase2020leakage,jacovi2020faithfully}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{10}{subsection.4.3}\protected@file@percent }
-\newlabel{eq:g3-simulatability}{{9}{10}{Evaluation Metrics}{equation.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Protocol}{10}{subsection.4.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Core G1 results (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark the best learned-system result in each column; diagnostic baselines may be diverse without expert alignment.}}{11}{table.caption.8}\protected@file@percent }
-\newlabel{tab:g1-core-results}{{3}{11}{Core G1 results (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark the best learned-system result in each column; diagnostic baselines may be diverse without expert alignment}{table.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces G2 expert-pattern alignment (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark learned-system results that are numerically best or effectively tied at the shown precision. The first-order Markov control directly models the local transitions measured by several columns but does not condition on dialogue content.}}{11}{table.caption.9}\protected@file@percent }
-\newlabel{tab:g2-baseline-results}{{4}{11}{G2 expert-pattern alignment (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark learned-system results that are numerically best or effectively tied at the shown precision. The first-order Markov control directly models the local transitions measured by several columns but does not condition on dialogue content}{table.caption.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experimental Results}{11}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Data and implementation.}{11}{section*.10}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Fixed-checkpoint temporal-difference contrast under Direct decoding. Values compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap resamples. Both systems use rationale temperature 0.0 and otherwise identical generation settings. Positive differences mean the TD model is numerically larger; metric arrows indicate the desirable direction.}}{12}{table.caption.12}\protected@file@percent }
-\newlabel{tab:td-ablation-paired}{{5}{12}{Fixed-checkpoint temporal-difference contrast under Direct decoding. Values compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap resamples. Both systems use rationale temperature 0.0 and otherwise identical generation settings. Positive differences mean the TD model is numerically larger; metric arrows indicate the desirable direction}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {paragraph}{The evaluated TD checkpoint shows less repetitive long-horizon organization.}{12}{section*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Local transition statistics form a strong but limited reference.}{12}{section*.13}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Paired Direct--Candidate comparison over 30 matched generation-seed--lesson units (10,000 bootstrap resamples; percentile intervals; BH correction over 10 retained comparisons). Positive values mean Direct is numerically larger; metric arrows indicate the desirable direction. The configurations also differ in rationale temperature, so this is a system-level comparison rather than a single-factor decoding ablation.}}{13}{table.caption.16}\protected@file@percent }
-\newlabel{tab:direct-candidate-paired}{{6}{13}{Paired Direct--Candidate comparison over 30 matched generation-seed--lesson units (10,000 bootstrap resamples; percentile intervals; BH correction over 10 retained comparisons). Positive values mean Direct is numerically larger; metric arrows indicate the desirable direction. The configurations also differ in rationale temperature, so this is a system-level comparison rather than a single-factor decoding ablation}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{11}{subsection.4.3}\protected@file@percent }
+\newlabel{eq:g3-simulatability}{{9}{11}{Evaluation Metrics}{equation.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Protocol}{11}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Core G1 results (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark the best learned-system result in each column; diagnostic baselines may be diverse without expert alignment.}}{12}{table.caption.8}\protected@file@percent }
+\newlabel{tab:g1-core-results}{{3}{12}{Core G1 results (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark the best learned-system result in each column; diagnostic baselines may be diverse without expert alignment}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces G2 expert-pattern alignment (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark learned-system results that are numerically best or effectively tied at the shown precision. The first-order Markov control directly models the local transitions measured by several columns but does not condition on dialogue content.}}{12}{table.caption.9}\protected@file@percent }
+\newlabel{tab:g2-baseline-results}{{4}{12}{G2 expert-pattern alignment (mean $\pm $ population SD over three generation seeds from each fixed checkpoint). Bold values mark learned-system results that are numerically best or effectively tied at the shown precision. The first-order Markov control directly models the local transitions measured by several columns but does not condition on dialogue content}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experimental Results}{12}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data and implementation.}{12}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Fixed-checkpoint temporal-difference contrast under Direct decoding. Values compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap resamples. Both systems use rationale temperature 0.0 and otherwise identical generation settings. Positive differences mean the TD model is numerically larger; metric arrows indicate the desirable direction.}}{13}{table.caption.12}\protected@file@percent }
+\newlabel{tab:td-ablation-paired}{{5}{13}{Fixed-checkpoint temporal-difference contrast under Direct decoding. Values compare LA-IQL with and without the TD term over the same 30 generation-seed--lesson trajectories, clustered by 10 held-out lessons, with 10,000 bootstrap resamples. Both systems use rationale temperature 0.0 and otherwise identical generation settings. Positive differences mean the TD model is numerically larger; metric arrows indicate the desirable direction}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{The evaluated TD checkpoint shows less repetitive long-horizon organization.}{13}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local transition statistics form a strong but limited reference.}{13}{section*.13}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{A frozen intervention provides exploratory evidence of text sensitivity.}{13}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Within the learned architecture, alignment comes with repetitive local structure.}{13}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{A rule-selected trace makes the recurrence difference inspectable.}{13}{section*.17}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Rule-selected inspectable case from formal trajectories (lesson 4873, generation seed 43, turns 13--16). The Direct window instantiates an Ag--Pk--Ag--Pk two-step cycle, whereas Candidate traverses Gu--An--Iu--Pk. The entries preserve the recorded action, rationale intent, and utterance content while abbreviating the original text for space.}}{14}{table.caption.18}\protected@file@percent }
-\newlabel{tab:trajectory-example}{{7}{14}{Rule-selected inspectable case from formal trajectories (lesson 4873, generation seed 43, turns 13--16). The Direct window instantiates an Ag--Pk--Ag--Pk two-step cycle, whereas Candidate traverses Gu--An--Iu--Pk. The entries preserve the recorded action, rationale intent, and utterance content while abbreviating the original text for space}{table.caption.18}{}}
-\@writefile{toc}{\contentsline {paragraph}{Rationales carry action-predictive information.}{14}{section*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Language realization remains a separate risk.}{14}{section*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{RQ4 knowledge-construction results are pending.}{15}{section*.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{15}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Human Grounding Becomes an Inspectable Design Resource}{15}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}TD-Associated Differences Reveal Longer-Horizon Organization}{15}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Action Mediation Makes Control Allocation Observable}{15}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}A Research Paradigm for Strategy-Rich Language Agents}{16}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}\protected@file@percent }
-\newlabel{main-content-end}{{6}{17}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Paired Direct--Candidate comparison over 30 matched generation-seed--lesson units (10,000 bootstrap resamples; percentile intervals; BH correction over 10 retained comparisons). Positive values mean Direct is numerically larger; metric arrows indicate the desirable direction. The configurations also differ in rationale temperature, so this is a system-level comparison rather than a single-factor decoding ablation.}}{14}{table.caption.16}\protected@file@percent }
+\newlabel{tab:direct-candidate-paired}{{6}{14}{Paired Direct--Candidate comparison over 30 matched generation-seed--lesson units (10,000 bootstrap resamples; percentile intervals; BH correction over 10 retained comparisons). Positive values mean Direct is numerically larger; metric arrows indicate the desirable direction. The configurations also differ in rationale temperature, so this is a system-level comparison rather than a single-factor decoding ablation}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Within the learned architecture, alignment comes with repetitive local structure.}{14}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A rule-selected trace makes the recurrence difference inspectable.}{14}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Rule-selected inspectable case from formal trajectories (lesson 4873, generation seed 43, turns 13--16). The Direct window instantiates an Ag--Pk--Ag--Pk two-step cycle, whereas Candidate traverses Gu--An--Iu--Pk. The entries preserve the recorded action, rationale intent, and utterance content while abbreviating the original text for space.}}{15}{table.caption.18}\protected@file@percent }
+\newlabel{tab:trajectory-example}{{7}{15}{Rule-selected inspectable case from formal trajectories (lesson 4873, generation seed 43, turns 13--16). The Direct window instantiates an Ag--Pk--Ag--Pk two-step cycle, whereas Candidate traverses Gu--An--Iu--Pk. The entries preserve the recorded action, rationale intent, and utterance content while abbreviating the original text for space}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rationales carry action-predictive information.}{15}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rule-based diagnostics delimit language-realization risk.}{15}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RQ4 reveals compact but similarly connected knowledge construction.}{15}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Knowledge-graph endpoints for RQ4. UER$_{100}$ is the number of evidence-grounded unique entities per 100 non-END turns. Generated-system values first average the three generation seeds within each of the 10 held-out lessons; the expert row contains one transcript per lesson. These endpoints describe generated knowledge structure, not factuality or instructional quality.}}{16}{table.caption.22}\protected@file@percent }
+\newlabel{tab:g4-kg-results}{{8}{16}{Knowledge-graph endpoints for RQ4. UER$_{100}$ is the number of evidence-grounded unique entities per 100 non-END turns. Generated-system values first average the three generation seeds within each of the 10 held-out lessons; the expert row contains one transcript per lesson. These endpoints describe generated knowledge structure, not factuality or instructional quality}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{16}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Human Grounding as an Inspectable Design Resource}{16}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}TD-Associated Differences Reveal Longer-Horizon Organization}{17}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Action Mediation Makes Control Allocation Observable}{17}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Implications for Evaluating Interactive Dialogue Agents}{18}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{18}{section.6}\protected@file@percent }
+\newlabel{main-content-end}{{6}{19}{Conclusion}{section.6}{}}
 \bibstyle{ACM-Reference-Format}
 \bibdata{references}
 \bibcite{achiam2023gpt}{{1}{2023}{{Achiam et~al\mbox  {.}}}{{}}}
@@ -113,9 +117,9 @@
 \bibcite{li2016deep}{{14}{2016b}{{Li et~al\mbox  {.}}}{{}}}
 \bibcite{li2018dialogue}{{15}{2019}{{Li et~al\mbox  {.}}}{{}}}
 \bibcite{li2026scaffoldlm}{{16}{2026}{{Li et~al\mbox  {.}}}{{}}}
-\@writefile{toc}{\contentsline {section}{References}{18}{section*.25}\protected@file@percent }
 \bibcite{liu2025proactive}{{17}{2025}{{Liu et~al\mbox  {.}}}{{}}}
 \bibcite{martynova2025simulate}{{18}{2025}{{Martynova et~al\mbox  {.}}}{{}}}
+\@writefile{toc}{\contentsline {section}{References}{20}{section*.26}\protected@file@percent }
 \bibcite{maurya2025unifying}{{19}{2025}{{Maurya et~al\mbox  {.}}}{{}}}
 \bibcite{ouyang2022training}{{20}{2022}{{Ouyang et~al\mbox  {.}}}{{}}}
 \bibcite{park2023generative}{{21}{2023}{{Park et~al\mbox  {.}}}{{}}}
@@ -133,34 +137,33 @@
 \bibcite{xi2025rise}{{33}{2025}{{Xi et~al\mbox  {.}}}{{}}}
 \bibcite{zhang2024simulating}{{34}{2025}{{Zhang et~al\mbox  {.}}}{{}}}
 \bibcite{zhao2017learning}{{35}{2017}{{Zhao et~al\mbox  {.}}}{{}}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Corpus statistics for the frozen lesson-level split. Topic counts within rows are distinct counts and need not sum to the corpus total because one topic name occurs in more than one partition.}}{20}{table.caption.26}\protected@file@percent }
-\newlabel{tab:appendix-data-statistics}{{8}{20}{Corpus statistics for the frozen lesson-level split. Topic counts within rows are distinct counts and need not sum to the corpus total because one topic name occurs in more than one partition}{table.caption.26}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Training and inference comparisons on the same held-out lessons. JSD is the G2 paired lesson-level bigram divergence.}}{20}{table.caption.28}\protected@file@percent }
-\newlabel{tab:appendix-ablation-results}{{9}{20}{Training and inference comparisons on the same held-out lessons. JSD is the G2 paired lesson-level bigram divergence}{table.caption.28}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces G3-v2 rationale--action simulatability. Values are means of the three generation-seed-level scores. The target is each system's selected action; the result is an association diagnostic, not a causal-faithfulness measure.}}{20}{table.caption.32}\protected@file@percent }
-\newlabel{tab:appendix-g3-results}{{10}{20}{G3-v2 rationale--action simulatability. Values are means of the three generation-seed-level scores. The target is each system's selected action; the result is an association diagnostic, not a causal-faithfulness measure}{table.caption.32}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Experimental Results}{20}{appendix.A}\protected@file@percent }
-\newlabel{sec:additional-results}{{A}{20}{Additional Experimental Results}{appendix.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Training and inference configurations.}{20}{section*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{G3-v2 rationale--action simulatability.}{20}{section*.31}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Desirability-aligned paired effects for the fixed-checkpoint TD contrast and Direct--Candidate system contrast. For metrics marked $\downarrow $ in the result tables, the reported difference and interval are multiplied by $-1$ so that positive values consistently favor the first named system (TD or Direct). Horizontal bars are percentile 95\% intervals from 10,000 paired bootstrap resamples clustered by the 10 held-out lessons. Filled markers denote a reported $p<.05$ or BH-adjusted $q<.05$; hollow markers denote a non-significant or untested comparison. The Direct--Candidate panel is a descriptive system-level comparison because rationale temperature also differs between configurations.}}{21}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:appendix-paired-effects}{{4}{21}{Desirability-aligned paired effects for the fixed-checkpoint TD contrast and Direct--Candidate system contrast. For metrics marked $\downarrow $ in the result tables, the reported difference and interval are multiplied by $-1$ so that positive values consistently favor the first named system (TD or Direct). Horizontal bars are percentile 95\% intervals from 10,000 paired bootstrap resamples clustered by the 10 held-out lessons. Filled markers denote a reported $p<.05$ or BH-adjusted $q<.05$; hollow markers denote a non-significant or untested comparison. The Direct--Candidate panel is a descriptive system-level comparison because rationale temperature also differs between configurations}{figure.caption.29}{}}
-\@writefile{toc}{\contentsline {paragraph}{Judgment status.}{21}{section*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Complete G1 diversity and recurrence diagnostics.}{21}{section*.34}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Core G1 and G2 results for the three learned-system configurations. Points show means and error bars show population standard deviations across generation seeds 42--44 from each fixed checkpoint, with 10 held-out lessons per seed. Connecting lines are visual guides rather than temporal trajectories; arrows indicate the desirable metric direction.}}{22}{figure.caption.30}\protected@file@percent }
-\newlabel{fig:appendix-learned-system-profile}{{5}{22}{Core G1 and G2 results for the three learned-system configurations. Points show means and error bars show population standard deviations across generation seeds 42--44 from each fixed checkpoint, with 10 held-out lessons per seed. Connecting lines are visual guides rather than temporal trajectories; arrows indicate the desirable metric direction}{figure.caption.30}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Complete G1 diversity and recurrence diagnostics for all completed systems. Values are mean $\pm $ population standard deviation across generation seeds 42, 43, and 44; each seed contains 10 held-out lessons. Learned systems reuse one checkpoint per condition across those seeds. Diagnostic baselines are included to show that high diversity or low recurrence alone does not establish expert-pattern alignment.}}{22}{table.caption.35}\protected@file@percent }
-\newlabel{tab:appendix-full-g1-results}{{11}{22}{Complete G1 diversity and recurrence diagnostics for all completed systems. Values are mean $\pm $ population standard deviation across generation seeds 42, 43, and 44; each seed contains 10 held-out lessons. Learned systems reuse one checkpoint per condition across those seeds. Diagnostic baselines are included to show that high diversity or low recurrence alone does not establish expert-pattern alignment}{table.caption.35}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Implementation and Reproducibility}{22}{appendix.B}\protected@file@percent }
-\newlabel{sec:reproducibility}{{B}{22}{Implementation and Reproducibility}{appendix.B}{}}
-\@writefile{toc}{\contentsline {paragraph}{Recovered training configuration and unresolved fields.}{22}{section*.36}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Recovered three-stage configuration for the evaluated Full and no-TD checkpoints. ``Cons.'' is the cross-head consistency-loss weight and ``LM-act'' is the LM action-class loss weight. The two configurations differ only in the Stage\nonbreakingspace 3 TD-loss weight among the recovered fields.}}{23}{table.caption.37}\protected@file@percent }
-\newlabel{tab:main-training-stages}{{12}{23}{Recovered three-stage configuration for the evaluated Full and no-TD checkpoints. ``Cons.'' is the cross-head consistency-loss weight and ``LM-act'' is the LM action-class loss weight. The two configurations differ only in the Stage~3 TD-loss weight among the recovered fields}{table.caption.37}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces System provenance matrix. ``gen.'' denotes generation seeds applied to a fixed checkpoint; ``train'' denotes independently trained BC checkpoints. The BC models are completed diagnostics but are not included in the formal horizon-100 trajectory tables.}}{23}{table.caption.38}\protected@file@percent }
-\newlabel{tab:system-provenance}{{13}{23}{System provenance matrix. ``gen.'' denotes generation seeds applied to a fixed checkpoint; ``train'' denotes independently trained BC checkpoints. The BC models are completed diagnostics but are not included in the formal horizon-100 trajectory tables}{table.caption.38}{}}
-\@writefile{toc}{\contentsline {paragraph}{Completed BC training metadata.}{23}{section*.39}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Inference configuration and quality gates.}{23}{section*.40}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Software environment.}{23}{section*.41}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Corpus statistics for the frozen lesson-level split. Topic counts within rows are distinct counts and need not sum to the corpus total because one topic name occurs in more than one partition.}}{22}{table.caption.27}\protected@file@percent }
+\newlabel{tab:appendix-data-statistics}{{9}{22}{Corpus statistics for the frozen lesson-level split. Topic counts within rows are distinct counts and need not sum to the corpus total because one topic name occurs in more than one partition}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Training and inference comparisons on the same held-out lessons. JSD is the G2 paired lesson-level bigram divergence.}}{22}{table.caption.29}\protected@file@percent }
+\newlabel{tab:appendix-ablation-results}{{10}{22}{Training and inference comparisons on the same held-out lessons. JSD is the G2 paired lesson-level bigram divergence}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces G3-v2 rationale--action simulatability. Values are means of the three generation-seed-level scores. The target is each system's selected action; the result is an association diagnostic, not a causal-faithfulness measure.}}{22}{table.caption.33}\protected@file@percent }
+\newlabel{tab:appendix-g3-results}{{11}{22}{G3-v2 rationale--action simulatability. Values are means of the three generation-seed-level scores. The target is each system's selected action; the result is an association diagnostic, not a causal-faithfulness measure}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Experimental Results}{22}{appendix.A}\protected@file@percent }
+\newlabel{sec:additional-results}{{A}{22}{Additional Experimental Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training and inference configurations.}{22}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{G3-v2 rationale--action simulatability.}{22}{section*.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Desirability-aligned paired effects for the fixed-checkpoint TD contrast and Direct--Candidate system contrast. For metrics marked $\downarrow $ in the result tables, the reported difference and interval are multiplied by $-1$ so that positive values consistently favor the first named system (TD or Direct). Horizontal bars are percentile 95\% intervals from 10,000 paired bootstrap resamples clustered by the 10 held-out lessons. Filled markers denote a reported $p<.05$ or BH-adjusted $q<.05$; hollow markers denote a non-significant or untested comparison. The Direct--Candidate panel is a descriptive system-level comparison because rationale temperature also differs between configurations.}}{23}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:appendix-paired-effects}{{4}{23}{Desirability-aligned paired effects for the fixed-checkpoint TD contrast and Direct--Candidate system contrast. For metrics marked $\downarrow $ in the result tables, the reported difference and interval are multiplied by $-1$ so that positive values consistently favor the first named system (TD or Direct). Horizontal bars are percentile 95\% intervals from 10,000 paired bootstrap resamples clustered by the 10 held-out lessons. Filled markers denote a reported $p<.05$ or BH-adjusted $q<.05$; hollow markers denote a non-significant or untested comparison. The Direct--Candidate panel is a descriptive system-level comparison because rationale temperature also differs between configurations}{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Knowledge-graph evaluation coverage.}{23}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complete G1 diversity and recurrence diagnostics.}{23}{section*.35}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Core G1 and G2 results for the three learned-system configurations. Points show means and error bars show population standard deviations across generation seeds 42--44 from each fixed checkpoint, with 10 held-out lessons per seed. Connecting lines are visual guides rather than temporal trajectories; arrows indicate the desirable metric direction.}}{24}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:appendix-learned-system-profile}{{5}{24}{Core G1 and G2 results for the three learned-system configurations. Points show means and error bars show population standard deviations across generation seeds 42--44 from each fixed checkpoint, with 10 held-out lessons per seed. Connecting lines are visual guides rather than temporal trajectories; arrows indicate the desirable metric direction}{figure.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Complete G1 diversity and recurrence diagnostics for all completed systems. Values are mean $\pm $ population standard deviation across generation seeds 42, 43, and 44; each seed contains 10 held-out lessons. Learned systems reuse one checkpoint per condition across those seeds. Diagnostic baselines are included to show that high diversity or low recurrence alone does not establish expert-pattern alignment.}}{24}{table.caption.36}\protected@file@percent }
+\newlabel{tab:appendix-full-g1-results}{{12}{24}{Complete G1 diversity and recurrence diagnostics for all completed systems. Values are mean $\pm $ population standard deviation across generation seeds 42, 43, and 44; each seed contains 10 held-out lessons. Learned systems reuse one checkpoint per condition across those seeds. Diagnostic baselines are included to show that high diversity or low recurrence alone does not establish expert-pattern alignment}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Implementation and Reproducibility}{24}{appendix.B}\protected@file@percent }
+\newlabel{sec:reproducibility}{{B}{24}{Implementation and Reproducibility}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Archived training configuration and provenance boundary.}{24}{section*.37}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Recovered three-stage configuration for the evaluated Full and no-TD checkpoints. ``Cons.'' is the cross-head consistency-loss weight and ``LM-act'' is the LM action-class loss weight. The two configurations differ only in the Stage\nonbreakingspace 3 TD-loss weight among the recovered fields.}}{25}{table.caption.38}\protected@file@percent }
+\newlabel{tab:main-training-stages}{{13}{25}{Recovered three-stage configuration for the evaluated Full and no-TD checkpoints. ``Cons.'' is the cross-head consistency-loss weight and ``LM-act'' is the LM action-class loss weight. The two configurations differ only in the Stage~3 TD-loss weight among the recovered fields}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces System provenance matrix. ``gen.'' denotes generation seeds applied to a fixed checkpoint; ``train'' denotes independently trained BC checkpoints. The BC models are completed diagnostics but are not included in the formal horizon-100 trajectory tables.}}{25}{table.caption.39}\protected@file@percent }
+\newlabel{tab:system-provenance}{{14}{25}{System provenance matrix. ``gen.'' denotes generation seeds applied to a fixed checkpoint; ``train'' denotes independently trained BC checkpoints. The BC models are completed diagnostics but are not included in the formal horizon-100 trajectory tables}{table.caption.39}{}}
+\@writefile{toc}{\contentsline {paragraph}{Completed BC training metadata.}{25}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference configuration and quality gates.}{25}{section*.41}\protected@file@percent }
 \citation{deyoung2020eraser}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
@@ -169,11 +172,12 @@
 \newlabel{tocindent3}{0pt}
 \newlabel{tocindent4}{0pt}
 \newlabel{tocindent5}{0pt}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Exploratory context intervention for the main Full checkpoint ($N=50$ states, 10 lessons). Lesson-cluster intervals appear in the main text. The intervention tests distributional sensitivity, not contextual correctness.}}{24}{table.caption.42}\protected@file@percent }
-\newlabel{tab:context-intervention}{{14}{24}{Exploratory context intervention for the main Full checkpoint ($N=50$ states, 10 lessons). Lesson-cluster intervals appear in the main text. The intervention tests distributional sensitivity, not contextual correctness}{table.caption.42}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Context-Sensitivity Intervention}{24}{appendix.C}\protected@file@percent }
-\newlabel{sec:context-intervention}{{C}{24}{Context-Sensitivity Intervention}{appendix.C}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Evaluation Details}{24}{appendix.D}\protected@file@percent }
-\newlabel{sec:evaluation-details}{{D}{24}{Evaluation Details}{appendix.D}{}}
-\newlabel{TotPages}{{24}{24}{}{page.24}{}}
-\gdef \@abspage@last{24}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Exploratory context intervention for the main Full checkpoint ($N=50$ states, 10 lessons). Lesson-cluster intervals appear in the main text. The intervention tests distributional sensitivity, not contextual correctness.}}{26}{table.caption.43}\protected@file@percent }
+\newlabel{tab:context-intervention}{{15}{26}{Exploratory context intervention for the main Full checkpoint ($N=50$ states, 10 lessons). Lesson-cluster intervals appear in the main text. The intervention tests distributional sensitivity, not contextual correctness}{table.caption.43}{}}
+\@writefile{toc}{\contentsline {paragraph}{Software environment.}{26}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Context-Sensitivity Intervention}{26}{appendix.C}\protected@file@percent }
+\newlabel{sec:context-intervention}{{C}{26}{Context-Sensitivity Intervention}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Evaluation Details}{26}{appendix.D}\protected@file@percent }
+\newlabel{sec:evaluation-details}{{D}{26}{Evaluation Details}{appendix.D}{}}
+\newlabel{TotPages}{{26}{26}{}{page.26}{}}
+\gdef \@abspage@last{26}

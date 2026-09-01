@@ -1,8 +1,8 @@
-PWD E:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template
+PWD e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template
 INPUT d:/texlive/2026/texmf.cnf
 INPUT d:/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt
-INPUT sigconf-authordraft.tex
+INPUT e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template/sigconf-authordraft.tex
 OUTPUT sigconf-authordraft.log
 INPUT ./acmart.cls
 INPUT acmart.cls
@@ -385,18 +385,21 @@ INPUT sigconf-authordraft.out
 INPUT ./sigconf-authordraft.out
 INPUT ./sigconf-authordraft.out
 OUTPUT sigconf-authordraft.out
-INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
-INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
-INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
-INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
+INPUT ./figure/teaser.png
+INPUT ./figure/teaser.png
+INPUT ./figure/teaser.png
 INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
+INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
+INPUT d:/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
+INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 OUTPUT sigconf-authordraft.xdv
 INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
 INPUT d:/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmmi7.tfm

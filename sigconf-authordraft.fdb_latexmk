@@ -1,18 +1,18 @@
 # Fdb version 4
-["bibtex sigconf-authordraft"] 1787850697.47924 "sigconf-authordraft.aux" "sigconf-authordraft.bbl" "sigconf-authordraft" 1787850705.87818 0
+["bibtex sigconf-authordraft"] 1787977634.3036 "sigconf-authordraft.aux" "sigconf-authordraft.bbl" "sigconf-authordraft" 1787977643.01552 0
   "./ACM-Reference-Format.bst" 1787546086 93560 7091f2b0543d2c8bfe2e82ce5d54a029 ""
   "./references.bib" 1787842157 26585 395c00d149dc6780585de6e985b308ce ""
-  "sigconf-authordraft.aux" 1787850702 27541 4c46919dad65db562e7de6fffaf6a93d "xelatex"
+  "sigconf-authordraft.aux" 1787977638 28636 2f4bd82a72f3cf4b555a252a02080e69 "xelatex"
   (generated)
   "sigconf-authordraft.bbl"
   "sigconf-authordraft.blg"
   (rewritten before read)
-["xdvipdfmx"] 1787850704.47756 "sigconf-authordraft.xdv" "sigconf-authordraft.pdf" "sigconf-authordraft" 1787850705.89561 0
-  "sigconf-authordraft.xdv" 1787850702 1100536 42ea7521dec6e129c4d8f4deb69f7de8 "xelatex"
+["xdvipdfmx"] 1787977639.60934 "sigconf-authordraft.xdv" "sigconf-authordraft.pdf" "sigconf-authordraft" 1787977643.03552 0
+  "sigconf-authordraft.xdv" 1787977638 1062164 5d0807ba236a26eeeaed342ad2ee2445 "xelatex"
   (generated)
   "sigconf-authordraft.pdf"
   (rewritten before read)
-["xelatex"] 1787850697.94447 "sigconf-authordraft.tex" "sigconf-authordraft.xdv" "sigconf-authordraft" 1787850705.87888 0
+["xelatex"] 1787977634.67471 "e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template/sigconf-authordraft.tex" "sigconf-authordraft.xdv" "sigconf-authordraft" 1787977643.01633 0
   "acmart.cls" 1787546086 121737 e553f62fc9642f9010f9c29ba27de8d5 ""
   "d:/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1773816547 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2026/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1773820394 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -215,14 +215,16 @@
   "d:/texlive/2026/texmf-dist/web2c/texmf.cnf" 1773813907 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
   "d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1773821696 5948962 9ecf7b30877f421ea55dc25edc222654 ""
   "d:/texlive/2026/texmf.cnf" 1773821496 713 e69b156964470283e0530f5060668171 ""
+  "e:/File Library/VSCodeProjects/TaskForge-Paper/ACM_Template/sigconf-authordraft.tex" 1787977628 91163 6119413b9772148596e499b2e423bcb0 ""
   "figure/LA-IQL-framework.png" 1787473361 381286 24109997dcd3621e4a31436a8ab5555b ""
   "figure/learned_system_dumbbell.pdf" 1787500642 24414 ca737f01e493a89439e4caf08b1ecb45 ""
   "figure/paired_effects_forest.pdf" 1787500642 26877 03f5fa5aa4a5ca5a2fbbe62558015f25 ""
-  "sigconf-authordraft.aux" 1787850702 27541 4c46919dad65db562e7de6fffaf6a93d "xelatex"
-  "sigconf-authordraft.bbl" 1787850697 26533 d89b2ef12dbf60d8f48e5855501a2d73 "bibtex sigconf-authordraft"
-  "sigconf-authordraft.log" 1787850702 99195 ecdf59ed7c8c1ac157f53905ccc5aac1 "xelatex"
-  "sigconf-authordraft.out" 1787850702 6976 e5ae592315e3472fe95f6c9f78168730 "xelatex"
-  "sigconf-authordraft.tex" 1787850677 96433 5cb01c752b0e157b4ac88030ef8302ec ""
+  "figure/teaser.png" 1787937236 1326337 19775247512f761c10106d573c18f5f8 ""
+  "sigconf-authordraft.aux" 1787977638 28636 2f4bd82a72f3cf4b555a252a02080e69 "xelatex"
+  "sigconf-authordraft.bbl" 1787977634 26080 5f797e793311e82dffbc796b1d6a4669 "bibtex sigconf-authordraft"
+  "sigconf-authordraft.log" 1787977638 98598 60c52ef6ce08fd877a789c508926e5a1 "xelatex"
+  "sigconf-authordraft.out" 1787977638 6913 469e825428120fc8a709492611d01445 "xelatex"
+  "sigconf-authordraft.tex" 1787977628 91163 6119413b9772148596e499b2e423bcb0 ""
   (generated)
   "sigconf-authordraft.aux"
   "sigconf-authordraft.log"
