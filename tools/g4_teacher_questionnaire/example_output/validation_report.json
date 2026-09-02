@@ -1,0 +1,12 @@
+{
+  "valid": true,
+  "errors": [],
+  "items": 25,
+  "assignments": 50,
+  "schema_version": "g4-teacher-bank-v1",
+  "salt": "g4-teacher-eval-v1-20260902",
+  "trajectory_root_name": "formal_100",
+  "trajectory_count_loaded": 90,
+  "sample_participant": "P01",
+  "item_bank_sha256": "7ba125b9b016541cbdfebef161dbab4e3dafe2f16e35798d4f7ab94395eb8b9d"
+}

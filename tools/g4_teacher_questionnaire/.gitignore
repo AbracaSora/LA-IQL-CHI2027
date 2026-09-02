@@ -1,0 +1,4 @@
+# Keep system identities and future participant responses out of the repository.
+example_output/*_private.csv
+example_output/raw_responses*.csv
+example_output/blind_mapping*.csv
